@@ -9,8 +9,7 @@
  * Copyright (c) 2015 Uwe Kindler
  */
 
-#ifndef VIRTUALKEYBOARDINPUTCONTEXT_H
-#define VIRTUALKEYBOARDINPUTCONTEXT_H
+#pragma once
 
 #include <qpa/qplatforminputcontext.h>
 
@@ -147,5 +146,3 @@ class VirtualKeyboardInputContext : public QPlatformInputContext {
     QPointer<QObject> inputPanel;
     QMetaObject::Connection visibleConnection;
 };
-
-#endif  // VIRTUALKEYBOARDINPUTCONTEXT_H

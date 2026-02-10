@@ -1,91 +1,51 @@
-set(HEADERS
-    "EnterKeyAction.hpp" "EnterKeyActionAttachedType.hpp" "InputPanelIface.hpp"
-    "VirtualKeyboardInputContextPlugin.h" "VirtualKeyboardInputContext.h"
-    "DeclarativeInputEngine.h")
 
-set(SOURCES
-    "EnterKeyAction.cpp" "EnterKeyActionAttachedType.cpp" "InputPanelIface.cpp"
-    "VirtualKeyboardInputContextPlugin.cpp" "VirtualKeyboardInputContext.cpp"
-    "DeclarativeInputEngine.cpp")
+file(GLOB_RECURSE HEADERS *.h *.hpp)
+file(GLOB_RECURSE SOURCES *.cpp)
+file(GLOB_RECURSE QML_FILES qml/*.qml)
 
-set(QML_FILES
-    "qml/AlternativeKeysPopup.qml"
-    "qml/BackspaceKey.qml"
-    "qml/CsLayout.qml"
-    "qml/CySrBsLayout.qml"
-    "qml/DeLayout.qml"
-    "qml/DigitsLayout.qml"
-    "qml/ElLayout.qml"
-    "qml/EnLayout.qml"
-    "qml/EnterKey.qml"
-    "qml/EsLayout.qml"
-    "qml/FrLayout.qml"
-    "qml/DaLayout.qml"
-    "qml/FiLayout.qml"
-    "qml/HideKey.qml"
-    "qml/InputPanel.qml"
-    "qml/ItLayout.qml"
-    "qml/KeyModel.qml"
-    "qml/KeyPopup.qml"
-    "qml/Key.qml"
-    "qml/LanguageKey.qml"
-    "qml/LtSrHrBsLayout.qml"
-    "qml/NlLayout.qml"
-    "qml/PlLayout.qml"
-    "qml/PtLayout.qml"
-    "qml/QwertyLayout.qml"
-    "qml/RuLayout.qml"
-    "qml/ShiftKey.qml"
-    "qml/SpaceKey.qml"
-    "qml/SvLayout.qml"
-    "qml/SymbolKey.qml"
-    "qml/SymbolLayout.qml"
-    "qml/UkLayout.qml")
-
-foreach(_file IN_LISTS QML_FILES)
+foreach(_file ${QML_FILES})
   cmake_path(GET _file FILENAME _fileName)
-  set_source_files_properties(${_file} PROPERTIES QT_RESOURCE_ALIAS
-                                                  ${_fileName})
+  set_source_files_properties(${_file} PROPERTIES QT_RESOURCE_ALIAS ${_fileName})
 endforeach()
 
 qt_add_qml_module(
   ${PROJECT_NAME}
-  URI
-  "QtQuick.CuteKeyboard"
-  VERSION
-  1.0
-  PLUGIN_TARGET
-  ${PROJECT_NAME}
-  OUTPUT_DIRECTORY
-  "QtQuick/CuteKeyboard"
-  RESOURCE_PREFIX
-  "/"
-  CLASS_NAME
-  "VirtualKeyboardInputContextPlugin"
+  URI "QtQuick.SKeyboard"
+  VERSION 1.0
+  PLUGIN_TARGET ${PROJECT_NAME}
+  RESOURCE_PREFIX "/"
+  OUTPUT_DIRECTORY "QtQuick/SKeyboard"
+  CLASS_NAME "VirtualKeyboardInputContextPlugin"
   SOURCES
-  ${HEADERS}
-  ${SOURCES}
+    ${HEADERS}
+    ${SOURCES}
   QML_FILES
-  ${QML_FILES}
-  NO_GENERATE_PLUGIN_SOURCE)
-
-qt_add_resources(${PROJECT_NAME} "icons" PREFIX "/" FILES "resources.qrc")
-
-target_link_libraries(
-  ${PROJECT_NAME} PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick
-                          Qt::QuickPrivate)
+    ${QML_FILES}
+  RESOURCES
+    icons/icons.qrc
+    skeyboard.json
+  NO_GENERATE_PLUGIN_SOURCE
+)
 
 set(INSTALL_PLUGINSDIR "" CACHE PATH "Installation directory for plugins")
 if (NOT INSTALL_PLUGINSDIR)
   if(${PROJECT_NAME} STREQUAL ${CMAKE_PROJECT_NAME})
-    set(INSTALL_PLUGINSDIR ${QT_DIR}/../../../plugins)
+    set(INSTALL_PLUGINSDIR ${Qt6_DIR}/../../../plugins)
+    set_target_properties( ${PROJECT_NAME} PROPERTIES
+      LIBRARY_OUTPUT_DIRECTORY "${INSTALL_PLUGINSDIR}/platforminputcontexts")
   else()
     set(INSTALL_PLUGINSDIR ${CMAKE_INSTALL_BINDIR})
-    set_target_properties(
-      ${PROJECT_NAME}
-      PROPERTIES LIBRARY_OUTPUT_DIRECTORY
-                "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforminputcontexts")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+      LIBRARY_OUTPUT_DIRECTORY "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforminputcontexts")
   endif()
 endif()
 
-install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${INSTALL_PLUGINSDIR}/platforminputcontexts)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+  Qt::Core
+  Qt::Gui
+  Qt::GuiPrivate
+  Qt::Quick
+  Qt::Qml
+  Qt::QuickPrivate
+)

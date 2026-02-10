@@ -1,6 +1,7 @@
-import CuteKeyboard 1.0
-import QtQml 2.0
 import QtQuick 2.0
+import QtQml 2.0
+
+import SKeyboard 1.0
 
 Item {
     id: root
@@ -12,46 +13,48 @@ Item {
     property color btnTextColor: "#ffffff"
     property string btnTextFontFamily
     property string languageLayout: "En"
-    property string backspaceIcon: "qrc:/icons/backspace.png"
+    property string backspaceIcon: "qrc:/icons/SKeyboard/backspace.png"
     property string enterIcon: ""
-    property string shiftOnIcon: "qrc:/icons/caps-lock-on.png"
-    property string shiftOffIcon: "qrc:/icons/caps-lock-off.png"
-    property string hideKeyboardIcon: "qrc:/icons/hide-arrow.png"
-    property string languageIcon: "qrc:/icons/language.png"
+    property string shiftOnIcon: "qrc:/icons/SKeyboard/caps-lock-on.png"
+    property string shiftOffIcon: "qrc:/icons/SKeyboard/caps-lock-off.png"
+    property string hideKeyboardIcon: "qrc:/icons/SKeyboard/hide-arrow.png"
+    property string languageIcon: "qrc:/icons/SKeyboard/language.png"
     property var availableLanguageLayouts: ["En"]
     property alias emptySpaceBar: layoutLoader.emptySpaceBar
 
     /*! \internal */
-    readonly property bool __isRootItem: root.parent !== null && root.parent.parent === null
+    readonly property bool __isRootItem: root.parent !== null
+                                         && root.parent.parent === null
 
     function showKeyPopup(keyButton) {
-        keyPopup.popup(keyButton, root);
+        keyPopup.popup(keyButton, root)
     }
 
     function hideKeyPopup() {
-        keyPopup.visible = false;
+        keyPopup.visible = false
     }
 
     function showAlternativesKeyPopup(keyButton) {
-        alternativesKeyPopup.open(keyButton, root);
+        alternativesKeyPopup.open(keyButton, root)
     }
 
     function loadLettersLayout() {
-        var description = InputEngine.descriptionOfLayout(languageLayout);
-        var spaceIdentifier = InputEngine.spaceIdentifierOfLayout(languageLayout);
-        var source = InputEngine.fileOfLayout(languageLayout);
+        var description = InputEngine.descriptionOfLayout(languageLayout)
+        var spaceIdentifier = InputEngine.spaceIdentifierOfLayout(
+                    languageLayout)
+        var source = InputEngine.fileOfLayout(languageLayout)
         if (description !== "" && source !== "") {
-            layoutLoader.langDescription = description;
-            layoutLoader.spaceIdentifier = spaceIdentifier;
+            layoutLoader.langDescription = description
+            layoutLoader.spaceIdentifier = spaceIdentifier
             layoutLoader.setSource(source + ".qml", {
-                "inputPanel": root
-            });
+                                       "inputPanel": root
+                                   })
         } else {
-            layoutLoader.langDescription = "English";
-            layoutLoader.spaceIdentifier = "space";
+            layoutLoader.langDescription = "English"
+            layoutLoader.spaceIdentifier = "space"
             layoutLoader.setSource("EnLayout.qml", {
-                "inputPanel": root
-            });
+                                       "inputPanel": root
+                                   })
         }
     }
 
@@ -61,8 +64,7 @@ Item {
     onYChanged: InputEngine.setKeyboardRectangle(Qt.rect(x, y, width, height))
     onActiveChanged: {
         if (alternativesKeyPopup.visible && !active)
-            alternativesKeyPopup.visible = false;
-
+            alternativesKeyPopup.visible = false
     }
     onLanguageLayoutChanged: loadLettersLayout()
     Component.onCompleted: {
@@ -70,22 +72,22 @@ Item {
         InputContext.registerInputPanel(root)
 
         if (availableLanguageLayouts.length == 0)
-            availableLanguageLayouts = ["En"];
+            availableLanguageLayouts = ["En"]
 
-        InputPanel.backgroundColor = backgroundColor;
-        InputPanel.btnBackgroundColor = btnBackgroundColor;
-        InputPanel.btnSpecialBackgroundColor = btnSpecialBackgroundColor;
-        InputPanel.btnTextColor = btnTextColor;
-        InputPanel.btnTextFontFamily = btnTextFontFamily;
-        InputPanel.backspaceIcon = backspaceIcon;
-        InputPanel.enterIcon = enterIcon;
-        InputPanel.shiftOnIcon = shiftOnIcon;
-        InputPanel.shiftOffIcon = shiftOffIcon;
-        InputPanel.hideKeyboardIcon = hideKeyboardIcon;
-        InputPanel.languageIcon = languageIcon;
-        InputPanel.availableLanguageLayouts = availableLanguageLayouts;
-        InputPanel.languageLayout = languageLayout;
-        loadLettersLayout();
+        InputPanel.backgroundColor = backgroundColor
+        InputPanel.btnBackgroundColor = btnBackgroundColor
+        InputPanel.btnSpecialBackgroundColor = btnSpecialBackgroundColor
+        InputPanel.btnTextColor = btnTextColor
+        InputPanel.btnTextFontFamily = btnTextFontFamily
+        InputPanel.backspaceIcon = backspaceIcon
+        InputPanel.enterIcon = enterIcon
+        InputPanel.shiftOnIcon = shiftOnIcon
+        InputPanel.shiftOffIcon = shiftOffIcon
+        InputPanel.hideKeyboardIcon = hideKeyboardIcon
+        InputPanel.languageIcon = languageIcon
+        InputPanel.availableLanguageLayouts = availableLanguageLayouts
+        InputPanel.languageLayout = languageLayout
+        loadLettersLayout()
     }
 
     KeyPopup {
@@ -140,29 +142,28 @@ Item {
                 fill: parent
                 margins: 5
             }
-
         }
 
         Connections {
             function refreshLayouts() {
                 if (InputEngine.symbolMode)
                     layoutLoader.setSource("SymbolLayout.qml", {
-                    "inputPanel": root
-                });
+                                               "inputPanel": root
+                                           })
                 else if (InputEngine.inputMode === InputEngine.DigitsOnly)
                     layoutLoader.setSource("DigitsLayout.qml", {
-                    "inputPanel": root
-                });
+                                               "inputPanel": root
+                                           })
                 else
-                    loadLettersLayout();
+                    loadLettersLayout()
             }
 
             function onInputModeChanged() {
-                refreshLayouts();
+                refreshLayouts()
             }
 
             function onIsSymbolModeChanged() {
-                refreshLayouts();
+                refreshLayouts()
             }
 
             target: InputEngine
@@ -170,13 +171,11 @@ Item {
 
         Connections {
             function onLanguageLayoutChanged() {
-                languageLayout = InputPanel.languageLayout;
-                loadLettersLayout();
+                languageLayout = InputPanel.languageLayout
+                loadLettersLayout()
             }
 
             target: InputPanel
         }
-
     }
-
 }

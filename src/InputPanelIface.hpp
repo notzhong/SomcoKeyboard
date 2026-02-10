@@ -1,5 +1,4 @@
-#ifndef INPUTPANELIFACE_HPP
-#define INPUTPANELIFACE_HPP
+#pragma once
 
 #include <QColor>
 #include <QObject>
@@ -91,4 +90,3 @@ class InputPanelIface : public QObject {
     InputPanelIfacePrivate *pimpl;
 };
 
-#endif  // INPUTPANELIFACE_HPP

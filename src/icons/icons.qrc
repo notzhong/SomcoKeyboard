@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC>
+    <qresource prefix="/icons/SKeyboard">
+        <file>backspace.png</file>
+        <file>caps-lock-off.png</file>
+        <file>caps-lock-on.png</file>
+        <file>hide-arrow.png</file>
+        <file>language.png</file>
+    </qresource>
+</RCC>

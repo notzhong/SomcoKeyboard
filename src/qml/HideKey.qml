@@ -1,4 +1,4 @@
-import CuteKeyboard 1.0
+import SKeyboard 1.0
 import QtQuick 2.0
 
 Key {

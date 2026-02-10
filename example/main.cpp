@@ -2,9 +2,7 @@
 #include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[]) {
-    qputenv("QT_IM_MODULE", QByteArray("cutekeyboard"));
-
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    qputenv("QT_IM_MODULE", QByteArray("skeyboard"));
 
     QGuiApplication app(argc, argv);
 

@@ -1,5 +1,4 @@
-#ifndef MOCKUPVIRTUALKEYBOARD_GLOBAL_H
-#define MOCKUPVIRTUALKEYBOARD_GLOBAL_H
+#pragma once
 
 #include <QtCore/qglobal.h>
 
@@ -8,5 +7,3 @@
 #else
 #define MOCKUPVIRTUALKEYBOARDSHARED_EXPORT Q_DECL_IMPORT
 #endif
-
-#endif  // MOCKUPVIRTUALKEYBOARD_GLOBAL_H

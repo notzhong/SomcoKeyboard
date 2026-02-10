@@ -43,18 +43,18 @@ VirtualKeyboardInputContext::VirtualKeyboardInputContext()
     d->FlickableContentScrollAnimation->setEasingCurve(
         QEasingCurve(QEasingCurve::OutBack));
     qmlRegisterSingletonType<DeclarativeInputEngine>(
-        "CuteKeyboard", 1, 0, "InputEngine", inputEngineProvider);
+        "SKeyboard", 1, 0, "InputEngine", inputEngineProvider);
     connect(d->InputEngine, &DeclarativeInputEngine::animatingChanged, this,
             &VirtualKeyboardInputContext::ensureFocusedObjectVisible);
     connect(d->InputEngine, &DeclarativeInputEngine::keyboardRectangleChanged, this, &VirtualKeyboardInputContext::emitKeyboardRectChanged);
 
-    qmlRegisterSingletonType<InputPanelIface>("CuteKeyboard", 1, 0,
+    qmlRegisterSingletonType<InputPanelIface>("SKeyboard", 1, 0,
                                               "InputPanel", inputPanelProvider);
     qmlRegisterSingletonType<VirtualKeyboardInputContext>(
-        "CuteKeyboard", 1, 0, "InputContext", inputContextProvider);
-    qmlRegisterType<EnterKeyAction>("QtQuick.CuteKeyboard", 1, 0,
+        "SKeyboard", 1, 0, "InputContext", inputContextProvider);
+    qmlRegisterType<EnterKeyAction>("SKeyboard", 1, 0,
                                     "EnterKeyAction");
-    qmlRegisterType<EnterKeyAction>("CuteKeyboard", 1, 0, "EnterKeyAction");
+    qmlRegisterType<EnterKeyAction>("SKeyboard", 1, 0, "EnterKeyAction");
 }
 
 VirtualKeyboardInputContext::~VirtualKeyboardInputContext() {}

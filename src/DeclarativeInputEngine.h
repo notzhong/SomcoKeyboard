@@ -9,8 +9,7 @@
  * Copyright (c) 2015 Uwe Kindler
  */
 
-#ifndef DECLARATIVEINPUTENGINE_H
-#define DECLARATIVEINPUTENGINE_H
+#pragma once
 
 #include <QObject>
 #include <QRect>
@@ -171,5 +170,3 @@ class DeclarativeInputEngine : public QObject {
    private slots:
     void animatingFinished();
 };
-
-#endif  // DECLARATIVEINPUTENGINE_H

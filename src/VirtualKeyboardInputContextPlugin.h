@@ -9,8 +9,7 @@
  * Copyright (c) 2015 Uwe Kindler
  */
 
-#ifndef VIRTUALKEYBOARDINPUTCONTEXTPLUGIN_H
-#define VIRTUALKEYBOARDINPUTCONTEXTPLUGIN_H
+#pragma once
 
 #include <qpa/qplatforminputcontextplugin_p.h>
 
@@ -23,10 +22,9 @@ class VirtualKeyboardInputContextPlugin : public QPlatformInputContextPlugin {
     Q_OBJECT
 
     Q_PLUGIN_METADATA(IID QPlatformInputContextFactoryInterface_iid FILE
-                      "cutekeyboard.json")
+                      "skeyboard.json")
 
    public:
     QPlatformInputContext *create(const QString &, const QStringList &);
 };
 
-#endif  // VIRTUALKEYBOARDINPUTCONTEXTPLUGIN_H

@@ -1,29 +1,34 @@
 cmake_minimum_required(VERSION 3.16)
-project(
-  cutekeyboardplugin
-  VERSION 1.0
-  LANGUAGES C CXX)
+project(SKeyboard VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Qml Quick)
+find_package(Qt6 COMPONENTS Core Gui Qml Quick REQUIRED)
 
-if (Qt6Gui_VERSION VERSION_GREATER_EQUAL "6.10.0")
+message(STATUS "Qt found: ${Qt6_VERSION_MAJOR}.${Qt6_VERSION_MINOR}")
+
+if(Qt6_VERSION_MAJOR GREATER_EQUAL 6 AND Qt6_VERSION_MINOR GREATER_EQUAL 10)
+  set(QT_NO_PRIVATE_MODULE_WARNING ON)
   find_package(Qt6 REQUIRED COMPONENTS GuiPrivate QuickPrivate)
 endif()
-
-option(BUILD_EXAMPLES "Build examples" OFF)
 
 if(QT_KNOWN_POLICY_QTP0001)
   qt_policy(SET QTP0001 NEW)
 endif()
 
+if(QT_KNOWN_POLICY_QTP0004)
+  qt_policy(SET QTP0004 NEW)
+endif()
+
 qt_standard_project_setup()
 
-add_subdirectory(src)
+option(BUILD_SKEYBOARD_EXAMPLE "Build SKeyboard example" ON)
 
-if(BUILD_EXAMPLES)
+if(BUILD_SKEYBOARD_EXAMPLE)
   add_subdirectory(example)
 endif()
+
+add_subdirectory(src)

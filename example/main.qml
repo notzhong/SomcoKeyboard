@@ -1,135 +1,121 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.CuteKeyboard 1.0
+import QtQuick.Controls.Basic 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
 
-Window {
+import QtQuick.SKeyboard 1.0
+
+ApplicationWindow {
     id: window
 
     visible: true
     width: 640
-    height: 640
-    title: qsTr("QtCuteKeyboard Example")
+    height: 800
+    title: qsTr("SKeyboard Example")
+
+    background: Rectangle {
+        gradient: Gradient {
+            GradientStop {
+                position: 0.0
+                color: "#0C3A2D"
+            }
+            GradientStop {
+                position: 1.0
+                color: "#084E4B"
+            }
+        }
+    }
+
+    component CTextField: TextField {
+        implicitWidth: 512
+        implicitHeight: 68
+        color: "#FFFFFF"
+        font.pixelSize: 30
+        font.family: "Inter"
+        background: Rectangle {
+            anchors.fill: parent
+            color: "#0A322D"
+            Rectangle {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                height: 2
+                color: "#D9D9D9"
+            }
+        }
+    }
 
     ColumnLayout {
-        spacing: 20
-        anchors.centerIn: parent
-
-        RowLayout {
-            spacing: 10
-
-            Text {
-                id: t1
-
-                text: qsTr("Basic TextField")
-            }
-
-            TextField {
-                id: tf1
-
-                width: 200
-                height: 50
-            }
-
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            margins: 40
+            bottomMargin: inputPanel.height
+            left: parent.left
+            onRightChanged: parent.right
         }
 
-        RowLayout {
-            spacing: 10
+        spacing: 100
 
-            Text {
-                id: t2
-
-                text: qsTr("Disabled enter key - TextField")
-            }
-
-            TextField {
-                id: tf2
-
-                width: 200
-                height: 50
-                EnterKeyAction.enabled: false
-            }
-
+        Image {
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/icons/logo.svg"
+            Layout.preferredWidth: 575
+            Layout.preferredHeight: 88
         }
 
-        RowLayout {
-            spacing: 10
+        ColumnLayout {
+            spacing: 39
+            ColumnLayout {
+                spacing: 9
 
-            Text {
-                id: t3
+                Text {
+                    text: qsTr("Login ID")
+                    color: "#FFFFFF"
+                    font.pixelSize: 20
+                    font.family: "Inter"
+                }
 
-                text: qsTr("Enabled enter key - TextField")
+                CTextField {
+                    id: tf1
+                }
             }
 
-            TextField {
-                id: tf3
+            ColumnLayout {
+                spacing: 9
 
-                width: 200
-                height: 50
-                EnterKeyAction.enabled: true
+                Text {
+                    text: qsTr("Password")
+                    color: "#FFFFFF"
+                    font.pixelSize: 20
+                    font.family: "Inter"
+                }
+
+                CTextField {
+                    inputMethodHints: Qt.ImhDigitsOnly
+                    echoMode: TextInput.Password
+                }
             }
-
         }
-
-        RowLayout {
-            spacing: 10
-
-            Text {
-                id: t4
-
-                text: qsTr("Qt.ImhDigitsOnly TextField")
-            }
-
-            TextField {
-                id: tf4
-
-                width: 200
-                height: 50
-                inputMethodHints: Qt.ImhDigitsOnly
-            }
-
-        }
-
     }
 
     InputPanel {
         id: inputPanel
 
         z: 99
-        y: window.height
+        y: Qt.inputMethod.visible ? (window.height - inputPanel.height) : window.height
         anchors.left: parent.left
         anchors.right: parent.right
-        languageLayout: "It"
-        availableLanguageLayouts: ["It", "En"]
+        languageLayout: "En"
+        availableLanguageLayouts: ["En", "De"]
 
-        states: State {
-            name: "visible"
-            when: Qt.inputMethod.visible
-
-            PropertyChanges {
-                target: inputPanel
-                y: window.height - inputPanel.height
+        Behavior on y {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.InOutQuad
             }
-
         }
-
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-
-            ParallelAnimation {
-                NumberAnimation {
-                    properties: "y"
-                    duration: 150
-                    easing.type: Easing.InOutQuad
-                }
-
-            }
-
-        }
-
     }
-
 }

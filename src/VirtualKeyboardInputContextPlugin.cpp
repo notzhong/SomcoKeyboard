@@ -8,7 +8,7 @@ QPlatformInputContext *VirtualKeyboardInputContextPlugin::create(
     const QString &system, const QStringList &paramList) {
     Q_UNUSED(paramList);
 
-    if (system.compare(system, QStringLiteral("cutekeyboard"),
+    if (system.compare(system, QStringLiteral("skeyboard"),
                        Qt::CaseInsensitive) == 0) {
         return VirtualKeyboardInputContext::instance();
     }
