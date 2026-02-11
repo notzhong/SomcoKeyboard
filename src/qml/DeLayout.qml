@@ -1,85 +1,91 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.12
+import SKeyboard 1.0
 
 ColumnLayout {
+    id: root
+
     property var inputPanel
 
+    spacing: root.inputPanel.spacing
+
     RowLayout {
+        spacing: root.inputPanel.spacing
         Key {
             btnKey: Qt.Key_Q
             btnText: "q"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_W
             btnText: "w"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_E
             btnText: "e"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_R
             btnText: "r"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_T
             btnText: "t"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Z
             btnText: "z"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_U
             btnText: "u"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_I
             btnText: "i"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_O
             btnText: "o"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_P
             btnText: "p"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Udiaeresis
             btnText: "ü"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         BackspaceKey {
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
     }
 
     RowLayout {
-
+        spacing: root.inputPanel.spacing
         Key {
-            weight: 56
+            weight: 19
             functionKey: true
             showPreview: false
             btnBackground: "transparent"
@@ -88,168 +94,170 @@ ColumnLayout {
         Key {
             btnKey: Qt.Key_A
             btnText: "a"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_S
             btnText: "s"
             alternativeKeys: "ß"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_D
             btnText: "d"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_F
             btnText: "f"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_G
             btnText: "g"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_H
             btnText: "h"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_J
             btnText: "j"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_K
             btnText: "k"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_L
             btnText: "l"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Odiaeresis
             btnText: "ö"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Adiaeresis
             btnText: "ä"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         EnterKey {
-            weight: 283
-            inputPanelRef: inputPanel
+            weight: 205
+            inputPanelRef: root.inputPanel
         }
     }
 
     RowLayout {
+        spacing: root.inputPanel.spacing
 
-        ShiftKey {}
+        ShiftKey {
+            weight: 105
+        }
 
         Key {
             btnKey: Qt.Key_Y
             btnText: "y"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_X
             btnText: "x"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_C
             btnText: "c"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_V
             btnText: "v"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_B
             btnText: "b"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_N
             btnText: "n"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_M
             btnText: "m"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Comma
             btnText: ","
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Period
             btnText: "."
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Minus
             btnText: "-"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
-        ShiftKey {
-            weight: 204
+        Key {
+            weight: 112
+            functionKey: true
+            showPreview: false
+            btnBackground: "transparent"
         }
     }
 
     RowLayout {
-        SymbolKey {
-            weight: availableLanguageLayouts.length === 1 ? 217 : 108.5
-        }
+        spacing: root.inputPanel.spacing
 
         LanguageKey {
-            visible: availableLanguageLayouts.length > 1
-            weight: 108.5
+            visible: InputPanel.availableLanguageLayouts.length > 1
+            weight: 112
         }
 
         SpaceKey {
-            weight: 1168
-            inputPanelRef: inputPanel
+            weight: 640
+            inputPanelRef: root.inputPanel
         }
 
-        Key {
-            btnKey: Qt.Key_Apostrophe
-            btnText: "'"
-            inputPanelRef: inputPanel
+        SymbolKey {
+            weight: 112
         }
 
         HideKey {
-            weight: 205
+            weight: 112
         }
     }
 }

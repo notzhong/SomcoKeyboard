@@ -2,95 +2,95 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.12
 
 Item {
+    id: root
     property var inputPanel
     property bool secondPage
 
     onVisibleChanged: {
         if (!visible)
-            secondPage = false;
-
+            secondPage = false
     }
 
     ColumnLayout {
         id: page1
 
         anchors.fill: parent
-        visible: !secondPage
+        visible: !root.secondPage
+        spacing: root.inputPanel.spacing
 
         RowLayout {
-            property real keyWeight: 160
+            spacing: root.inputPanel.spacing
 
             Key {
                 btnKey: Qt.Key_1
                 btnText: "1"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_2
                 btnText: "2"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_3
                 btnText: "3"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_4
                 btnText: "4"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_5
                 btnText: "5"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_6
                 btnText: "6"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_7
                 btnText: "7"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_8
                 btnText: "8"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_9
                 btnText: "9"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_0
                 btnText: "0"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             BackspaceKey {
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
-
         }
 
         RowLayout {
-            property real keyWeight: 160
+            spacing: root.inputPanel.spacing
 
             Key {
-                weight: 56
+                weight: 19
                 functionKey: true
                 showPreview: false
                 btnBackground: "transparent"
@@ -99,249 +99,243 @@ Item {
             Key {
                 btnKey: Qt.Key_At
                 btnText: "@"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_NumberSign
                 btnText: "#"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Percent
                 btnText: "%"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Ampersand
                 btnText: "&"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Asterisk
                 btnText: "*"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Minus
                 btnText: "-"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Plus
                 btnText: "+"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_ParenLeft
                 btnText: "("
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_ParenRight
                 btnText: ")"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             EnterKey {
-                weight: 283
-                inputPanelRef: inputPanel
+                weight: 205
+                inputPanelRef: root.inputPanel
             }
-
         }
 
         RowLayout {
-            property real keyWeight: 156
-
+            spacing: root.inputPanel.spacing
             Key {
-                weight: 204
+                weight: 105
                 btnDisplayedText: "1/2"
                 showPreview: false
                 functionKey: true
-                onClicked: secondPage = !secondPage
+                onClicked: root.secondPage = !root.secondPage
             }
 
             Key {
                 btnKey: Qt.Key_Exclam
                 btnText: "!"
                 alternativeKeys: "¡"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_QuoteDbl
                 btnText: '"'
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Less
                 btnText: "<"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Greater
                 btnText: ">"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Apostrophe
                 btnText: "'"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Colon
                 btnText: ":"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Semicolon
                 btnText: ";"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Slash
                 btnText: "/"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Question
                 btnText: "?"
                 alternativeKeys: "¿"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
-                weight: 204
+                weight: 115
                 btnDisplayedText: "1/2"
                 showPreview: false
                 functionKey: true
-                onClicked: secondPage = !secondPage
+                onClicked: root.secondPage = !root.secondPage
             }
-
         }
 
         RowLayout {
-            property real keyWeight: 154
-
-            SymbolKey {
-                weight: 217
+            spacing: root.inputPanel.spacing
+            Key {
+                weight: 112
+                functionKey: true
+                showPreview: false
+                btnBackground: "transparent"
             }
 
             SpaceKey {
-                weight: 1168
-                inputPanelRef: inputPanel
-                showLanguageDescription: false
+                inputPanelRef: root.inputPanel
+                weight: 640
             }
 
-            Key {
-                btnKey: Qt.Key_Period
-                btnText: "."
-                inputPanelRef: inputPanel
+            SymbolKey {
+                inputPanelRef: root.inputPanel
+                weight: 112
             }
 
             HideKey {
-                weight: 205
+                weight: 112
             }
-
         }
-
     }
 
     ColumnLayout {
         id: page2
 
         anchors.fill: parent
-        visible: secondPage
+        visible: root.secondPage
+        spacing: root.inputPanel.spacing
 
         RowLayout {
-            property real keyWeight: 160
+            spacing: root.inputPanel.spacing
 
             Key {
                 btnKey: Qt.Key_AsciiTilde
                 btnText: "~"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Agrave
                 btnText: "`"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Bar
                 btnText: "|"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_periodcentered
                 btnText: "·"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8730
                 btnText: "√"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_division
                 btnText: "÷"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_multiply
                 btnText: "×"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_onehalf
                 btnText: "½"
                 alternativeKeys: "¼⅓¾⅞"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BraceLeft
                 btnText: "{"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BraceRight
                 btnText: "}"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             BackspaceKey {
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
-
         }
 
         RowLayout {
-            property real keyWeight: 160
-
+            spacing: root.inputPanel.spacing
             Key {
-                weight: 56
+                weight: 19
                 functionKey: true
                 showPreview: false
                 btnBackground: "transparent"
@@ -350,69 +344,68 @@ Item {
             Key {
                 btnKey: Qt.Key_Dollar
                 btnText: "$"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8364
                 btnText: "€"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 194
                 btnText: "£"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 162
                 btnText: "¢"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 165
                 btnText: "¥"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Equal
                 btnText: "="
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_section
                 btnText: "§"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BracketLeft
                 btnText: "["
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BracketRight
                 btnText: "]"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             EnterKey {
-                weight: 283
-                inputPanelRef: inputPanel
+                weight: 205
+                inputPanelRef: root.inputPanel
             }
-
         }
 
         RowLayout {
-            property real keyWeight: 156
+            spacing: root.inputPanel.spacing
 
             Key {
-                weight: 204
+                weight: 105
                 btnDisplayedText: "2/2"
                 showPreview: false
                 functionKey: true
@@ -422,92 +415,89 @@ Item {
             Key {
                 btnKey: Qt.Key_Underscore
                 btnText: "_"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8482
                 btnText: '™'
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 174
                 btnText: '®'
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_guillemotleft
                 btnText: '«'
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_guillemotright
                 btnText: '»'
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8220
                 btnText: '“'
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8221
                 btnText: '”'
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Backslash
                 btnText: "\\"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_AsciiCircum
                 btnText: "^"
-                inputPanelRef: inputPanel
+                inputPanelRef: root.inputPanel
             }
 
             Key {
-                weight: 204
+                weight: 115
                 btnDisplayedText: "2/2"
                 showPreview: false
                 functionKey: true
-                onClicked: secondPage = !secondPage
+                onClicked: root.secondPage = !root.secondPage
             }
-
         }
 
         RowLayout {
-            property real keyWeight: 154
+            spacing: root.inputPanel.spacing
 
-            SymbolKey {
-                weight: 217
+            Key {
+                weight: 112
+                functionKey: true
+                showPreview: false
+                btnBackground: "transparent"
             }
 
             SpaceKey {
-                weight: 1168
-                inputPanelRef: inputPanel
-                showLanguageDescription: false
+                inputPanelRef: root.inputPanel
+                weight: 640
             }
 
-            Key {
-                btnKey: Qt.Key_Period
-                btnText: "."
-                inputPanelRef: inputPanel
+            SymbolKey {
+                inputPanelRef: root.inputPanel
+                weight: 112
             }
 
             HideKey {
-                weight: 205
+                weight: 112
             }
-
         }
-
     }
-
 }

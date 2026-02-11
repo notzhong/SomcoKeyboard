@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.12
+import SKeyboard 1.0
 
 ColumnLayout {
     id: root
@@ -10,6 +11,7 @@ ColumnLayout {
 
     RowLayout {
         spacing: root.inputPanel.spacing
+
         Key {
             btnKey: Qt.Key_Q
             btnText: "q"
@@ -78,7 +80,6 @@ ColumnLayout {
         }
 
         BackspaceKey {
-            weight: 150
             inputPanelRef: root.inputPanel
         }
     }
@@ -87,7 +88,7 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         Key {
-            weight: 35
+            weight: 19
             functionKey: true
             showPreview: false
             btnBackground: "transparent"
@@ -234,7 +235,7 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         LanguageKey {
-            visible: availableLanguageLayouts.length > 1
+            visible: InputPanel.availableLanguageLayouts.length > 1
             weight: 112
         }
 

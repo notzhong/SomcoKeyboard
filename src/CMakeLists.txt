@@ -28,6 +28,11 @@ qt_add_qml_module(
   NO_GENERATE_PLUGIN_SOURCE
 )
 
+set_target_properties(${PROJECT_NAME} PROPERTIES
+  OUTPUT_NAME skeyboard
+  DEBUG_POSTFIX d
+)
+
 set(INSTALL_PLUGINSDIR "" CACHE PATH "Installation directory for plugins")
 if (NOT INSTALL_PLUGINSDIR)
   if(${PROJECT_NAME} STREQUAL ${CMAKE_PROJECT_NAME})
