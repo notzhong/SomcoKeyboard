@@ -6,21 +6,11 @@ import SKeyboard 1.0
 Item {
     id: root
 
-    property bool active: Qt.inputMethod.visible
-    property color backgroundColor: "#000000"
-    property color btnBackgroundColor: "#808080"
-    property color btnSpecialBackgroundColor: Qt.darker("#808080")
-    property color btnTextColor: "#ffffff"
-    property string btnTextFontFamily
+    readonly property bool active: Qt.inputMethod.visible
+
+    property var availableLanguageLayouts: ["En", "De"]
     property string languageLayout: "En"
-    property string backspaceIcon: "qrc:/icons/SKeyboard/backspace.png"
-    property string enterIcon: ""
-    property string shiftOnIcon: "qrc:/icons/SKeyboard/caps-lock-on.png"
-    property string shiftOffIcon: "qrc:/icons/SKeyboard/caps-lock-off.png"
-    property string hideKeyboardIcon: "qrc:/icons/SKeyboard/hide-arrow.png"
-    property string languageIcon: "qrc:/icons/SKeyboard/language.png"
-    property var availableLanguageLayouts: ["En"]
-    property alias emptySpaceBar: layoutLoader.emptySpaceBar
+    property int spacing: 16
 
     /*! \internal */
     readonly property bool __isRootItem: root.parent !== null
@@ -39,10 +29,15 @@ Item {
     }
 
     function loadLettersLayout() {
+        var source = InputEngine.fileOfLayout(languageLayout)
+        if (source === "") {
+            InputPanel.languageLayout = "En"
+            return
+        }
+
         var description = InputEngine.descriptionOfLayout(languageLayout)
         var spaceIdentifier = InputEngine.spaceIdentifierOfLayout(
                     languageLayout)
-        var source = InputEngine.fileOfLayout(languageLayout)
         if (description !== "" && source !== "") {
             layoutLoader.langDescription = description
             layoutLoader.spaceIdentifier = spaceIdentifier
@@ -57,10 +52,9 @@ Item {
                                    })
         }
     }
-
     objectName: "inputPanel"
     width: parent.width
-    height: width / 4
+    height: 340
     onYChanged: InputEngine.setKeyboardRectangle(Qt.rect(x, y, width, height))
     onActiveChanged: {
         if (alternativesKeyPopup.visible && !active)
@@ -68,23 +62,11 @@ Item {
     }
     onLanguageLayoutChanged: loadLettersLayout()
     Component.onCompleted: {
-
         InputContext.registerInputPanel(root)
 
         if (availableLanguageLayouts.length == 0)
             availableLanguageLayouts = ["En"]
 
-        InputPanel.backgroundColor = backgroundColor
-        InputPanel.btnBackgroundColor = btnBackgroundColor
-        InputPanel.btnSpecialBackgroundColor = btnSpecialBackgroundColor
-        InputPanel.btnTextColor = btnTextColor
-        InputPanel.btnTextFontFamily = btnTextFontFamily
-        InputPanel.backspaceIcon = backspaceIcon
-        InputPanel.enterIcon = enterIcon
-        InputPanel.shiftOnIcon = shiftOnIcon
-        InputPanel.shiftOffIcon = shiftOffIcon
-        InputPanel.hideKeyboardIcon = hideKeyboardIcon
-        InputPanel.languageIcon = languageIcon
         InputPanel.availableLanguageLayouts = availableLanguageLayouts
         InputPanel.languageLayout = languageLayout
         loadLettersLayout()
@@ -93,9 +75,6 @@ Item {
     KeyPopup {
         id: keyPopup
 
-        popupColor: btnBackgroundColor
-        popupTextColor: btnTextColor
-        popupTextFont: btnTextFontFamily
         visible: false
         z: 100
     }
@@ -107,20 +86,24 @@ Item {
         z: 100
     }
 
-    MouseArea {
-        id: alternativesKeyPopupMouseArea
-
-        visible: alternativesKeyPopup.visible
-        enabled: visible
+    Rectangle {
         anchors.fill: parent
-        propagateComposedEvents: false
-        z: 99
+        visible: alternativesKeyPopup.visible
+        z: alternativesKeyPopup.z - 1
+        color: "#80000000"
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                alternativesKeyPopup.visible = false
+            }
+        }
     }
 
     Rectangle {
         id: keyboardRect
 
-        color: InputPanel.backgroundColor
+        color: Theme.backgroundColor
         anchors.fill: parent
 
         MouseArea {
@@ -130,9 +113,6 @@ Item {
         Loader {
             id: layoutLoader
 
-            // display empty space bar
-            property bool emptySpaceBar: false
-
             // lang description only needed for layouts that share a file
             property string langDescription
             // space identifier for the correct translation of the word "space"
@@ -140,7 +120,7 @@ Item {
 
             anchors {
                 fill: parent
-                margins: 5
+                margins: root.spacing
             }
         }
 

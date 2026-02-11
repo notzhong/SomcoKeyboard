@@ -2,23 +2,26 @@ import SKeyboard 1.0
 import QtQuick 2.0
 
 Key {
-    weight: 108.5
+    weight: 112
     btnKey: Qt.Key_Context2
-    btnIcon: InputPanel.languageIcon
+    btnIcon: "qrc:/icons/SKeyboard/language.svg"
+    btnDisplayedText: InputPanel.languageLayout.toUpperCase()
     functionKey: true
     showPreview: false
-    btnBackground: InputPanel.btnSpecialBackgroundColor
+    btnIconSize: Qt.size(24, 24)
+    btnBackground: Theme.btnSpecialBackgroundColor
     onClicked: {
-        var indx = InputPanel.availableLanguageLayouts.indexOf(InputPanel.languageLayout);
+        var indx = InputPanel.availableLanguageLayouts.indexOf(
+                    InputPanel.languageLayout)
         if (indx != -1) {
-            var nextIndx = (indx + 1) % InputPanel.availableLanguageLayouts.length;
-            var nextLangLayout = InputPanel.availableLanguageLayouts[nextIndx];
+            var nextIndx = (indx + 1) % InputPanel.availableLanguageLayouts.length
+            var nextLangLayout = InputPanel.availableLanguageLayouts[nextIndx]
             if (InputEngine.inputLayoutValid(nextLangLayout))
-                InputPanel.languageLayout = nextLangLayout;
+                InputPanel.languageLayout = nextLangLayout
             else
-                InputPanel.languageLayout = "En";
+                InputPanel.languageLayout = "En"
         } else {
-            InputPanel.languageLayout = InputPanel.availableLanguageLayouts[0];
+            InputPanel.languageLayout = InputPanel.availableLanguageLayouts[0]
         }
     }
 }

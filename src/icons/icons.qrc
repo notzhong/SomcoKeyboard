@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RCC>
     <qresource prefix="/icons/SKeyboard">
-        <file>backspace.png</file>
-        <file>caps-lock-off.png</file>
-        <file>caps-lock-on.png</file>
-        <file>hide-arrow.png</file>
-        <file>language.png</file>
+        <file>caps-lock-off.svg</file>
+        <file>caps-lock-on.svg</file>
+        <file>language.svg</file>
+		<file>keyboard_backspace.svg</file>
+		<file>keyboard_hide.svg</file>
+		<file>keyboard_return.svg</file>
+		<file>keyboard_space.svg</file>
     </qresource>
 </RCC>

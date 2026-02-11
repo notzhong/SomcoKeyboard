@@ -8,31 +8,34 @@ Item {
     property var alternativeKeys: []
 
     function open(keybutton, inputPanel) {
-        alternativeKeys = keybutton.alternativeKeys;
-        width = keybutton.width * 1 * alternativeKeys.length;
-        height = keybutton.height * 1.2;
-        var KeyButtonGlobalLeft = keybutton.mapToItem(inputPanel, 0, 0).x;
-        var KeyButtonGlobalTop = keybutton.mapToItem(inputPanel, 0, 0).y;
-        var PopupGlobalLeft = KeyButtonGlobalLeft - (width - keybutton.width) / 2;
-        var PopupGlobalTop = KeyButtonGlobalTop - height - keyboardRect.height / 40 * 1.5;
-        var PopupLeft = root.parent.mapFromItem(inputPanel, PopupGlobalLeft, PopupGlobalTop).x;
-        y = root.parent.mapFromItem(inputPanel, PopupGlobalLeft, PopupGlobalTop).y;
+        alternativeKeys = keybutton.alternativeKeys
+        width = (keybutton.width + 8) * (alternativeKeys.length + 1)
+        height = keybutton.height + 32
+        var KeyButtonGlobalLeft = keybutton.mapToItem(inputPanel, 0, 0).x
+        var KeyButtonGlobalTop = keybutton.mapToItem(inputPanel, 0, 0).y
+        var PopupGlobalLeft = KeyButtonGlobalLeft - (width - keybutton.width) / 2
+        var PopupGlobalTop = KeyButtonGlobalTop - height - keyboardRect.height / 40 * 1.5
+        var PopupLeft = root.parent.mapFromItem(inputPanel, PopupGlobalLeft,
+                                                PopupGlobalTop).x
+        y = root.parent.mapFromItem(inputPanel, PopupGlobalLeft,
+                                    PopupGlobalTop).y
         if (PopupGlobalLeft < 0)
-            x = 0;
+            x = 0
         else if ((PopupGlobalLeft + width) > inputPanel.width)
-            x = PopupLeft - (PopupGlobalLeft + width - inputPanel.width);
+            x = PopupLeft - (PopupGlobalLeft + width - inputPanel.width)
         else
-            x = PopupLeft;
-        loadAlternativesKey();
-        visible = true;
+            x = PopupLeft
+        loadAlternativesKey()
+        visible = true
     }
 
     function loadAlternativesKey() {
-        listModel.clear();
+        listModel.clear()
         for (var i = 0; i < alternativeKeys.length; i++) {
             listModel.append({
-                "btnText": InputEngine.uppercase ? alternativeKeys[i].toUpperCase() : alternativeKeys[i]
-            });
+                                 "btnText": InputEngine.uppercase ? alternativeKeys[i].toUpperCase(
+                                                                        ) : alternativeKeys[i]
+                             })
         }
     }
 
@@ -43,18 +46,16 @@ Item {
     }
 
     Rectangle {
-        id: listViewBackground
-
-        radius: Math.round(height / 20)
-        color: InputPanel.backgroundColor
+        radius: 8
+        color: Theme.backgroundColor
         anchors.fill: parent
 
         RowLayout {
-            spacing: 1
+            spacing: 16
 
             anchors {
                 fill: parent
-                margins: 1
+                margins: 16
             }
 
             Repeater {
@@ -66,11 +67,7 @@ Item {
                     weight: width
                     onClicked: root.visible = false
                 }
-
             }
-
         }
-
     }
-
 }

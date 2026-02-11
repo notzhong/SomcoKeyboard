@@ -6,15 +6,13 @@ import QtQuick.Layouts 1.12
 Button {
     id: key
 
-    property real weight: parent.keyWeight
+    property real weight: 70
     property string btnText: ""
     property string btnDisplayedText: text
     property int btnKey: Qt.Key_unknown
-    property color btnBackground: InputPanel.btnBackgroundColor
-    property int btnRadius: 5
-    property color txtColor: InputPanel.btnTextColor
-    property string txtFont: InputPanel.btnTextFontFamily
+    property color btnBackground: Theme.btnBackgroundColor
     property string btnIcon: ""
+    property size btnIconSize: Qt.size(35, 35)
     property var alternativeKeys: []
     property var inputPanelRef
     property alias repeatable: key.autoRepeat
@@ -64,37 +62,40 @@ Button {
     }
 
     background: Rectangle {
-        id: btnBackgroundItem
-
         color: key.btnBackground
-        radius: key.btnRadius
+        radius: 8
     }
 
     contentItem: Item {
-        Text {
-            id: btnTextItem
+        anchors.fill: parent
+        RowLayout {
+            spacing: 16
+            anchors.centerIn: parent
 
-            text: key.btnDisplayedText == "" ? key.btnText : key.btnDisplayedText
-            color: key.txtColor
-            anchors.fill: parent
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+            Text {
+                id: btnTextItem
 
-            font {
-                family: key.txtFont
-                weight: Font.Normal
-                pixelSize: key.height * 0.4
-                capitalization: InputEngine.uppercase ? Font.AllUppercase : Font.MixedCase
+                text: key.btnDisplayedText == "" ? key.btnText : key.btnDisplayedText
+                color: Theme.btnTextColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                visible: text !== ""
+
+                font {
+                    family: Theme.btnTextFontFamily
+                    weight: Font.Normal
+                    pixelSize: Theme.btnTextFontSize
+                    capitalization: InputEngine.uppercase ? Font.AllUppercase : Font.MixedCase
+                }
             }
-        }
 
-        Image {
-            id: btnIconItem
-
-            source: key.btnIcon
-            visible: key.btnDisplayedText === ""
-            anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
+            Image {
+                source: key.btnIcon
+                visible: key.btnIcon !== ""
+                fillMode: Image.PreserveAspectFit
+                Layout.preferredWidth: key.btnIconSize.width
+                Layout.preferredHeight: key.btnIconSize.height
+            }
         }
     }
 }

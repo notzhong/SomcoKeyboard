@@ -5,6 +5,6 @@ Key {
     btnKey: Qt.Key_Backspace
     repeatable: true
     showPreview: false
-    btnBackground: InputPanel.btnSpecialBackgroundColor
-    btnIcon: InputPanel.backspaceIcon
+    btnBackground: Theme.btnSpecialBackgroundColor
+    btnIcon: "qrc:/icons/SKeyboard/keyboard_backspace.svg"
 }

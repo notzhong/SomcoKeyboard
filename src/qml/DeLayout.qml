@@ -5,8 +5,6 @@ ColumnLayout {
     property var inputPanel
 
     RowLayout {
-        property real keyWeight: 160
-
         Key {
             btnKey: Qt.Key_Q
             btnText: "q"
@@ -76,11 +74,9 @@ ColumnLayout {
         BackspaceKey {
             inputPanelRef: inputPanel
         }
-
     }
 
     RowLayout {
-        property real keyWeight: 160
 
         Key {
             weight: 56
@@ -160,14 +156,11 @@ ColumnLayout {
             weight: 283
             inputPanelRef: inputPanel
         }
-
     }
 
     RowLayout {
-        property real keyWeight: 156
 
-        ShiftKey {
-        }
+        ShiftKey {}
 
         Key {
             btnKey: Qt.Key_Y
@@ -232,12 +225,9 @@ ColumnLayout {
         ShiftKey {
             weight: 204
         }
-
     }
 
     RowLayout {
-        property real keyWeight: 154
-
         SymbolKey {
             weight: availableLanguageLayouts.length === 1 ? 217 : 108.5
         }
@@ -261,7 +251,5 @@ ColumnLayout {
         HideKey {
             weight: 205
         }
-
     }
-
 }

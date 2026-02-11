@@ -5,10 +5,10 @@ Key {
     btnKey: Qt.Key_Enter
     repeatable: true
     showPreview: false
-    btnBackground: InputPanel.btnSpecialBackgroundColor
+    btnBackground: Theme.btnEnterBackgroundColor
     btnText: "\n"
-    btnDisplayedText: InputPanel.enterIcon === "" ? "Enter" : ""
-    btnIcon: InputPanel.enterIcon === "" ? "" : InputPanel.enterIcon
+    btnDisplayedText: "Enter"
+    btnIcon: "qrc:/icons/SKeyboard/keyboard_return.svg"
     enabled: InputContext.inputItem ? InputContext.inputItem.EnterKeyAction.enabled : true
     opacity: enabled ? 1 : 0.5
 }

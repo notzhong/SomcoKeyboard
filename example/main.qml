@@ -9,8 +9,8 @@ ApplicationWindow {
     id: window
 
     visible: true
-    width: 640
-    height: 800
+    width: 1088
+    height: 900
     title: qsTr("SKeyboard Example")
 
     background: Rectangle {
@@ -51,15 +51,16 @@ ApplicationWindow {
         anchors {
             top: parent.top
             bottom: parent.bottom
-            margins: 40
-            bottomMargin: inputPanel.height
+            margins: 80
+            bottomMargin: inputPanel.height + 40
             left: parent.left
-            onRightChanged: parent.right
+            right: parent.right
         }
 
-        spacing: 100
+        spacing: 40
 
         Image {
+            Layout.alignment: Qt.AlignHCenter
             fillMode: Image.PreserveAspectFit
             source: "qrc:/icons/logo.svg"
             Layout.preferredWidth: 575
@@ -67,8 +68,10 @@ ApplicationWindow {
         }
 
         ColumnLayout {
+            Layout.fillWidth: true
             spacing: 39
             ColumnLayout {
+                Layout.fillWidth: true
                 spacing: 9
 
                 Text {
@@ -79,11 +82,12 @@ ApplicationWindow {
                 }
 
                 CTextField {
-                    id: tf1
+                    Layout.fillWidth: true
                 }
             }
 
             ColumnLayout {
+                Layout.alignment: Qt.AlignHCenter
                 spacing: 9
 
                 Text {
@@ -94,6 +98,7 @@ ApplicationWindow {
                 }
 
                 CTextField {
+                    Layout.fillWidth: true
                     inputMethodHints: Qt.ImhDigitsOnly
                     echoMode: TextInput.Password
                 }
@@ -108,8 +113,6 @@ ApplicationWindow {
         y: Qt.inputMethod.visible ? (window.height - inputPanel.height) : window.height
         anchors.left: parent.left
         anchors.right: parent.right
-        languageLayout: "En"
-        availableLanguageLayouts: ["En", "De"]
 
         Behavior on y {
             NumberAnimation {
