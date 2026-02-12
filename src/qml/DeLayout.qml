@@ -245,6 +245,7 @@ ColumnLayout {
         LanguageKey {
             visible: InputPanel.availableLanguageLayouts.length > 1
             weight: 112
+            inputPanelRef: root.inputPanel
         }
 
         SpaceKey {

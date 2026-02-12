@@ -55,7 +55,7 @@ Button {
         running: false
         onTriggered: {
             key.enabled = false
-            key.inputPanelRef.hideKeyPopup()
+            // key.inputPanelRef.hideKeyPopup()
             key.inputPanelRef.showAlternativesKeyPopup(key)
             key.enabled = true
         }

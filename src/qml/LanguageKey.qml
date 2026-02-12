@@ -4,7 +4,7 @@ import QtQuick 2.0
 Key {
     weight: 112
     btnKey: Qt.Key_Context2
-    btnIcon: "qrc:/icons/SKeyboard/language.svg"
+    btnIcon: Theme.getThemedUrl("language.svg")
     btnDisplayedText: InputPanel.languageLayout.toUpperCase()
     functionKey: true
     showPreview: false

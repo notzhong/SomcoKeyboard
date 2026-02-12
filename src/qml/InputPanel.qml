@@ -8,7 +8,7 @@ Item {
 
     readonly property bool active: Qt.inputMethod.visible
 
-    property var availableLanguageLayouts: ["En", "De"]
+    property var availableLanguageLayouts: ["En", "De", "Ua"]
     property string languageLayout: "En"
     property int spacing: 16
 
@@ -103,59 +103,64 @@ Item {
     Rectangle {
         id: keyboardRect
 
-        color: Theme.backgroundColor
         anchors.fill: parent
+        color: Theme.overlayBackgroundColor
 
-        MouseArea {
-            anchors.fill: parent
-        }
-
-        Loader {
-            id: layoutLoader
-
-            // lang description only needed for layouts that share a file
-            property string langDescription
-            // space identifier for the correct translation of the word "space"
-            property string spaceIdentifier
-
+        Rectangle {
             anchors {
                 fill: parent
-                margins: root.spacing
+                margins: 16
             }
-        }
+            color: Theme.backgroundColor
+            radius: 12
 
-        Connections {
-            function refreshLayouts() {
-                if (InputEngine.symbolMode)
-                    layoutLoader.setSource("SymbolLayout.qml", {
-                                               "inputPanel": root
-                                           })
-                else if (InputEngine.inputMode === InputEngine.DigitsOnly)
-                    layoutLoader.setSource("DigitsLayout.qml", {
-                                               "inputPanel": root
-                                           })
-                else
+            Loader {
+                id: layoutLoader
+
+                // lang description only needed for layouts that share a file
+                property string langDescription
+                // space identifier for the correct translation of the word "space"
+                property string spaceIdentifier
+
+                anchors {
+                    fill: parent
+                    margins: root.spacing
+                }
+            }
+
+            Connections {
+                function refreshLayouts() {
+                    if (InputEngine.symbolMode)
+                        layoutLoader.setSource("SymbolLayout.qml", {
+                                                   "inputPanel": root
+                                               })
+                    else if (InputEngine.inputMode === InputEngine.DigitsOnly)
+                        layoutLoader.setSource("DigitsLayout.qml", {
+                                                   "inputPanel": root
+                                               })
+                    else
+                        loadLettersLayout()
+                }
+
+                function onInputModeChanged() {
+                    refreshLayouts()
+                }
+
+                function onIsSymbolModeChanged() {
+                    refreshLayouts()
+                }
+
+                target: InputEngine
+            }
+
+            Connections {
+                function onLanguageLayoutChanged() {
+                    languageLayout = InputPanel.languageLayout
                     loadLettersLayout()
+                }
+
+                target: InputPanel
             }
-
-            function onInputModeChanged() {
-                refreshLayouts()
-            }
-
-            function onIsSymbolModeChanged() {
-                refreshLayouts()
-            }
-
-            target: InputEngine
-        }
-
-        Connections {
-            function onLanguageLayoutChanged() {
-                languageLayout = InputPanel.languageLayout
-                loadLettersLayout()
-            }
-
-            target: InputPanel
         }
     }
 }

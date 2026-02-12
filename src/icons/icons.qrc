@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <RCC>
     <qresource prefix="/icons/SKeyboard">
-        <file>caps-lock-off.svg</file>
-        <file>caps-lock-on.svg</file>
-        <file>language.svg</file>
-		<file>keyboard_backspace.svg</file>
-		<file>keyboard_hide.svg</file>
-		<file>keyboard_return.svg</file>
-		<file>keyboard_space.svg</file>
+        <file>light/caps-lock-off.svg</file>
+        <file>light/caps-lock-on.svg</file>
+        <file>light/keyboard_backspace.svg</file>
+        <file>light/keyboard_hide.svg</file>
+        <file>light/keyboard_return.svg</file>
+        <file>light/keyboard_space.svg</file>
+        <file>light/language.svg</file>
+        <file>dark/caps-lock-off.svg</file>
+        <file>dark/caps-lock-on.svg</file>
+        <file>dark/keyboard_backspace.svg</file>
+        <file>dark/keyboard_hide.svg</file>
+        <file>dark/keyboard_return.svg</file>
+        <file>dark/keyboard_space.svg</file>
+        <file>dark/language.svg</file>
     </qresource>
 </RCC>

@@ -6,6 +6,6 @@ Key {
     functionKey: true
     showPreview: false
     btnBackground: Theme.btnSpecialBackgroundColor
-    btnIcon: InputEngine.uppercase ? "qrc:/icons/SKeyboard/caps-lock-on.svg" : "qrc:/icons/SKeyboard/caps-lock-off.svg"
+    btnIcon: InputEngine.uppercase ? Theme.getThemedUrl("caps-lock-on.svg") : Theme.getThemedUrl("caps-lock-off.svg")
     onClicked: InputEngine.uppercase = !InputEngine.uppercase
 }

@@ -8,7 +8,7 @@ Key {
     btnBackground: Theme.btnEnterBackgroundColor
     btnText: "\n"
     btnDisplayedText: "Enter"
-    btnIcon: "qrc:/icons/SKeyboard/keyboard_return.svg"
+    btnIcon: Theme.getThemedUrl("keyboard_return.svg")
     enabled: InputContext.inputItem ? InputContext.inputItem.EnterKeyAction.enabled : true
     opacity: enabled ? 1 : 0.5
 }

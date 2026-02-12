@@ -56,7 +56,7 @@ class DeclarativeInputEngine : public QObject {
         CySr,
         LtSr,
         Ru,
-        Uk,
+        Ua,
         EndLayouts
     };
     Q_ENUM(InputLayouts)

@@ -7,5 +7,5 @@ Key {
     repeatable: true
     showPreview: false
     btnBackground: Theme.btnSpecialBackgroundColor
-    btnIcon: "qrc:/icons/SKeyboard/keyboard_backspace.svg"
+    btnIcon: Theme.getThemedUrl("keyboard_backspace.svg")
 }

@@ -13,69 +13,59 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         Key {
-            btnKey: Qt.Key_Q
-            btnText: "q"
+            btnText: "й"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_W
-            btnText: "w"
+            btnText: "ц"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_E
-            btnText: "e"
-            alternativeKeys: "êëèé"
+            btnText: "у"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_R
-            btnText: "r"
-            alternativeKeys: "ŕř"
+            btnText: "к"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_T
-            btnText: "t"
-            alternativeKeys: "ţŧť"
+            btnText: "е"
+            alternativeKeys: "ё"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_Y
-            btnText: "y"
-            alternativeKeys: "ÿýŷ"
+            btnText: "н"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_U
-            btnText: "u"
-            alternativeKeys: "űūũûüùú"
+            btnText: "г"
+            alternativeKeys: "ґ"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_I
-            btnText: "i"
-            alternativeKeys: "îïīĩìí"
+            btnText: "ш"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_O
-            btnText: "o"
-            alternativeKeys: "œøõôöòó"
+            btnText: "щ"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_P
-            btnText: "p"
+            btnText: "з"
+            inputPanelRef: root.inputPanel
+        }
+
+        Key {
+            btnText: "х"
             inputPanelRef: root.inputPanel
         }
 
@@ -95,61 +85,59 @@ ColumnLayout {
         }
 
         Key {
-            btnKey: Qt.Key_A
-            btnText: "a"
-            alternativeKeys: "äåãâàá"
+            btnText: "ф"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_S
-            btnText: "s"
-            alternativeKeys: "šşś"
+            btnText: "і"
+            alternativeKeys: "ї"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_D
-            btnText: "d"
-            alternativeKeys: "đď"
+            btnText: "в"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_F
-            btnText: "f"
+            btnText: "а"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_G
-            btnText: "g"
-            alternativeKeys: "ġģĝğ"
+            btnText: "п"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_H
-            btnText: "h"
+            btnText: "р"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_J
-            btnText: "j"
+            btnText: "о"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_K
-            btnText: "k"
+            btnText: "л"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_L
-            btnText: "l"
-            alternativeKeys: "ĺŀłļľ"
+            btnText: "д"
+            inputPanelRef: root.inputPanel
+        }
+
+        Key {
+            btnText: "ж"
+            inputPanelRef: root.inputPanel
+        }
+
+        Key {
+            btnText: "є"
+            alternativeKeys: "э"
             inputPanelRef: root.inputPanel
         }
 
@@ -167,59 +155,48 @@ ColumnLayout {
         }
 
         Key {
-            btnKey: Qt.Key_Z
-            btnText: "z"
-            alternativeKeys: "žż"
+            btnText: "я"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_X
-            btnText: "x"
+            btnText: "ч"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_C
-            btnText: "c"
-            alternativeKeys: "çċčć"
+            btnText: "с"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_V
-            btnText: "v"
+            btnText: "м"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_B
-            btnText: "b"
+            btnText: "и"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_N
-            btnText: "n"
-            alternativeKeys: "ņńň"
+            btnText: "т"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_M
-            btnText: "m"
+            btnText: "ь"
+            alternativeKeys: "ъ"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_Comma
-            btnText: ","
+            btnText: "б"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.Key_Period
-            btnText: "."
+            btnText: "ю"
             inputPanelRef: root.inputPanel
         }
 

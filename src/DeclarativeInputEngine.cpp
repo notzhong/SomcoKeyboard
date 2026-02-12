@@ -48,7 +48,7 @@ struct DeclarativeInputEnginePrivate {
         {DeclarativeInputEngine::LtSr, {"LtSrHrBsLayout", "Srpski"}},
         {DeclarativeInputEngine::Sv, {"SvLayout", "Svenska"}},
         {DeclarativeInputEngine::Ru, {"RuLayout", "Русский", "Пробел"}},
-        {DeclarativeInputEngine::Uk, {"UkLayout", "Українська", "Пробіл"}},
+        {DeclarativeInputEngine::Ua, {"UaLayout", "Українська", "Пробіл"}},
     };
 };
 
