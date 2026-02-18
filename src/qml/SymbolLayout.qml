@@ -250,7 +250,9 @@ Item {
                 inputPanelRef: root.inputPanel
             }
 
-            HideKey {}
+            HideKey {
+                inputPanelRef: root.inputPanel
+            }
         }
     }
 
@@ -492,7 +494,9 @@ Item {
                 inputPanelRef: root.inputPanel
             }
 
-            HideKey {}
+            HideKey {
+                inputPanelRef: root.inputPanel
+            }
         }
     }
 }

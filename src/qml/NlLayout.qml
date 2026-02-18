@@ -161,7 +161,9 @@ ColumnLayout {
     RowLayout {
         spacing: root.inputPanel.spacing
 
-        ShiftKey {}
+        ShiftKey {
+            inputPanelRef: root.inputPanel
+        }
 
         Key {
             btnKey: Qt.Key_Z
@@ -220,7 +222,9 @@ ColumnLayout {
             inputPanelRef: root.inputPanel
         }
 
-        ShiftKey {}
+        ShiftKey {
+            inputPanelRef: root.inputPanel
+        }
     }
 
     RowLayout {
@@ -238,6 +242,8 @@ ColumnLayout {
             inputPanelRef: root.inputPanel
         }
 
-        HideKey {}
+        HideKey {
+            inputPanelRef: root.inputPanel
+        }
     }
 }
