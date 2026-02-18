@@ -2,6 +2,7 @@ import QtQuick 2.0
 import SomcoKeyboard 1.0
 
 Key {
+    objectName: inputPanelRef.objectName + "Key_Enter"
     btnKey: Qt.Key_Enter
     repeatable: true
     showPreview: false

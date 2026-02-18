@@ -91,6 +91,7 @@ Item {
             spacing: root.inputPanel.spacing
 
             Key {
+                objectName: "" // invisible key to align the row
                 enabled: false
                 weight: 19
                 functionKey: true
@@ -335,6 +336,7 @@ Item {
         RowLayout {
             spacing: root.inputPanel.spacing
             Key {
+                objectName: "" // invisible key to align the row
                 enabled: false
                 weight: 19
                 functionKey: true

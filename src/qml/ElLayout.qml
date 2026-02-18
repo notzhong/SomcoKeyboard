@@ -73,6 +73,7 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         Key {
+            objectName: "" // invisible key to align the row
             enabled: false
             weight: 19
             functionKey: true
@@ -136,6 +137,7 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         ShiftKey {
+            objectName: root.inputPanel.objectName + "Key_Shift_Left"
             inputPanelRef: root.inputPanel
         }
 
@@ -189,6 +191,7 @@ ColumnLayout {
         }
 
         ShiftKey {
+            objectName: root.inputPanel.objectName + "Key_Shift_Right"
             inputPanelRef: root.inputPanel
         }
     }

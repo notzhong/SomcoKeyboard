@@ -2,6 +2,7 @@ import QtQuick 2.0
 import SomcoKeyboard 1.0
 
 Key {
+    objectName: inputPanelRef.objectName + "Key_Language"
     weight: 112
     btnKey: Qt.Key_Context2
     btnIcon: ThemeManager.currentTheme.languageIcon

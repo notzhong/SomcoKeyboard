@@ -2,6 +2,7 @@ import QtQuick 2.0
 import SomcoKeyboard 1.0
 
 Key {
+    objectName: inputPanelRef.objectName + "Key_Shift"
     weight: 112
     btnKey: Qt.Key_Shift
     functionKey: true
