@@ -232,7 +232,6 @@ ColumnLayout {
             inputPanelRef: root.inputPanel
         }
 
-        HideKey {
-        }
+        HideKey {}
     }
 }
