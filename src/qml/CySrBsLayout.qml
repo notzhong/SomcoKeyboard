@@ -8,59 +8,59 @@ ColumnLayout {
         property real keyWeight: 160
 
         Key {
-            btnText: "љ"
+            text: "љ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "Њ"
+            text: "Њ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "е"
+            text: "е"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "р"
+            text: "р"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "т"
+            text: "т"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "з"
+            text: "з"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "у"
+            text: "у"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "и"
+            text: "и"
             alternativeKeys: "ίϊΐ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "о"
+            text: "о"
             alternativeKeys: "ό"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "п"
+            text: "п"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ш"
+            text: "ш"
             inputPanelRef: inputPanel
         }
 
@@ -81,58 +81,58 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "а"
+            text: "а"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "с"
+            text: "с"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "д"
+            text: "д"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ф"
+            text: "ф"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "г"
+            text: "г"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "х"
+            text: "х"
             alternativeKeys: "ή"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ј"
+            text: "ј"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "к"
+            text: "к"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "л"
+            text: "л"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ч"
+            text: "ч"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ћ"
+            text: "ћ"
             inputPanelRef: inputPanel
         }
 
@@ -150,60 +150,60 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "џ"
+            text: "џ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ц"
+            text: "ц"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "в"
+            text: "в"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "б"
+            text: "б"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "н"
+            text: "н"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "м"
+            text: "м"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ђ"
+            text: "ђ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ж"
+            text: "ж"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Comma
-            btnText: ","
+            text: ","
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Period
-            btnText: "."
+            text: "."
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Minus
-            btnText: "-"
+            text: "-"
             inputPanelRef: inputPanel
         }
 
@@ -231,7 +231,7 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "'"
+            text: "'"
             inputPanelRef: inputPanel
         }
 

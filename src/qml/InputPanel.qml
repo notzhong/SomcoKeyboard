@@ -12,6 +12,8 @@ Item {
     property string languageLayout: "En"
     property int spacing: 16
 
+    property int keyboardTheme: KeyboardTheme.Dark
+
     /*! \internal */
     readonly property bool __isRootItem: root.parent !== null
                                          && root.parent.parent === null
@@ -61,6 +63,7 @@ Item {
             alternativesKeyPopup.visible = false
     }
     onLanguageLayoutChanged: loadLettersLayout()
+    onKeyboardThemeChanged: InputPanel.keyboardTheme = keyboardTheme
     Component.onCompleted: {
         InputContext.registerInputPanel(root)
 
@@ -69,6 +72,7 @@ Item {
 
         InputPanel.availableLanguageLayouts = availableLanguageLayouts
         InputPanel.languageLayout = languageLayout
+        InputPanel.keyboardTheme = keyboardTheme
         loadLettersLayout()
     }
 
@@ -157,6 +161,11 @@ Item {
                 function onLanguageLayoutChanged() {
                     languageLayout = InputPanel.languageLayout
                     loadLettersLayout()
+                }
+
+                function onKeyboardThemeChanged() {
+                    root.keyboardTheme = InputPanel.keyboardTheme
+                    Theme.setTheme(root.keyboardTheme)
                 }
 
                 target: InputPanel

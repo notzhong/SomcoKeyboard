@@ -3,10 +3,15 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.12
 
 ColumnLayout {
+    id: root
+
     property var inputPanel
 
+    spacing: root.inputPanel.spacing
+
     GridLayout {
-        property real keyWeight
+        columnSpacing: root.inputPanel.spacing
+        rowSpacing: root.inputPanel.spacing
 
         Layout.fillWidth: false
         Layout.fillHeight: true
@@ -17,92 +22,86 @@ ColumnLayout {
 
         Key {
             btnKey: Qt.Key_7
-            btnText: "7"
-            inputPanelRef: inputPanel
+            text: "7"
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_8
-            btnText: "8"
-            inputPanelRef: inputPanel
+            text: "8"
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_9
-            btnText: "9"
-            inputPanelRef: inputPanel
+            text: "9"
+            inputPanelRef: root.inputPanel
         }
 
         BackspaceKey {
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
+            weight: 70
         }
 
         Key {
             btnKey: Qt.Key_4
-            btnText: "4"
-            inputPanelRef: inputPanel
+            text: "4"
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_5
-            btnText: "5"
-            inputPanelRef: inputPanel
+            text: "5"
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_6
-            btnText: "6"
-            inputPanelRef: inputPanel
+            text: "6"
+            inputPanelRef: root.inputPanel
         }
 
-        Key {
-            btnText: " "
-            btnDisplayedText: "\u2423"
-            repeatable: true
-            showPreview: false
-            btnKey: Qt.Key_Space
-            inputPanelRef: inputPanel
+        EnterKey {
+            inputPanelRef: root.inputPanel
+            Layout.rowSpan: 2
+            btnDisplayedText: ""
+            weight: 70
         }
 
         Key {
             btnKey: Qt.Key_1
-            btnText: "1"
-            inputPanelRef: inputPanel
+            text: "1"
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_2
-            btnText: "2"
-            inputPanelRef: inputPanel
+            text: "2"
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_3
-            btnText: "3"
-            inputPanelRef: inputPanel
-        }
-
-        HideKey {
-            inputPanelRef: inputPanel
+            text: "3"
+            inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnKey: Qt.locale().decimalPoint === "," ? Qt.Key_Comma : Qt.Key_Period
-            btnText: Qt.locale().decimalPoint === "," ? "," : "."
-            inputPanelRef: inputPanel
+            btnKey: Qt.locale(
+                        ).decimalPoint === "," ? Qt.Key_Comma : Qt.Key_Period
+            text: Qt.locale().decimalPoint === "," ? "," : "."
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_0
-            btnText: "0"
-            inputPanelRef: inputPanel
+            text: "0"
+            inputPanelRef: root.inputPanel
         }
 
-        EnterKey {
-            inputPanelRef: inputPanel
+        HideKey {
             Layout.columnSpan: 2
+            inputPanelRef: root.inputPanel
         }
-
     }
-
 }

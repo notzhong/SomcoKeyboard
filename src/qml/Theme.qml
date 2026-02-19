@@ -1,21 +1,18 @@
 pragma Singleton
 
 import QtQuick 2.0
+import SKeyboard 1.0
 
 QtObject {
     id: root
 
-    enum Theme {
-        Light = 0,
-        Dark = 1
-    }
-
     readonly property var availableThemes: [lightTheme, darkTheme]
 
-    property QtObject currentTheme: availableThemes[Theme.Dark]
+    property QtObject currentTheme: availableThemes[InputPanel.keyboardTheme]
 
     function setTheme(style) {
         currentTheme = availableThemes[style]
+        console.log("Keyboard theme changed: " + currentTheme.themeName)
     }
 
     function getAvailableThemeNames() {

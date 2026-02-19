@@ -9,71 +9,71 @@ ColumnLayout {
 
         Key {
             btnKey: Qt.Key_Q
-            btnText: "q"
+            text: "q"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_W
-            btnText: "w"
+            text: "w"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_E
-            btnText: "e"
+            text: "e"
             alternativeKeys: "éèêë"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_R
-            btnText: "r"
+            text: "r"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_T
-            btnText: "t"
+            text: "t"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Y
-            btnText: "y"
+            text: "y"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_U
-            btnText: "u"
+            text: "u"
             alternativeKeys: "úùûü"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_I
-            btnText: "i"
+            text: "i"
             alternativeKeys: "íìîï"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_O
-            btnText: "o"
+            text: "o"
             alternativeKeys: "óòôö"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_P
-            btnText: "p"
+            text: "p"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Aring
-            btnText: "å"
+            text: "å"
             inputPanelRef: inputPanel
         }
 
@@ -95,68 +95,68 @@ ColumnLayout {
 
         Key {
             btnKey: Qt.Key_A
-            btnText: "a"
+            text: "a"
             alternativeKeys: "áàâä"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_S
-            btnText: "s"
+            text: "s"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_D
-            btnText: "d"
+            text: "d"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_F
-            btnText: "f"
+            text: "f"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_G
-            btnText: "g"
+            text: "g"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_H
-            btnText: "h"
+            text: "h"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_J
-            btnText: "j"
+            text: "j"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_K
-            btnText: "k"
+            text: "k"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_L
-            btnText: "l"
+            text: "l"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_AE
-            btnText: "æ"
+            text: "æ"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Ooblique
-            btnText: "ø"
+            text: "ø"
             inputPanelRef: inputPanel
         }
 
@@ -175,61 +175,61 @@ ColumnLayout {
 
         Key {
             btnKey: Qt.Key_Z
-            btnText: "z"
+            text: "z"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_X
-            btnText: "x"
+            text: "x"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_C
-            btnText: "c"
+            text: "c"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_V
-            btnText: "v"
+            text: "v"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_B
-            btnText: "b"
+            text: "b"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_N
-            btnText: "n"
+            text: "n"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_M
-            btnText: "m"
+            text: "m"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Comma
-            btnText: ","
+            text: ","
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Period
-            btnText: "."
+            text: "."
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Minus
-            btnText: "-"
+            text: "-"
             inputPanelRef: inputPanel
         }
 
@@ -258,7 +258,7 @@ ColumnLayout {
 
         Key {
             btnKey: Qt.Key_Apostrophe
-            btnText: "'"
+            text: "'"
             inputPanelRef: inputPanel
         }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QObject>
-
+#include "KeyboardTheme.h"
 /*!
  * \brief The InputPanelIface class contains properties shared between the
  * keyboards component.
@@ -12,6 +12,7 @@ class InputPanelIface : public QObject {
     // clang-format off
     Q_PROPERTY(QStringList availableLanguageLayouts READ availableLanguageLayouts WRITE setAvailableLanguageLayouts NOTIFY availableLanguageLayoutsChanged)
     Q_PROPERTY(QString languageLayout READ languageLayout WRITE setLanguageLayout NOTIFY languageLayoutChanged FINAL)
+    Q_PROPERTY(KeyboardTheme::KeyboardTheme keyboardTheme READ keyboardTheme WRITE setKeyboardTheme NOTIFY keyboardThemeChanged FINAL)
     // clang-format on
 
 public:
@@ -24,9 +25,13 @@ public:
     QString languageLayout() const;
     void setLanguageLayout(const QString &languageLayout);
 
+    KeyboardTheme::KeyboardTheme keyboardTheme() const;
+    void setKeyboardTheme(KeyboardTheme::KeyboardTheme theme);
+
 signals:
     void availableLanguageLayoutsChanged();
     void languageLayoutChanged();
+    void keyboardThemeChanged();
 
 private:
     struct InputPanelIfacePrivate;

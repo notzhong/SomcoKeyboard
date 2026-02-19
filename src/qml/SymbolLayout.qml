@@ -23,61 +23,61 @@ Item {
 
             Key {
                 btnKey: Qt.Key_1
-                btnText: "1"
+                text: "1"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_2
-                btnText: "2"
+                text: "2"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_3
-                btnText: "3"
+                text: "3"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_4
-                btnText: "4"
+                text: "4"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_5
-                btnText: "5"
+                text: "5"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_6
-                btnText: "6"
+                text: "6"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_7
-                btnText: "7"
+                text: "7"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_8
-                btnText: "8"
+                text: "8"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_9
-                btnText: "9"
+                text: "9"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_0
-                btnText: "0"
+                text: "0"
                 inputPanelRef: root.inputPanel
             }
 
@@ -98,55 +98,55 @@ Item {
 
             Key {
                 btnKey: Qt.Key_At
-                btnText: "@"
+                text: "@"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_NumberSign
-                btnText: "#"
+                text: "#"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Percent
-                btnText: "%"
+                text: "%"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Ampersand
-                btnText: "&"
+                text: "&"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Asterisk
-                btnText: "*"
+                text: "*"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Minus
-                btnText: "-"
+                text: "-"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Plus
-                btnText: "+"
+                text: "+"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_ParenLeft
-                btnText: "("
+                text: "("
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_ParenRight
-                btnText: ")"
+                text: ")"
                 inputPanelRef: root.inputPanel
             }
 
@@ -168,56 +168,56 @@ Item {
 
             Key {
                 btnKey: Qt.Key_Exclam
-                btnText: "!"
+                text: "!"
                 alternativeKeys: "¡"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_QuoteDbl
-                btnText: '"'
+                text: '"'
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Less
-                btnText: "<"
+                text: "<"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Greater
-                btnText: ">"
+                text: ">"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Apostrophe
-                btnText: "'"
+                text: "'"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Colon
-                btnText: ":"
+                text: ":"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Semicolon
-                btnText: ";"
+                text: ";"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Slash
-                btnText: "/"
+                text: "/"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Question
-                btnText: "?"
+                text: "?"
                 alternativeKeys: "¿"
                 inputPanelRef: root.inputPanel
             }
@@ -268,62 +268,62 @@ Item {
 
             Key {
                 btnKey: Qt.Key_AsciiTilde
-                btnText: "~"
+                text: "~"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Agrave
-                btnText: "`"
+                text: "`"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Bar
-                btnText: "|"
+                text: "|"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_periodcentered
-                btnText: "·"
+                text: "·"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8730
-                btnText: "√"
+                text: "√"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_division
-                btnText: "÷"
+                text: "÷"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_multiply
-                btnText: "×"
+                text: "×"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_onehalf
-                btnText: "½"
+                text: "½"
                 alternativeKeys: "¼⅓¾⅞"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BraceLeft
-                btnText: "{"
+                text: "{"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BraceRight
-                btnText: "}"
+                text: "}"
                 inputPanelRef: root.inputPanel
             }
 
@@ -343,55 +343,55 @@ Item {
 
             Key {
                 btnKey: Qt.Key_Dollar
-                btnText: "$"
+                text: "$"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8364
-                btnText: "€"
+                text: "€"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 194
-                btnText: "£"
+                text: "£"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 162
-                btnText: "¢"
+                text: "¢"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 165
-                btnText: "¥"
+                text: "¥"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Equal
-                btnText: "="
+                text: "="
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_section
-                btnText: "§"
+                text: "§"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BracketLeft
-                btnText: "["
+                text: "["
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_BracketRight
-                btnText: "]"
+                text: "]"
                 inputPanelRef: root.inputPanel
             }
 
@@ -409,60 +409,60 @@ Item {
                 btnDisplayedText: "2/2"
                 showPreview: false
                 functionKey: true
-                onClicked: secondPage = !secondPage
+                onClicked: root.secondPage = !root.secondPage
             }
 
             Key {
                 btnKey: Qt.Key_Underscore
-                btnText: "_"
+                text: "_"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8482
-                btnText: '™'
+                text: '™'
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 174
-                btnText: '®'
+                text: '®'
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_guillemotleft
-                btnText: '«'
+                text: '«'
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_guillemotright
-                btnText: '»'
+                text: '»'
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8220
-                btnText: '“'
+                text: '“'
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: 8221
-                btnText: '”'
+                text: '”'
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_Backslash
-                btnText: "\\"
+                text: "\\"
                 inputPanelRef: root.inputPanel
             }
 
             Key {
                 btnKey: Qt.Key_AsciiCircum
-                btnText: "^"
+                text: "^"
                 inputPanelRef: root.inputPanel
             }
 

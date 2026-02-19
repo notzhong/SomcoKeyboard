@@ -62,7 +62,9 @@ Item {
                 model: listModel
 
                 Key {
-                    btnText: model.btnText
+                    required property var model
+
+                    text: model.btnText
                     showPreview: false
                     weight: width
                     onClicked: root.visible = false

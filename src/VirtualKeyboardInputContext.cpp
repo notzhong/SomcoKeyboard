@@ -52,8 +52,7 @@ VirtualKeyboardInputContext::VirtualKeyboardInputContext()
                                               "InputPanel", inputPanelProvider);
     qmlRegisterSingletonType<VirtualKeyboardInputContext>(
         "SKeyboard", 1, 0, "InputContext", inputContextProvider);
-    qmlRegisterType<EnterKeyAction>("SKeyboard", 1, 0,
-                                    "EnterKeyAction");
+
     qmlRegisterType<EnterKeyAction>("SKeyboard", 1, 0, "EnterKeyAction");
 }
 

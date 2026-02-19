@@ -8,56 +8,56 @@ ColumnLayout {
         property real keyWeight: 160
 
         Key {
-            btnText: "ς"
+            text: "ς"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ε"
+            text: "ε"
             alternativeKeys: "έ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ρ"
+            text: "ρ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "τ"
+            text: "τ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ψ"
+            text: "ψ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "υ"
+            text: "υ"
             alternativeKeys: "ύϋΰ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "θ"
+            text: "θ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ι"
+            text: "ι"
             alternativeKeys: "ίϊΐ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ο"
+            text: "ο"
             alternativeKeys: "ό"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "π"
+            text: "π"
             inputPanelRef: inputPanel
         }
 
@@ -78,49 +78,49 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "α"
+            text: "α"
             alternativeKeys: "ά"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "σ"
+            text: "σ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "δ"
+            text: "δ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "φ"
+            text: "φ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "γ"
+            text: "γ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "η"
+            text: "η"
             alternativeKeys: "ή"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ξ"
+            text: "ξ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "κ"
+            text: "κ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "λ"
+            text: "λ"
             inputPanelRef: inputPanel
         }
 
@@ -138,50 +138,50 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "ζ"
+            text: "ζ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "χ"
+            text: "χ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ψ"
+            text: "ψ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ω"
+            text: "ω"
             alternativeKeys: "ώ"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "β"
+            text: "β"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "ν"
+            text: "ν"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "μ"
+            text: "μ"
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Comma
-            btnText: ","
+            text: ","
             inputPanelRef: inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Period
-            btnText: "."
+            text: "."
             alternativeKeys: "!.;?"
             inputPanelRef: inputPanel
         }
@@ -211,7 +211,7 @@ ColumnLayout {
 
         Key {
             btnKey: Qt.Key_Apostrophe
-            btnText: "'"
+            text: "'"
             inputPanelRef: inputPanel
         }
 

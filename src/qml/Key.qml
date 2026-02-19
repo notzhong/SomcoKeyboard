@@ -1,14 +1,13 @@
-import SKeyboard 1.0
 import QtQuick 2.0
 import QtQuick.Controls.Basic 2.0
 import QtQuick.Layouts 1.12
+import SKeyboard 1.0
 
 Button {
     id: key
 
     property real weight: 70
-    property string btnText: ""
-    property string btnDisplayedText: text
+    property string btnDisplayedText: key.text
     property int btnKey: Qt.Key_unknown
     property color btnBackground: Theme.btnBackgroundColor
     property string btnIcon: ""
@@ -26,24 +25,24 @@ Button {
     Layout.fillWidth: true
     Layout.fillHeight: true
     onPressed: {
-        if (inputPanelRef !== null && showPreview)
-            inputPanelRef.showKeyPopup(key)
+        if (key.inputPanelRef !== null && key.showPreview)
+            key.inputPanelRef.showKeyPopup(key)
     }
     onPressedChanged: {
-        if (pressed) {
-            opacity = 0.7
-            if (alternativeKeys.length > 0)
+        if (key.pressed) {
+            key.opacity = 0.7
+            if (key.alternativeKeys.length > 0)
                 longPressTimer.running = true
         } else {
-            opacity = 1
+            key.opacity = 1
             longPressTimer.running = false
         }
     }
     onReleased: {
         if (!functionKey)
             InputEngine.virtualKeyClick(
-                        btnKey, InputEngine.uppercase ? btnText.toUpperCase(
-                                                            ) : btnText,
+                        btnKey, InputEngine.uppercase ? key.text.toUpperCase(
+                                                            ) : key.text,
                         InputEngine.uppercase ? Qt.ShiftModifier : 0)
     }
 
@@ -55,7 +54,6 @@ Button {
         running: false
         onTriggered: {
             key.enabled = false
-            // key.inputPanelRef.hideKeyPopup()
             key.inputPanelRef.showAlternativesKeyPopup(key)
             key.enabled = true
         }
@@ -73,14 +71,11 @@ Button {
             anchors.centerIn: parent
 
             Text {
-                id: btnTextItem
-
-                text: key.btnDisplayedText == "" ? key.btnText : key.btnDisplayedText
+                text: key.btnDisplayedText
                 color: Theme.btnTextColor
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                visible: text !== ""
-
+                visible: key.btnDisplayedText !== ""
                 font {
                     family: Theme.btnTextFontFamily
                     weight: Font.Normal

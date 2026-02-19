@@ -21,8 +21,8 @@ Item {
             x = PopupLeft - (PopupGlobalLeft + width - inputPanel.width)
         else
             x = PopupLeft
-        txt.text = InputEngine.uppercase ? keybutton.btnText.toUpperCase(
-                                               ) : keybutton.btnText
+        txt.text = InputEngine.uppercase ? keybutton.text.toUpperCase(
+                                               ) : keybutton.text
 
         txt.font.family = keybutton.font.family
         root.visible = Qt.binding(function () {

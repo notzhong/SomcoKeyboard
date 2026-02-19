@@ -3,6 +3,7 @@
 struct InputPanelIface::InputPanelIfacePrivate {
     QStringList availableLanguageLayouts{};
     QString languageLayout{};
+    KeyboardTheme::KeyboardTheme keyboardTheme{KeyboardTheme::Light};
 };
 
 InputPanelIface::InputPanelIface(QObject *parent)
@@ -35,4 +36,17 @@ void InputPanelIface::setLanguageLayout(const QString &languageLayout) {
         pimpl->languageLayout = languageLayout;
         emit languageLayoutChanged();
     }
+}
+
+void InputPanelIface::setKeyboardTheme(KeyboardTheme::KeyboardTheme theme)
+{
+    if (pimpl->keyboardTheme != theme) {
+        pimpl->keyboardTheme = theme;
+        emit keyboardThemeChanged();
+    }
+}
+
+KeyboardTheme::KeyboardTheme InputPanelIface::keyboardTheme() const
+{
+    return pimpl->keyboardTheme;
 }

@@ -13,59 +13,59 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         Key {
-            btnText: "й"
+            text: "й"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "ц"
+            text: "ц"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "у"
+            text: "у"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "к"
+            text: "к"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "е"
+            text: "е"
             alternativeKeys: "ё"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "н"
+            text: "н"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "г"
+            text: "г"
             alternativeKeys: "ґ"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "ш"
+            text: "ш"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "щ"
+            text: "щ"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "з"
+            text: "з"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "х"
+            text: "х"
             inputPanelRef: root.inputPanel
         }
 
@@ -85,58 +85,58 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "ф"
+            text: "ф"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "і"
+            text: "і"
             alternativeKeys: "ї"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "в"
+            text: "в"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "а"
+            text: "а"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "п"
+            text: "п"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "р"
+            text: "р"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "о"
+            text: "о"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "л"
+            text: "л"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "д"
+            text: "д"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "ж"
+            text: "ж"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "є"
+            text: "є"
             alternativeKeys: "э"
             inputPanelRef: root.inputPanel
         }
@@ -155,48 +155,48 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "я"
+            text: "я"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "ч"
+            text: "ч"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "с"
+            text: "с"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "м"
+            text: "м"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "и"
+            text: "и"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "т"
+            text: "т"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "ь"
+            text: "ь"
             alternativeKeys: "ъ"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "б"
+            text: "б"
             inputPanelRef: root.inputPanel
         }
 
         Key {
-            btnText: "ю"
+            text: "ю"
             inputPanelRef: root.inputPanel
         }
 

@@ -1,12 +1,12 @@
-import SKeyboard 1.0
 import QtQuick 2.0
+import SKeyboard 1.0
 
 Key {
     btnKey: Qt.Key_Enter
     repeatable: true
     showPreview: false
     btnBackground: Theme.btnEnterBackgroundColor
-    btnText: "\n"
+    text: "\n"
     btnDisplayedText: "Enter"
     btnIcon: Theme.getThemedUrl("keyboard_return.svg")
     enabled: InputContext.inputItem ? InputContext.inputItem.EnterKeyAction.enabled : true

@@ -17,7 +17,7 @@ ApplicationWindow {
         gradient: Gradient {
             GradientStop {
                 position: 0.0
-                color: "#0C3A2D"
+                color: "#79968F"
             }
             GradientStop {
                 position: 1.0
@@ -67,6 +67,68 @@ ApplicationWindow {
             Layout.preferredHeight: 88
         }
 
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 40
+            Text {
+                text: qsTr("Keyboard Theme")
+                color: "#FFFFFF"
+                font.pixelSize: 20
+                font.family: "Inter"
+            }
+
+            Button {
+                id: toggle
+                implicitWidth: 65
+                implicitHeight: 40
+                checkable: true
+                checked: inputPanel.keyboardTheme == KeyboardTheme.Dark
+
+                background: Rectangle {
+                    anchors.fill: parent
+                    radius: height / 2
+                    color: toggle.checked ? "#1E1E2E" : "#F5F7FA"
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 250
+                        }
+                    }
+                }
+
+                contentItem: Item {
+                    anchors.fill: parent
+                    Rectangle {
+                        width: 28
+                        height: 28
+                        radius: width / 2
+                        color: toggle.checked ? "#F1F5F9" : "#FDB813"
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: toggle.checked ? parent.width - width - 6 : 6
+
+                        Behavior on x {
+                            NumberAnimation {
+                                duration: 250
+                            }
+                        }
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: 250
+                            }
+                        }
+                    }
+                }
+
+                onToggled: {
+                    if (checked)
+                        inputPanel.keyboardTheme = KeyboardTheme.Dark
+                    else
+                        inputPanel.keyboardTheme = KeyboardTheme.Light
+                }
+            }
+        }
+
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 39
@@ -111,8 +173,8 @@ ApplicationWindow {
 
         z: 99
         y: Qt.inputMethod.visible ? (window.height - inputPanel.height) : window.height
-        anchors.left: parent.left
-        anchors.right: parent.right
+        width: parent.width
+        keyboardTheme: KeyboardTheme.Light
 
         Behavior on y {
             NumberAnimation {
