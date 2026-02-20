@@ -45,6 +45,9 @@ ApplicationWindow {
                 color: "#D9D9D9"
             }
         }
+        Keys.onEscapePressed: {
+            Qt.inputMethod.hide()
+        }
     }
 
     ColumnLayout {
@@ -62,7 +65,7 @@ ApplicationWindow {
         Image {
             Layout.alignment: Qt.AlignHCenter
             fillMode: Image.PreserveAspectFit
-            source: "qrc:/icons/logo.svg"
+            source: inputPanel.themeName === darkTheme.themeName ? "qrc:/icons/SomcoKeyboardApp/dark/logo.svg" : "qrc:/icons/SomcoKeyboardApp/light/logo.svg"
             Layout.preferredWidth: 575
             Layout.preferredHeight: 88
         }
@@ -82,8 +85,8 @@ ApplicationWindow {
                 implicitWidth: 65
                 implicitHeight: 40
                 checkable: true
-                checked: inputPanel.keyboardTheme == KeyboardTheme.Dark
 
+                checked: inputPanel.themeName === darkTheme.themeName
                 background: Rectangle {
                     anchors.fill: parent
                     radius: height / 2
@@ -122,9 +125,9 @@ ApplicationWindow {
 
                 onToggled: {
                     if (checked)
-                        inputPanel.keyboardTheme = KeyboardTheme.Dark
+                        inputPanel.themeName = darkTheme.themeName
                     else
-                        inputPanel.keyboardTheme = KeyboardTheme.Light
+                        inputPanel.themeName = lightTheme.themeName
                 }
             }
         }
@@ -163,6 +166,8 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     inputMethodHints: Qt.ImhDigitsOnly
                     echoMode: TextInput.Password
+                    passwordMaskDelay: 1000
+                    EnterKeyAction.enabled: text.length >= 6
                 }
             }
         }
@@ -174,11 +179,57 @@ ApplicationWindow {
         z: 99
         y: Qt.inputMethod.visible ? (window.height - inputPanel.height) : window.height
         width: parent.width
-        keyboardTheme: KeyboardTheme.Light
+
+        themes: [
+            KeyboardTheme {
+                id: lightTheme
+                themeName: "light"
+
+                overlayBackgroundColor: "#D4E3EE"
+                backgroundColor: "#C2D4EA"
+                btnBackgroundColor: "#DEECFB"
+                btnSpecialBackgroundColor: "#ADC3DB"
+                btnEnterBackgroundColor: "#1DCA9B"
+                btnTextColor: "#000000"
+                btnTextFontFamily: "Inter"
+                btnTextFontSize: 21
+
+                backspaceIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_backspace.svg"
+                enterIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_return.svg"
+                shiftOnIcon: "qrc:/icons/SomcoKeyboardApp/light/caps-lock-on.svg"
+                shiftOffIcon: "qrc:/icons/SomcoKeyboardApp/light/caps-lock-off.svg"
+                hideKeyboardIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_hide.svg"
+                languageIcon: "qrc:/icons/SomcoKeyboardApp/light/language.svg"
+                spaceIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_space.svg"
+            },
+
+            KeyboardTheme {
+                id: darkTheme
+                themeName: "dark"
+
+                overlayBackgroundColor: "#000000"
+                backgroundColor: "#000000"
+                btnBackgroundColor: "#2A3139"
+                btnSpecialBackgroundColor: "#4B545E"
+                btnEnterBackgroundColor: "#1DCA9B"
+                btnTextColor: "#FFFFFF"
+                btnTextFontFamily: "Inter"
+                btnTextFontSize: 21
+
+                backspaceIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_backspace.svg"
+                enterIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_return.svg"
+                shiftOnIcon: "qrc:/icons/SomcoKeyboardApp/dark/caps-lock-on.svg"
+                shiftOffIcon: "qrc:/icons/SomcoKeyboardApp/dark/caps-lock-off.svg"
+                hideKeyboardIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_hide.svg"
+                languageIcon: "qrc:/icons/SomcoKeyboardApp/dark/language.svg"
+                spaceIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_space.svg"
+            }
+        ]
+        themeName: darkTheme.themeName
 
         Behavior on y {
             NumberAnimation {
-                duration: 200
+                duration: 300
                 easing.type: Easing.InOutQuad
             }
         }

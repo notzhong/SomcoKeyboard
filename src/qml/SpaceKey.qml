@@ -6,5 +6,5 @@ Key {
     btnDisplayedText: ""
     showPreview: false
     repeatable: true
-    btnIcon: Theme.getThemedUrl("keyboard_space.svg")
+    btnIcon: ThemeManager.currentTheme.spaceIcon
 }

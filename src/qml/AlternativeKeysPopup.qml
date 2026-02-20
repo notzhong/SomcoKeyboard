@@ -47,7 +47,7 @@ Item {
 
     Rectangle {
         radius: 8
-        color: Theme.backgroundColor
+        color: ThemeManager.currentTheme.backgroundColor
         anchors.fill: parent
 
         RowLayout {

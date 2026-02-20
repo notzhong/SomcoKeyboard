@@ -121,21 +121,21 @@ class VirtualKeyboardInputContext : public QPlatformInputContext {
 
    private:
     /**
-     * The input contet creates the InputEngine object and provides it
+     * The input content creates the InputEngine object and provides it
      * as a singleton to the QML context
      */
     static QObject *inputEngineProvider(QQmlEngine *engine,
                                         QJSEngine *scriptEngine);
 
     /**
-     * The input contet creates the InputPanel object and provides it
+     * The input content creates the ThemeManager object and provides it
      * as a singleton to the QML context
      */
-    static QObject *inputPanelProvider(QQmlEngine *engine,
-                                       QJSEngine *scriptEngine);
+    static QObject *themeManagerProvider(QQmlEngine *engine,
+                                         QJSEngine *scriptEngine);
 
     /**
-     * The input contet creates the InputContext object and provides it
+     * The input content creates the InputContext object and provides it
      * as a singleton to the QML context
      */
     static QObject *inputContextProvider(QQmlEngine *engine,

@@ -8,8 +8,10 @@
 
 #include "DeclarativeInputEngine.h"
 #include "EnterKeyAction.hpp"
-#include "EnterKeyActionAttachedType.hpp"
 #include "InputPanelIface.hpp"
+#include "EnterKeyActionAttachedType.hpp" // IWYU pragma: keep
+#include "ThemeManager.h"
+#include "KeyboardTheme.h"
 #include <QQmlEngine>
 
 /**
@@ -23,6 +25,7 @@ class VirtualKeyboardInputContextPrivate {
     QQuickItem *FocusItem;
     bool Visible;
     DeclarativeInputEngine *InputEngine;
+    ThemeManager* Themes;
     QPropertyAnimation *FlickableContentScrollAnimation{nullptr};
 
     InputPanelIface *inputPanelIface;
@@ -33,7 +36,9 @@ VirtualKeyboardInputContextPrivate::VirtualKeyboardInputContextPrivate()
       FocusItem(0),
       Visible(false),
       InputEngine(new DeclarativeInputEngine()),
-      inputPanelIface(new InputPanelIface()) {}
+      inputPanelIface(new InputPanelIface()),
+      Themes(new ThemeManager())
+{}
 
 VirtualKeyboardInputContext::VirtualKeyboardInputContext()
     : QPlatformInputContext(), d(new VirtualKeyboardInputContextPrivate) {
@@ -211,11 +216,11 @@ QObject *VirtualKeyboardInputContext::inputEngineProvider(
     return VirtualKeyboardInputContext::instance()->d->InputEngine;
 }
 
-QObject *VirtualKeyboardInputContext::inputPanelProvider(
-    QQmlEngine *engine, QJSEngine *scriptEngine) {
+QObject *VirtualKeyboardInputContext::themeManagerProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
     Q_UNUSED(engine)
     Q_UNUSED(scriptEngine)
-    return VirtualKeyboardInputContext::instance()->d->inputPanelIface;
+    return VirtualKeyboardInputContext::instance()->d->Themes;
 }
 
 QObject *VirtualKeyboardInputContext::inputContextProvider(

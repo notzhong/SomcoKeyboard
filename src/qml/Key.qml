@@ -9,7 +9,7 @@ Button {
     property real weight: 70
     property string btnDisplayedText: key.text
     property int btnKey: Qt.Key_unknown
-    property color btnBackground: Theme.btnBackgroundColor
+    property color btnBackground: ThemeManager.currentTheme.btnBackgroundColor
     property string btnIcon: ""
     property size btnIconSize: Qt.size(35, 35)
     property var alternativeKeys: []
@@ -72,14 +72,14 @@ Button {
 
             Text {
                 text: key.btnDisplayedText
-                color: Theme.btnTextColor
+                color: ThemeManager.currentTheme.btnTextColor
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 visible: key.btnDisplayedText !== ""
                 font {
-                    family: Theme.btnTextFontFamily
+                    family: ThemeManager.currentTheme.btnTextFontFamily
                     weight: Font.Normal
-                    pixelSize: Theme.btnTextFontSize
+                    pixelSize: ThemeManager.currentTheme.btnTextFontSize
                     capitalization: InputEngine.uppercase ? Font.AllUppercase : Font.MixedCase
                 }
             }

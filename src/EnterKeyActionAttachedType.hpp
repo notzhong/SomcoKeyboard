@@ -1,22 +1,22 @@
 #pragma once
 
 #include <QObject>
-
-#include "EnterKeyAction.hpp"
+#include <qqml.h>
 
 class EnterKeyActionAttachedType : public QObject {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
 
-   public:
+public:
     explicit EnterKeyActionAttachedType(QObject *parent = nullptr);
 
     bool enabled() const;
     void setEnabled(bool enabled);
 
-   signals:
+signals:
     void enabledChanged();
 
-   private:
+private:
     bool m_enabled;
 };

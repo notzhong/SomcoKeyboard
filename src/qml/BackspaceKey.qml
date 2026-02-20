@@ -6,6 +6,6 @@ Key {
     weight: 150
     repeatable: true
     showPreview: false
-    btnBackground: Theme.btnSpecialBackgroundColor
-    btnIcon: Theme.getThemedUrl("keyboard_backspace.svg")
+    btnBackground: ThemeManager.currentTheme.btnSpecialBackgroundColor
+    btnIcon: ThemeManager.currentTheme.backspaceIcon
 }

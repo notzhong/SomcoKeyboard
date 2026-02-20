@@ -4,12 +4,12 @@ import QtQuick 2.0
 Key {
     weight: 112
     btnKey: Qt.Key_Context2
-    btnIcon: Theme.getThemedUrl("language.svg")
-    btnDisplayedText: InputPanel.languageLayout.toUpperCase()
+    btnIcon: ThemeManager.currentTheme.languageIcon
+    btnDisplayedText: InputEngine.languageLayout.toUpperCase()
     functionKey: true
     showPreview: false
     btnIconSize: Qt.size(24, 24)
-    btnBackground: Theme.btnSpecialBackgroundColor
+    btnBackground: ThemeManager.currentTheme.btnSpecialBackgroundColor
     onClicked: {
         var indx = InputPanel.availableLanguageLayouts.indexOf(
                     InputPanel.languageLayout)

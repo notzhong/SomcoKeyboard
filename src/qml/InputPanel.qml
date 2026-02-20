@@ -11,8 +11,11 @@ Item {
     property var availableLanguageLayouts: ["En", "De", "Ua"]
     property string languageLayout: "En"
     property int spacing: 16
+    property int margins: 16
 
-    property int keyboardTheme: KeyboardTheme.Dark
+    property list<KeyboardTheme> themes: []
+
+    property string themeName
 
     /*! \internal */
     readonly property bool __isRootItem: root.parent !== null
@@ -72,8 +75,35 @@ Item {
 
         InputPanel.availableLanguageLayouts = availableLanguageLayouts
         InputPanel.languageLayout = languageLayout
-        InputPanel.keyboardTheme = keyboardTheme
+
+        if (root.themes.length == 0) {
+            ThemeManager.addTheme(defaultTheme)
+            root.themeName = defaultTheme.themeName
+        }
+        ThemeManager.setTheme(root.themeName)
         loadLettersLayout()
+    }
+
+    KeyboardTheme {
+        id: defaultTheme
+        themeName: "default"
+
+        overlayBackgroundColor: "#D4E3EE"
+        backgroundColor: "#C2D4EA"
+        btnBackgroundColor: "#DEECFB"
+        btnSpecialBackgroundColor: "#ADC3DB"
+        btnEnterBackgroundColor: "#1DCA9B"
+        btnTextColor: "#000000"
+        btnTextFontFamily: "Inter"
+        btnTextFontSize: 21
+
+        backspaceIcon: "qrc:/icons/SomcoKeyboard/keyboard_backspace.svg"
+        enterIcon: "qrc:/icons/SomcoKeyboard/keyboard_return.svg"
+        shiftOnIcon: "qrc:/icons/SomcoKeyboard/caps-lock-on.svg"
+        shiftOffIcon: "qrc:/icons/SomcoKeyboard/caps-lock-off.svg"
+        hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/keyboard_hide.svg"
+        languageIcon: "qrc:/icons/SomcoKeyboard/language.svg"
+        spaceIcon: "qrc:/icons/SomcoKeyboard/keyboard_space.svg"
     }
 
     KeyPopup {
@@ -108,14 +138,14 @@ Item {
         id: keyboardRect
 
         anchors.fill: parent
-        color: Theme.overlayBackgroundColor
+        color: ThemeManager.currentTheme.overlayBackgroundColor
 
         Rectangle {
             anchors {
                 fill: parent
-                margins: 16
+                margins: root.margins
             }
-            color: Theme.backgroundColor
+            color: ThemeManager.currentTheme.backgroundColor
             radius: 12
 
             Loader {
@@ -128,7 +158,9 @@ Item {
 
                 anchors {
                     fill: parent
-                    margins: root.spacing
+                    margins: root.margins
+                }
+            }
                 }
             }
 
@@ -159,17 +191,17 @@ Item {
 
             Connections {
                 function onLanguageLayoutChanged() {
-                    languageLayout = InputPanel.languageLayout
+            root.languageLayout = InputEngine.languageLayout
                     loadLettersLayout()
                 }
 
-                function onKeyboardThemeChanged() {
-                    root.keyboardTheme = InputPanel.keyboardTheme
-                    Theme.setTheme(root.keyboardTheme)
                 }
 
                 target: InputPanel
-            }
         }
+    Binding {
+        target: ThemeManager
+        property: "availableThemes"
+        value: root.themes
     }
 }

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(SKeyboard_example VERSION 1.0 LANGUAGES CXX)
 
-qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE main.cpp)
+qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE main.cpp icons/icons.qrc)
 target_compile_definitions(${PROJECT_NAME} PRIVATE QT_DEPRECATED_WARNINGS)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -10,7 +10,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   Qt::Quick
 )
 
-set(resource_files "main.qml" "icons/logo.svg")
+set(resource_files "main.qml")
 
 qt6_add_resources(${PROJECT_NAME} "qml" PREFIX "/" FILES ${resource_files})
 

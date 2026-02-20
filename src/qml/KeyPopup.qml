@@ -47,7 +47,7 @@ Item {
             anchors.fill: parent
             fontSizeMode: Text.Fit
             font.pixelSize: height * 0.7
-            color: Theme.btnTextColor
+            color: ThemeManager.currentTheme.btnTextColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
@@ -55,12 +55,12 @@ Item {
         gradient: Gradient {
             GradientStop {
                 position: 0
-                color: Theme.btnSpecialBackgroundColor
+                color: ThemeManager.currentTheme.btnSpecialBackgroundColor
             }
 
             GradientStop {
                 position: 1
-                color: Theme.btnBackgroundColor
+                color: ThemeManager.currentTheme.btnBackgroundColor
             }
         }
     }

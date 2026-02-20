@@ -6,6 +6,6 @@ Key {
     btnDisplayedText: !InputEngine.symbolMode ? ".?$%^" : "abcd"
     functionKey: true
     showPreview: false
-    btnBackground: Theme.btnSpecialBackgroundColor
+    btnBackground: ThemeManager.currentTheme.btnSpecialBackgroundColor
     onClicked: InputEngine.symbolMode = !InputEngine.symbolMode
 }

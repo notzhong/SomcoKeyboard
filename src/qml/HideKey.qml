@@ -6,5 +6,5 @@ Key {
     showPreview: false
     onClicked: Qt.inputMethod.hide()
     btnBackground: "transparent"
-    btnIcon: Theme.getThemedUrl("keyboard_hide.svg")
+    btnIcon: ThemeManager.currentTheme.hideKeyboardIcon
 }

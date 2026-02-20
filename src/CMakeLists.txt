@@ -7,7 +7,6 @@ foreach(_file ${QML_FILES})
   cmake_path(GET _file FILENAME _fileName)
   set_source_files_properties(${_file} PROPERTIES QT_RESOURCE_ALIAS ${_fileName})
 endforeach()
-set_source_files_properties(qml/Theme.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
 qt_add_qml_module(
   ${PROJECT_NAME}
