@@ -13,8 +13,6 @@
 
 #include <qpa/qplatforminputcontextplugin_p.h>
 
-#include "virtualkeyboard_global.h"
-
 /**
  * Implementation of QPlatformInputContextPlugin
  */

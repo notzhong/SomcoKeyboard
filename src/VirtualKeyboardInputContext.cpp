@@ -8,7 +8,6 @@
 
 #include "DeclarativeInputEngine.h"
 #include "EnterKeyAction.hpp"
-#include "InputPanelIface.hpp"
 #include "EnterKeyActionAttachedType.hpp" // IWYU pragma: keep
 #include "ThemeManager.h"
 #include "KeyboardTheme.h"
@@ -27,8 +26,6 @@ class VirtualKeyboardInputContextPrivate {
     DeclarativeInputEngine *InputEngine;
     ThemeManager* Themes;
     QPropertyAnimation *FlickableContentScrollAnimation{nullptr};
-
-    InputPanelIface *inputPanelIface;
 };
 
 VirtualKeyboardInputContextPrivate::VirtualKeyboardInputContextPrivate()
@@ -36,7 +33,6 @@ VirtualKeyboardInputContextPrivate::VirtualKeyboardInputContextPrivate()
       FocusItem(0),
       Visible(false),
       InputEngine(new DeclarativeInputEngine()),
-      inputPanelIface(new InputPanelIface()),
       Themes(new ThemeManager())
 {}
 
@@ -47,8 +43,6 @@ VirtualKeyboardInputContext::VirtualKeyboardInputContext()
     d->FlickableContentScrollAnimation->setDuration(400);
     d->FlickableContentScrollAnimation->setEasingCurve(
         QEasingCurve(QEasingCurve::OutBack));
-    qmlRegisterSingletonType<DeclarativeInputEngine>(
-        "SKeyboard", 1, 0, "InputEngine", inputEngineProvider);
     connect(d->InputEngine, &DeclarativeInputEngine::animatingChanged, this,
             &VirtualKeyboardInputContext::ensureFocusedObjectVisible);
     connect(d->InputEngine, &DeclarativeInputEngine::keyboardRectangleChanged, this, &VirtualKeyboardInputContext::emitKeyboardRectChanged);

@@ -36,7 +36,7 @@ Item {
     function loadLettersLayout() {
         var source = InputEngine.fileOfLayout(languageLayout)
         if (source === "") {
-            InputPanel.languageLayout = "En"
+            InputEngine.languageLayout = "En"
             return
         }
 
@@ -66,15 +66,16 @@ Item {
             alternativesKeyPopup.visible = false
     }
     onLanguageLayoutChanged: loadLettersLayout()
-    onKeyboardThemeChanged: InputPanel.keyboardTheme = keyboardTheme
+    onThemeNameChanged: ThemeManager.setTheme(themeName)
+
     Component.onCompleted: {
         InputContext.registerInputPanel(root)
 
         if (availableLanguageLayouts.length == 0)
             availableLanguageLayouts = ["En"]
 
-        InputPanel.availableLanguageLayouts = availableLanguageLayouts
-        InputPanel.languageLayout = languageLayout
+        InputEngine.availableLanguageLayouts = availableLanguageLayouts
+        InputEngine.languageLayout = languageLayout
 
         if (root.themes.length == 0) {
             ThemeManager.addTheme(defaultTheme)
@@ -186,19 +187,14 @@ Item {
                     refreshLayouts()
                 }
 
-                target: InputEngine
-            }
-
-            Connections {
                 function onLanguageLayoutChanged() {
             root.languageLayout = InputEngine.languageLayout
                     loadLettersLayout()
                 }
 
+        target: InputEngine
                 }
 
-                target: InputPanel
-        }
     Binding {
         target: ThemeManager
         property: "availableThemes"

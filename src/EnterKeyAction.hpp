@@ -1,16 +1,15 @@
 #pragma once
 
-#include <qqml.h>
-
 #include <QObject>
+#include <qqml.h>
 
 class EnterKeyActionAttachedType;
 
 class EnterKeyAction : public QObject {
     Q_OBJECT
+    QML_ELEMENT
+    QML_ATTACHED(EnterKeyActionAttachedType)
 
-   public:
+public:
     static EnterKeyActionAttachedType *qmlAttachedProperties(QObject *object);
 };
-
-QML_DECLARE_TYPEINFO(EnterKeyAction, QML_HAS_ATTACHED_PROPERTIES)

@@ -243,7 +243,7 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         LanguageKey {
-            visible: InputPanel.availableLanguageLayouts.length > 1
+            visible: InputEngine.availableLanguageLayouts.length > 1
             weight: 112
             inputPanelRef: root.inputPanel
         }

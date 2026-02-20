@@ -25,148 +25,227 @@ class DeclarativeInputEngine : public QObject {
     Q_OBJECT
 
     // clang-format off
+    /** The geometry of the currently visible keyboard in screen coordinates. */
     Q_PROPERTY(QRect keyboardRectangle READ keyboardRectangle WRITE setKeyboardRectangle NOTIFY keyboardRectangleChanged FINAL)
+
+    /** Indicates whether the keyboard is currently animating (e.g., opening or closing). */
     Q_PROPERTY(bool animating READ isAnimating WRITE setAnimating NOTIFY animatingChanged FINAL)
+
+    /** Current input mode, e.g., Letters or DigitsOnly. \sa InputMode */
     Q_PROPERTY(int inputMode READ inputMode WRITE setInputMode NOTIFY inputModeChanged FINAL)
-    Q_PROPERTY(bool uppercase READ isUppercase WRITE setUppercase NOTIFY isUppercaseChanged)
-    Q_PROPERTY(bool symbolMode READ isSymbolMode WRITE setSymbolMode NOTIFY isSymbolModeChanged)
+
+    /** True if the next character should be uppercase (shift pressed). */
+    Q_PROPERTY(bool uppercase READ isUppercase WRITE setUppercase NOTIFY isUppercaseChanged FINAL)
+
+    /** True if the keyboard is in symbol mode (e.g., showing punctuation). */
+    Q_PROPERTY(bool symbolMode READ isSymbolMode WRITE setSymbolMode NOTIFY isSymbolModeChanged FINAL)
+
+    /** List of available language layout identifiers (e.g., "En", "Fr", "De"). */
+    Q_PROPERTY(QStringList availableLanguageLayouts READ availableLanguageLayouts WRITE setAvailableLanguageLayouts NOTIFY availableLanguageLayoutsChanged FINAL)
+
+    /** The currently selected language layout identifier. */
+    Q_PROPERTY(QString languageLayout READ languageLayout WRITE setLanguageLayout NOTIFY languageLayoutChanged FINAL)
     // clang-format on
 
-   public:
+public:
     /**
-     * The InputLayouts enum provides a list of valid input layouts
+     * Predefined identifiers for supported input layouts.
+     * These are used to reference layout files and descriptions.
      */
     enum InputLayouts {
-        En,
-        Fr,
-        It,
-        Es,
-        De,
-        Nl,
-        Pt,
-        Cs,
-        El,
-        Pl,
-        Da,
-        Fi,
-        Sv,
-        Hr,
-        CyBs,
-        LtBs,
-        CySr,
-        LtSr,
-        Ru,
-        Ua,
+        En,      ///< English
+        Fr,      ///< French
+        It,      ///< Italian
+        Es,      ///< Spanish
+        De,      ///< German
+        Nl,      ///< Dutch
+        Pt,      ///< Portuguese
+        Cs,      ///< Czech
+        El,      ///< Greek
+        Pl,      ///< Polish
+        Da,      ///< Danish
+        Fi,      ///< Finnish
+        Sv,      ///< Swedish
+        Hr,      ///< Croatian (Latin)
+        CyBs,    ///< Cyrillic (Bosnian) – placeholder
+        LtBs,    ///< Latin (Bosnian) – placeholder
+        CySr,    ///< Cyrillic (Serbian)
+        LtSr,    ///< Latin (Serbian)
+        Ru,      ///< Russian
+        Ua,      ///< Ukrainian
         EndLayouts
     };
     Q_ENUM(InputLayouts)
 
     /**
-     * The InputMode enum provides a list of valid input modes
+     * Input modes that determine which character set is active.
      */
-    enum InputMode { Letters, DigitsOnly };
-    Q_ENUMS(InputMode)
+    enum InputMode {
+        Letters,    ///< Alphabetic keys (letters)
+        DigitsOnly  ///< Numeric keypad (digits only)
+    };
+    Q_ENUM(InputMode)
 
     /**
-     * Creates a dclarative input engine with the given parent
+     * Constructs a declarative input engine with the given parent.
      */
-    explicit DeclarativeInputEngine(QObject *parent = 0);
+    explicit DeclarativeInputEngine(QObject *parent = nullptr);
 
     /**
-     * Virtual destructor
+     * Destructor.
      */
     virtual ~DeclarativeInputEngine();
 
     /**
-     * Returns the kesyboard rectangle
+     * Returns the current keyboard rectangle in screen coordinates.
      */
     QRect keyboardRectangle() const;
 
     /**
-     * Returns the animating status
+     * Returns true if the keyboard is currently animating.
      */
     bool isAnimating() const;
 
     /**
-     * Use this property to set the animating status, for example during UI
-     * transitioning states.
+     * Sets the animating status. Used during UI transitions to prevent
+     * interference with ongoing animations.
      */
     void setAnimating(bool Animating);
 
     /**
-     * Returns the current input mode
-     * \see InputMode for a list of valid input modes
+     * Returns the current input mode.
+     * \see InputMode for possible values.
      */
     int inputMode() const;
 
     /**
-     * Use this function to set the current input mode
-     * \see InputMode for a list of valid input modes
+     * Sets the current input mode.
+     * \see InputMode for possible values.
      */
     void setInputMode(int Mode);
 
+    /**
+     * Returns true if uppercase (shift) is active.
+     */
     bool isUppercase() const;
+
+    /**
+     * Sets the uppercase (shift) state.
+     */
     void setUppercase(bool uppercase);
 
+    /**
+     * Returns true if symbol mode is active.
+     */
     bool isSymbolMode() const;
+
+    /**
+     * Sets the symbol mode state.
+     */
     void setSymbolMode(bool symbolMode);
 
+    /**
+     * Returns the list of available language layout identifiers.
+     */
+    QStringList availableLanguageLayouts() const;
+
+    /**
+     * Sets the list of available language layouts.
+     * If the current language layout is not in the new list, the first
+     * available layout is selected automatically.
+     */
+    void setAvailableLanguageLayouts(const QStringList &availableLanguageLayouts);
+
+    /**
+     * Returns the currently selected language layout identifier.
+     */
+    QString languageLayout() const;
+
+    /**
+     * Sets the current language layout. The layout must be present in
+     * availableLanguageLayouts, otherwise the change is ignored (a warning
+     * may be logged).
+     */
+    void setLanguageLayout(const QString &languageLayout);
+
+    /**
+     * Cycles to the next available language layout in the list.
+     * If the current layout is invalid, the first layout is selected.
+     */
+    Q_INVOKABLE void cycleLanguageLayout();
+
+    /**
+     * Checks whether the given layout identifier corresponds to a valid
+     * input layout that can be activated.
+     */
     Q_INVOKABLE bool inputLayoutValid(const QString &layout) const;
 
     /**
-     * Use this function to get the correct layout file for each language
-     * (some languages share one file)
+     * Returns the file name (without path) for the given layout identifier.
+     * Some layouts share a common file (e.g., several languages use the same
+     * base keyboard layout).
      */
     Q_INVOKABLE QString fileOfLayout(QString layout);
 
     /**
-     * Use this function to get the correct description for each language
+     * Returns a human‑readable description for the given layout (e.g., "English").
      */
     Q_INVOKABLE QString descriptionOfLayout(QString layout);
 
     /**
-     * Use this function to get the correct 'space'-identifier for each language
+     * Returns the text to display on the spacebar for the given layout
+     * (e.g., "space" in the appropriate language).
      */
     Q_INVOKABLE QString spaceIdentifierOfLayout(QString layout);
 
-   public slots:
     /**
-     * Emits a key click event for the given key, text and modifiers.
-     * Returns true if the key event was accepted by the input engine.
-     * \note Not implemented yet and not used yet
+     * Simulates a key click on the virtual keyboard. Not yet fully implemented.
+     * \param key          Qt key code
+     * \param text         Text generated by the key
+     * \param modifiers    Keyboard modifiers (Shift, Ctrl, etc.)
+     * \return true if the event was accepted by the input engine
      */
-    bool virtualKeyClick(Qt::Key key, const QString &text,
-                         Qt::KeyboardModifiers modifiers);
+    Q_INVOKABLE bool virtualKeyClick(Qt::Key key, const QString &text,
+                                     Qt::KeyboardModifiers modifiers);
 
     /**
-     * Reports the active keyboard rectangle to the engine
+     * Informs the engine about the current keyboard rectangle. This should be
+     * called whenever the keyboard's geometry changes (e.g., during resizing
+     * or repositioning).
      */
-    void setKeyboardRectangle(const QRect &Rect);
+    Q_INVOKABLE void setKeyboardRectangle(const QRect &Rect);
 
-   signals:
-    /**
-     * Notify signal of keyboardRectangle property
-     */
+signals:
+    /** Emitted when the keyboard rectangle changes. */
     void keyboardRectangleChanged();
 
-    /**
-     * Notify signal of animating property
-     */
+    /** Emitted when the animating property changes. */
     void animatingChanged();
 
-    /**
-     * Notify signal of inputModep property
-     */
+    /** Emitted when the input mode changes. */
     void inputModeChanged();
 
+    /** Emitted when the uppercase (shift) state changes. */
     void isUppercaseChanged();
+
+    /** Emitted when the symbol mode state changes. */
     void isSymbolModeChanged();
 
-   private:
+    /** Emitted when the list of available language layouts changes. */
+    void availableLanguageLayoutsChanged();
+
+    /** Emitted when the current language layout changes. */
+    void languageLayoutChanged();
+
+private:
     DeclarativeInputEnginePrivate *d;
 
     friend struct DeclarativeInputEnginePrivate;
 
-   private slots:
+private slots:
+    /**
+     * Internal slot called when an animation finishes.
+     * Used to update the animating property accordingly.
+     */
     void animatingFinished();
 };

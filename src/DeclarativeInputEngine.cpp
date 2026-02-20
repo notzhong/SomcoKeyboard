@@ -17,7 +17,7 @@ struct DeclarativeInputEnginePrivate {
     struct LayoutData {
         QString layoutFile;
         QString description;
-        QString spaceIdentifier = "Space";
+        QString spaceIdentifier;
     };
 
     DeclarativeInputEngine *_this;
@@ -26,11 +26,14 @@ struct DeclarativeInputEnginePrivate {
     int InputMode;
     QRect KeyboardRectangle;
 
+    QStringList availableLanguageLayouts;
+    QString languageLayout;
+
     bool isUppercase{false};
     bool symbolMode{false};
     QHash<DeclarativeInputEngine::InputLayouts, LayoutData> layoutFiles = {
-        {DeclarativeInputEngine::En, {"EnLayout", "English"}},
-        {DeclarativeInputEngine::Fr, {"FrLayout", "Français"}},
+        {DeclarativeInputEngine::En, {"EnLayout", "English", "Space"}},
+        {DeclarativeInputEngine::Fr, {"FrLayout", "Français", "Espace"}},
         {DeclarativeInputEngine::It, {"ItLayout", "Italiano"}},
         {DeclarativeInputEngine::Es, {"EsLayout", "Español"}},
         {DeclarativeInputEngine::De, {"DeLayout", "Deutsch", "Leerzeichen"}},
@@ -128,6 +131,49 @@ void DeclarativeInputEngine::setSymbolMode(bool symbolMode) {
         d->symbolMode = symbolMode;
         emit isSymbolModeChanged();
     }
+}
+
+
+QStringList DeclarativeInputEngine::availableLanguageLayouts() const {
+    return d->availableLanguageLayouts;
+}
+
+void DeclarativeInputEngine::setAvailableLanguageLayouts(
+    const QStringList &availableLanguageLayouts) {
+    if (d->availableLanguageLayouts != availableLanguageLayouts) {
+        d->availableLanguageLayouts = availableLanguageLayouts;
+        emit availableLanguageLayoutsChanged();
+    }
+}
+
+QString DeclarativeInputEngine::languageLayout() const {
+    return d->languageLayout;
+}
+
+void DeclarativeInputEngine::setLanguageLayout(const QString &languageLayout) {
+    if (d->languageLayout != languageLayout) {
+        d->languageLayout = languageLayout;
+        emit languageLayoutChanged();
+    }
+}
+
+void DeclarativeInputEngine::cycleLanguageLayout()
+{
+    if (d->availableLanguageLayouts.isEmpty())
+        return;
+
+    int indx = d->availableLanguageLayouts.indexOf(d->languageLayout);
+    QString nextLayout;
+
+    if (indx != -1) {
+        int nextIndx = (indx + 1) % d->availableLanguageLayouts.size();
+        nextLayout = d->availableLanguageLayouts.at(nextIndx);
+    } else {
+        nextLayout = d->availableLanguageLayouts.first();
+    }
+
+    if (inputLayoutValid(nextLayout))
+        setLanguageLayout(nextLayout);
 }
 
 bool DeclarativeInputEngine::inputLayoutValid(const QString &layout) const {
