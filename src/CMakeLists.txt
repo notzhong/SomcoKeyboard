@@ -10,11 +10,11 @@ endforeach()
 
 qt_add_qml_module(
   ${PROJECT_NAME}
-  URI "QtQuick.SKeyboard"
+  URI "QtQuick.SomcoKeyboard"
   VERSION 1.0
   PLUGIN_TARGET ${PROJECT_NAME}
   RESOURCE_PREFIX "/"
-  OUTPUT_DIRECTORY "QtQuick/SKeyboard"
+  OUTPUT_DIRECTORY "QtQuick/SomcoKeyboard"
   CLASS_NAME "VirtualKeyboardInputContextPlugin"
   SOURCES
     ${HEADERS}
@@ -23,12 +23,12 @@ qt_add_qml_module(
     ${QML_FILES}
   RESOURCES
     icons/icons.qrc
-    skeyboard.json
+    somcokeyboard.json
   NO_GENERATE_PLUGIN_SOURCE
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-  OUTPUT_NAME skeyboard
+  OUTPUT_NAME somcokeyboard
   DEBUG_POSTFIX d
 )
 

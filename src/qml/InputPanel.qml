@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQml 2.0
 
-import SKeyboard 1.0
+import SomcoKeyboard 1.0
 
 Item {
     id: root
@@ -162,38 +162,38 @@ Item {
                     margins: root.margins
                 }
             }
-                }
-            }
+        }
+    }
 
-            Connections {
-                function refreshLayouts() {
-                    if (InputEngine.symbolMode)
-                        layoutLoader.setSource("SymbolLayout.qml", {
-                                                   "inputPanel": root
-                                               })
-                    else if (InputEngine.inputMode === InputEngine.DigitsOnly)
-                        layoutLoader.setSource("DigitsLayout.qml", {
-                                                   "inputPanel": root
-                                               })
-                    else
-                        loadLettersLayout()
-                }
+    Connections {
+        function refreshLayouts() {
+            if (InputEngine.symbolMode)
+                layoutLoader.setSource("SymbolLayout.qml", {
+                                           "inputPanel": root
+                                       })
+            else if (InputEngine.inputMode === InputEngine.DigitsOnly)
+                layoutLoader.setSource("DigitsLayout.qml", {
+                                           "inputPanel": root
+                                       })
+            else
+                loadLettersLayout()
+        }
 
-                function onInputModeChanged() {
-                    refreshLayouts()
-                }
+        function onInputModeChanged() {
+            refreshLayouts()
+        }
 
-                function onIsSymbolModeChanged() {
-                    refreshLayouts()
-                }
+        function onIsSymbolModeChanged() {
+            refreshLayouts()
+        }
 
-                function onLanguageLayoutChanged() {
+        function onLanguageLayoutChanged() {
             root.languageLayout = InputEngine.languageLayout
-                    loadLettersLayout()
-                }
+            loadLettersLayout()
+        }
 
         target: InputEngine
-                }
+    }
 
     Binding {
         target: ThemeManager

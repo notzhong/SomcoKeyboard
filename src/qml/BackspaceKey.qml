@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import SKeyboard 1.0
+import SomcoKeyboard 1.0
 
 Key {
     btnKey: Qt.Key_Backspace

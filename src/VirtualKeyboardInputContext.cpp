@@ -47,12 +47,12 @@ VirtualKeyboardInputContext::VirtualKeyboardInputContext()
             &VirtualKeyboardInputContext::ensureFocusedObjectVisible);
     connect(d->InputEngine, &DeclarativeInputEngine::keyboardRectangleChanged, this, &VirtualKeyboardInputContext::emitKeyboardRectChanged);
 
-    qmlRegisterSingletonType<InputPanelIface>("SKeyboard", 1, 0,
-                                              "InputPanel", inputPanelProvider);
-    qmlRegisterSingletonType<VirtualKeyboardInputContext>(
-        "SKeyboard", 1, 0, "InputContext", inputContextProvider);
+    qmlRegisterSingletonType<DeclarativeInputEngine>("SomcoKeyboard", 1, 0, "InputEngine", inputEngineProvider);
+    qmlRegisterSingletonType<VirtualKeyboardInputContext>("SomcoKeyboard", 1, 0, "InputContext", inputContextProvider);
+    qmlRegisterType<EnterKeyAction>("SomcoKeyboard", 1, 0, "EnterKeyAction");
 
-    qmlRegisterType<EnterKeyAction>("SKeyboard", 1, 0, "EnterKeyAction");
+    qmlRegisterSingletonType<ThemeManager>("SomcoKeyboard", 1, 0, "ThemeManager", themeManagerProvider);
+    qmlRegisterType<KeyboardTheme>("SomcoKeyboard", 1, 0, "KeyboardTheme");
 }
 
 VirtualKeyboardInputContext::~VirtualKeyboardInputContext() {}

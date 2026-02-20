@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(SKeyboard VERSION 1.0 LANGUAGES CXX)
+project(SomcoKeyboard VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -25,9 +25,9 @@ endif()
 
 qt_standard_project_setup()
 
-option(BUILD_SKEYBOARD_EXAMPLE "Build SKeyboard example" ON)
+option(BUILD_SOMCO_KEYBOARD_EXAMPLE "Build Somco Keyboard example" ON)
 
-if(BUILD_SKEYBOARD_EXAMPLE)
+if(BUILD_SOMCO_KEYBOARD_EXAMPLE)
   add_subdirectory(example)
 endif()
 

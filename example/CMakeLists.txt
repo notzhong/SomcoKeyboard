@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(SKeyboard_example VERSION 1.0 LANGUAGES CXX)
+project(SomcoKeyboard_example VERSION 1.0 LANGUAGES CXX)
 
 qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE main.cpp icons/icons.qrc)
 target_compile_definitions(${PROJECT_NAME} PRIVATE QT_DEPRECATED_WARNINGS)

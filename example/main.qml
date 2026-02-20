@@ -3,7 +3,7 @@ import QtQuick.Controls.Basic 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
 
-import QtQuick.SKeyboard 1.0
+import QtQuick.SomcoKeyboard 1.0
 
 ApplicationWindow {
     id: window
@@ -11,7 +11,7 @@ ApplicationWindow {
     visible: true
     width: 1088
     height: 900
-    title: qsTr("SKeyboard Example")
+    title: qsTr("Somco Keyboard Example")
 
     background: Rectangle {
         gradient: Gradient {

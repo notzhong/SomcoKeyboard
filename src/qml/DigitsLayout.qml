@@ -1,4 +1,4 @@
-import SKeyboard 1.0
+import SomcoKeyboard 1.0
 import QtQuick 2.0
 import QtQuick.Layouts 1.12
 

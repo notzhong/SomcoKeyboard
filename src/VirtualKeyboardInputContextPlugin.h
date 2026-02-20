@@ -20,9 +20,9 @@ class VirtualKeyboardInputContextPlugin : public QPlatformInputContextPlugin {
     Q_OBJECT
 
     Q_PLUGIN_METADATA(IID QPlatformInputContextFactoryInterface_iid FILE
-                      "skeyboard.json")
+                      "somcokeyboard.json")
 
-   public:
+public:
     QPlatformInputContext *create(const QString &, const QStringList &);
 };
 
