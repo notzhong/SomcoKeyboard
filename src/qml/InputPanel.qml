@@ -22,7 +22,7 @@ Item {
                                          && root.parent.parent === null
 
     function showKeyPopup(keyButton) {
-        keyPopup.popup(keyButton, root)
+        keyPopup.popup(keyButton)
     }
 
     function hideKeyPopup() {
@@ -30,7 +30,7 @@ Item {
     }
 
     function showAlternativesKeyPopup(keyButton) {
-        alternativesKeyPopup.open(keyButton, root)
+        alternativesKeyPopup.open(keyButton)
     }
 
     function loadLettersLayout() {
@@ -109,6 +109,8 @@ Item {
 
     KeyPopup {
         id: keyPopup
+        inputPanel: root
+        keyboardRect: keyboardRect
 
         visible: false
         z: 100
@@ -116,6 +118,8 @@ Item {
 
     AlternativeKeysPopup {
         id: alternativesKeyPopup
+        inputPanel: root
+        keyboardRect: keyboardRect
 
         visible: false
         z: 100
@@ -167,6 +171,9 @@ Item {
 
     Connections {
         function refreshLayouts() {
+            if (alternativesKeyPopup.visible)
+                alternativesKeyPopup.visible = false
+
             if (InputEngine.symbolMode)
                 layoutLoader.setSource("SymbolLayout.qml", {
                                            "inputPanel": root

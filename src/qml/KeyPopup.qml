@@ -1,12 +1,15 @@
-import SomcoKeyboard 1.0
 import QtQuick 2.0
+import SomcoKeyboard 1.0
 
 Item {
     id: root
 
-    function popup(keybutton, inputPanel) {
-        width = keybutton.width * 1.4
-        height = keybutton.height * 1.4
+    required property var inputPanel
+    required property var keyboardRect
+
+    function popup(keybutton) {
+        width = keybutton.width + inputPanel.margins * 2
+        height = keybutton.height + inputPanel.margins * 2
         var KeyButtonGlobalLeft = keybutton.mapToItem(inputPanel, 0, 0).x
         var KeyButtonGlobalTop = keybutton.mapToItem(inputPanel, 0, 0).y
         var PopupGlobalLeft = KeyButtonGlobalLeft - (width - keybutton.width) / 2
@@ -35,7 +38,7 @@ Item {
     visible: false
 
     Rectangle {
-        id: popup
+        id: popupRect
 
         anchors.fill: parent
         radius: 8
@@ -68,9 +71,9 @@ Item {
     Rectangle {
         id: shadow
 
-        width: popup.width
-        height: popup.height
-        radius: popup.radius
+        width: popupRect.width
+        height: popupRect.height
+        radius: popupRect.radius
         color: "#3F000000"
         x: 4
         y: 4

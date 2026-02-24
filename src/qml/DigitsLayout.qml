@@ -90,6 +90,7 @@ ColumnLayout {
             btnKey: Qt.locale(
                         ).decimalPoint === "," ? Qt.Key_Comma : Qt.Key_Period
             text: Qt.locale().decimalPoint === "," ? "," : "."
+            alternativeKeys: Qt.locale().decimalPoint === "," ? "." : ","
             inputPanelRef: root.inputPanel
         }
 

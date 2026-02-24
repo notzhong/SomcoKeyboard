@@ -1,16 +1,20 @@
-import SomcoKeyboard 1.0
 import QtQuick 2.0
 import QtQuick.Layouts 1.12
+import SomcoKeyboard 1.0
 
 Item {
     id: root
 
+    required property var inputPanel
+    required property var keyboardRect
+
     property var alternativeKeys: []
 
-    function open(keybutton, inputPanel) {
+    function open(keybutton) {
         alternativeKeys = keybutton.alternativeKeys
-        width = (keybutton.width + 8) * (alternativeKeys.length + 1)
-        height = keybutton.height + 32
+        width = (keybutton.width) * (alternativeKeys.length) + inputPanel.margins
+                * 2 + ((alternativeKeys.length - 1) * inputPanel.spacing)
+        height = keybutton.height + inputPanel.margins * 2
         var KeyButtonGlobalLeft = keybutton.mapToItem(inputPanel, 0, 0).x
         var KeyButtonGlobalTop = keybutton.mapToItem(inputPanel, 0, 0).y
         var PopupGlobalLeft = KeyButtonGlobalLeft - (width - keybutton.width) / 2
@@ -51,11 +55,11 @@ Item {
         anchors.fill: parent
 
         RowLayout {
-            spacing: 16
+            spacing: root.inputPanel.spacing
 
             anchors {
                 fill: parent
-                margins: 16
+                margins: root.inputPanel.margins
             }
 
             Repeater {
