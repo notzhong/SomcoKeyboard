@@ -5,11 +5,12 @@
 
 class EnterKeyActionAttachedType;
 
-class EnterKeyAction : public QObject {
+class EnterKeyAction : public QObject
+{
     Q_OBJECT
     QML_ELEMENT
     QML_ATTACHED(EnterKeyActionAttachedType)
 
 public:
-    static EnterKeyActionAttachedType *qmlAttachedProperties(QObject *object);
+    static EnterKeyActionAttachedType* qmlAttachedProperties(QObject* object);
 };

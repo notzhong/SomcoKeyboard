@@ -13,6 +13,7 @@
 
 #include <QObject>
 #include <QRect>
+#include <qqml.h>
 
 struct DeclarativeInputEnginePrivate;
 
@@ -21,8 +22,10 @@ struct DeclarativeInputEnginePrivate;
  * for routing input events to focused QML items.
  * The InputEngine can be accessed as singleton instance from QML
  */
-class DeclarativeInputEngine : public QObject {
+class DeclarativeInputEngine : public QObject
+{
     Q_OBJECT
+    QML_SINGLETON
 
     // clang-format off
     /** The geometry of the currently visible keyboard in screen coordinates. */
@@ -49,47 +52,48 @@ class DeclarativeInputEngine : public QObject {
 
 public:
     /**
-     * Predefined identifiers for supported input layouts.
+     * Predefined identifiers for supported input layouts (ISO 639-1).
      * These are used to reference layout files and descriptions.
      */
-    enum InputLayouts {
-        En,      ///< English
-        Fr,      ///< French
-        It,      ///< Italian
-        Es,      ///< Spanish
-        De,      ///< German
-        Nl,      ///< Dutch
-        Pt,      ///< Portuguese
-        Cs,      ///< Czech
-        El,      ///< Greek
-        Pl,      ///< Polish
-        Da,      ///< Danish
-        Fi,      ///< Finnish
-        Sv,      ///< Swedish
-        Hr,      ///< Croatian (Latin)
-        CyBs,    ///< Cyrillic (Bosnian) – placeholder
-        LtBs,    ///< Latin (Bosnian) – placeholder
-        CySr,    ///< Cyrillic (Serbian)
-        LtSr,    ///< Latin (Serbian)
-        Ru,      ///< Russian
-        Ua,      ///< Ukrainian
-        EndLayouts
+    enum InputLayouts
+    {
+        Cs,   ///< Czech
+        CyBs, ///< Bosnian (Cyrillic)
+        CySr, ///< Serbian (Cyrillic)
+        Da,   ///< Danish
+        De,   ///< German
+        El,   ///< Greek
+        En,   ///< English
+        Es,   ///< Spanish
+        Fi,   ///< Finnish
+        Fr,   ///< French
+        It,   ///< Italian
+        LtBs, ///< Bosnian (Latin)
+        Hr,   ///< Croatian (Latin)
+        LtSr, ///< Serbian (Latin)
+        Nl,   ///< Dutch
+        Pl,   ///< Polish
+        Pt,   ///< Portuguese
+        Ru,   ///< Russian
+        Sv,   ///< Swedish
+        Uk,   ///< Ukrainian
     };
     Q_ENUM(InputLayouts)
 
     /**
      * Input modes that determine which character set is active.
      */
-    enum InputMode {
-        Letters,    ///< Alphabetic keys (letters)
-        DigitsOnly  ///< Numeric keypad (digits only)
+    enum InputMode
+    {
+        Letters,   ///< Alphabetic keys (letters)
+        DigitsOnly ///< Numeric keypad (digits only)
     };
     Q_ENUM(InputMode)
 
     /**
      * Constructs a declarative input engine with the given parent.
      */
-    explicit DeclarativeInputEngine(QObject *parent = nullptr);
+    explicit DeclarativeInputEngine(QObject* parent = nullptr);
 
     /**
      * Destructor.
@@ -154,7 +158,7 @@ public:
      * If the current language layout is not in the new list, the first
      * available layout is selected automatically.
      */
-    void setAvailableLanguageLayouts(const QStringList &availableLanguageLayouts);
+    void setAvailableLanguageLayouts(const QStringList& availableLanguageLayouts);
 
     /**
      * Returns the currently selected language layout identifier.
@@ -166,7 +170,7 @@ public:
      * availableLanguageLayouts, otherwise the change is ignored (a warning
      * may be logged).
      */
-    void setLanguageLayout(const QString &languageLayout);
+    void setLanguageLayout(const QString& languageLayout);
 
     /**
      * Cycles to the next available language layout in the list.
@@ -178,7 +182,7 @@ public:
      * Checks whether the given layout identifier corresponds to a valid
      * input layout that can be activated.
      */
-    Q_INVOKABLE bool inputLayoutValid(const QString &layout) const;
+    Q_INVOKABLE bool inputLayoutValid(const QString& layout) const;
 
     /**
      * Returns the file name (without path) for the given layout identifier.
@@ -205,15 +209,14 @@ public:
      * \param modifiers    Keyboard modifiers (Shift, Ctrl, etc.)
      * \return true if the event was accepted by the input engine
      */
-    Q_INVOKABLE bool virtualKeyClick(Qt::Key key, const QString &text,
-                                     Qt::KeyboardModifiers modifiers);
+    Q_INVOKABLE bool virtualKeyClick(Qt::Key key, const QString& text, Qt::KeyboardModifiers modifiers);
 
     /**
      * Informs the engine about the current keyboard rectangle. This should be
      * called whenever the keyboard's geometry changes (e.g., during resizing
      * or repositioning).
      */
-    Q_INVOKABLE void setKeyboardRectangle(const QRect &Rect);
+    Q_INVOKABLE void setKeyboardRectangle(const QRect& Rect);
 
 signals:
     /** Emitted when the keyboard rectangle changes. */
@@ -238,7 +241,7 @@ signals:
     void languageLayoutChanged();
 
 private:
-    DeclarativeInputEnginePrivate *d;
+    DeclarativeInputEnginePrivate* d;
 
     friend struct DeclarativeInputEnginePrivate;
 

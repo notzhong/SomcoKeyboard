@@ -11,18 +11,20 @@
 /**
  * Private data class
  */
-struct DeclarativeInputEnginePrivate {
-    explicit DeclarativeInputEnginePrivate(DeclarativeInputEngine *_public);
+struct DeclarativeInputEnginePrivate
+{
+    explicit DeclarativeInputEnginePrivate(DeclarativeInputEngine* _public);
 
-    struct LayoutData {
+    struct LayoutData
+    {
         QString layoutFile;
         QString description;
         QString spaceIdentifier;
     };
 
-    DeclarativeInputEngine *_this;
+    DeclarativeInputEngine* _this;
     bool Animating;
-    QTimer *AnimatingFinishedTimer{nullptr};
+    QTimer* AnimatingFinishedTimer{nullptr};
     int InputMode;
     QRect KeyboardRectangle;
 
@@ -31,74 +33,114 @@ struct DeclarativeInputEnginePrivate {
 
     bool isUppercase{false};
     bool symbolMode{false};
-    QHash<DeclarativeInputEngine::InputLayouts, LayoutData> layoutFiles = {
-        {DeclarativeInputEngine::En, {"EnLayout", "English", "Space"}},
-        {DeclarativeInputEngine::Fr, {"FrLayout", "Français", "Espace"}},
-        {DeclarativeInputEngine::It, {"ItLayout", "Italiano"}},
-        {DeclarativeInputEngine::Es, {"EsLayout", "Español"}},
-        {DeclarativeInputEngine::De, {"DeLayout", "Deutsch", "Leerzeichen"}},
-        {DeclarativeInputEngine::Nl, {"NlLayout", "Nederlands"}},
-        {DeclarativeInputEngine::Pt, {"PtLayout", "Português"}},
+    const QHash<DeclarativeInputEngine::InputLayouts, LayoutData> layoutFiles = {
+        // Czech
         {DeclarativeInputEngine::Cs, {"CsLayout", "Čeština"}},
-        {DeclarativeInputEngine::El, {"ElLayout", "Ελληνικός"}},
-        {DeclarativeInputEngine::Pl, {"PlLayout", "Polski"}},
-        {DeclarativeInputEngine::Da, {"DaLayout", "Dansk"}},
-        {DeclarativeInputEngine::Fi, {"FiLayout", "Suomi"}},
-        {DeclarativeInputEngine::Hr, {"LtSrHrBsLayout", "Hrvatski"}},
+
+        // Bosnian (Cyrillic), Serbian (Cyrillic)
         {DeclarativeInputEngine::CyBs, {"CySrBsLayout", "Босански"}},
-        {DeclarativeInputEngine::LtBs, {"LtSrHrBsLayout", "Bosanski"}},
         {DeclarativeInputEngine::CySr, {"CySrBsLayout", "Српски"}},
+
+        // Danish
+        {DeclarativeInputEngine::Da, {"DaLayout", "Dansk"}},
+
+        // German
+        {DeclarativeInputEngine::De, {"DeLayout", "Deutsch", "Leerzeichen"}},
+
+        // Greek
+        {DeclarativeInputEngine::El, {"ElLayout", "Ελληνικός"}},
+
+        // English
+        {DeclarativeInputEngine::En, {"EnLayout", "English", "Space"}},
+
+        // Spanish
+        {DeclarativeInputEngine::Es, {"EsLayout", "Español"}},
+
+        // Finnish
+        {DeclarativeInputEngine::Fi, {"FiLayout", "Suomi"}},
+
+        // French
+        {DeclarativeInputEngine::Fr, {"FrLayout", "Français", "Espace"}},
+
+        // Italian
+        {DeclarativeInputEngine::It, {"ItLayout", "Italiano"}},
+
+        // Bosnian (Latin), Croatian, Serbian (Latin)
+        {DeclarativeInputEngine::LtBs, {"LtSrHrBsLayout", "Bosanski"}},
+        {DeclarativeInputEngine::Hr, {"LtSrHrBsLayout", "Hrvatski"}},
         {DeclarativeInputEngine::LtSr, {"LtSrHrBsLayout", "Srpski"}},
-        {DeclarativeInputEngine::Sv, {"SvLayout", "Svenska"}},
+
+        // Dutch
+        {DeclarativeInputEngine::Nl, {"NlLayout", "Nederlands"}},
+
+        // Polish
+        {DeclarativeInputEngine::Pl, {"PlLayout", "Polski"}},
+
+        // Portuguese
+        {DeclarativeInputEngine::Pt, {"PtLayout", "Português"}},
+
+        // Russian
         {DeclarativeInputEngine::Ru, {"RuLayout", "Русский", "Пробел"}},
-        {DeclarativeInputEngine::Ua, {"UaLayout", "Українська", "Пробіл"}},
+
+        // Swedish
+        {DeclarativeInputEngine::Sv, {"SvLayout", "Svenska"}},
+
+        // Ukrainian
+        {DeclarativeInputEngine::Uk, {"UkLayout", "Українська", "Пробіл"}},
     };
 };
 
-DeclarativeInputEnginePrivate::DeclarativeInputEnginePrivate(
-    DeclarativeInputEngine *_public)
-    : _this(_public),
-      Animating(false),
-      InputMode(DeclarativeInputEngine::Letters) {}
+DeclarativeInputEnginePrivate::DeclarativeInputEnginePrivate(DeclarativeInputEngine* _public)
+    : _this(_public), Animating(false), InputMode(DeclarativeInputEngine::Letters)
+{
 
-DeclarativeInputEngine::DeclarativeInputEngine(QObject *parent)
-    : QObject(parent), d(new DeclarativeInputEnginePrivate(this)) {
+    QMetaEnum metaEnum = QMetaEnum::fromType<DeclarativeInputEngine::InputLayouts>();
+    for (int i = 0; i < metaEnum.keyCount(); ++i)
+    {
+        int value = metaEnum.value(i);
+        if (!layoutFiles.contains(static_cast<DeclarativeInputEngine::InputLayouts>(value)))
+        {
+            qCritical() << "ERROR: Missing layout for" << metaEnum.key(i);
+            Q_ASSERT_X(false, "DeclarativeInputEngine", "Missing layout");
+        }
+    }
+}
+
+DeclarativeInputEngine::DeclarativeInputEngine(QObject* parent) : QObject(parent), d(new DeclarativeInputEnginePrivate(this))
+{
     d->AnimatingFinishedTimer = new QTimer(this);
     d->AnimatingFinishedTimer->setSingleShot(true);
     d->AnimatingFinishedTimer->setInterval(100);
-    connect(d->AnimatingFinishedTimer, &QTimer::timeout, this,
-            &DeclarativeInputEngine::animatingFinished);
+    connect(d->AnimatingFinishedTimer, &QTimer::timeout, this, &DeclarativeInputEngine::animatingFinished);
 }
 
 DeclarativeInputEngine::~DeclarativeInputEngine() { delete d; }
 
-bool DeclarativeInputEngine::virtualKeyClick(Qt::Key key, const QString &text,
-                                             Qt::KeyboardModifiers modifiers) {
-    QKeyEvent pressEvent(QEvent::KeyPress, key,
-                         Qt::KeyboardModifiers(modifiers), text);
-    QKeyEvent releaseEvent(QEvent::KeyRelease, key,
-                           Qt::KeyboardModifiers(modifiers), text);
-    return QCoreApplication::sendEvent(QGuiApplication::focusObject(),
-                                       &pressEvent) &&
-           QCoreApplication::sendEvent(QGuiApplication::focusObject(),
-                                       &releaseEvent);
+bool DeclarativeInputEngine::virtualKeyClick(Qt::Key key, const QString& text, Qt::KeyboardModifiers modifiers)
+{
+    QKeyEvent pressEvent(QEvent::KeyPress, key, Qt::KeyboardModifiers(modifiers), text);
+    QKeyEvent releaseEvent(QEvent::KeyRelease, key, Qt::KeyboardModifiers(modifiers), text);
+
+    return QCoreApplication::sendEvent(QGuiApplication::focusObject(), &pressEvent) &&
+           QCoreApplication::sendEvent(QGuiApplication::focusObject(), &releaseEvent);
 }
 
-QRect DeclarativeInputEngine::keyboardRectangle() const {
-    return d->KeyboardRectangle;
-}
+QRect DeclarativeInputEngine::keyboardRectangle() const { return d->KeyboardRectangle; }
 
-void DeclarativeInputEngine::setKeyboardRectangle(const QRect &Rect) {
+void DeclarativeInputEngine::setKeyboardRectangle(const QRect& Rect)
+{
     setAnimating(true);
-    d->AnimatingFinishedTimer->start(100);
+    d->AnimatingFinishedTimer->start();
     d->KeyboardRectangle = Rect;
     emit keyboardRectangleChanged();
 }
 
 bool DeclarativeInputEngine::isAnimating() const { return d->Animating; }
 
-void DeclarativeInputEngine::setAnimating(bool Animating) {
-    if (d->Animating != Animating) {
+void DeclarativeInputEngine::setAnimating(bool Animating)
+{
+    if (d->Animating != Animating)
+    {
         d->Animating = Animating;
         emit animatingChanged();
     }
@@ -108,8 +150,10 @@ void DeclarativeInputEngine::animatingFinished() { setAnimating(false); }
 
 int DeclarativeInputEngine::inputMode() const { return d->InputMode; }
 
-void DeclarativeInputEngine::setInputMode(int Mode) {
-    if (Mode != d->InputMode) {
+void DeclarativeInputEngine::setInputMode(int Mode)
+{
+    if (Mode != d->InputMode)
+    {
         d->InputMode = Mode;
         emit inputModeChanged();
     }
@@ -117,8 +161,10 @@ void DeclarativeInputEngine::setInputMode(int Mode) {
 
 bool DeclarativeInputEngine::isUppercase() const { return d->isUppercase; }
 
-void DeclarativeInputEngine::setUppercase(bool uppercase) {
-    if (d->isUppercase != uppercase) {
+void DeclarativeInputEngine::setUppercase(bool uppercase)
+{
+    if (d->isUppercase != uppercase)
+    {
         d->isUppercase = uppercase;
         emit isUppercaseChanged();
     }
@@ -126,32 +172,32 @@ void DeclarativeInputEngine::setUppercase(bool uppercase) {
 
 bool DeclarativeInputEngine::isSymbolMode() const { return d->symbolMode; }
 
-void DeclarativeInputEngine::setSymbolMode(bool symbolMode) {
-    if (d->symbolMode != symbolMode) {
+void DeclarativeInputEngine::setSymbolMode(bool symbolMode)
+{
+    if (d->symbolMode != symbolMode)
+    {
         d->symbolMode = symbolMode;
         emit isSymbolModeChanged();
     }
 }
 
+QStringList DeclarativeInputEngine::availableLanguageLayouts() const { return d->availableLanguageLayouts; }
 
-QStringList DeclarativeInputEngine::availableLanguageLayouts() const {
-    return d->availableLanguageLayouts;
-}
-
-void DeclarativeInputEngine::setAvailableLanguageLayouts(
-    const QStringList &availableLanguageLayouts) {
-    if (d->availableLanguageLayouts != availableLanguageLayouts) {
+void DeclarativeInputEngine::setAvailableLanguageLayouts(const QStringList& availableLanguageLayouts)
+{
+    if (d->availableLanguageLayouts != availableLanguageLayouts)
+    {
         d->availableLanguageLayouts = availableLanguageLayouts;
         emit availableLanguageLayoutsChanged();
     }
 }
 
-QString DeclarativeInputEngine::languageLayout() const {
-    return d->languageLayout;
-}
+QString DeclarativeInputEngine::languageLayout() const { return d->languageLayout; }
 
-void DeclarativeInputEngine::setLanguageLayout(const QString &languageLayout) {
-    if (d->languageLayout != languageLayout) {
+void DeclarativeInputEngine::setLanguageLayout(const QString& languageLayout)
+{
+    if (d->languageLayout != languageLayout)
+    {
         d->languageLayout = languageLayout;
         emit languageLayoutChanged();
     }
@@ -165,10 +211,13 @@ void DeclarativeInputEngine::cycleLanguageLayout()
     int indx = d->availableLanguageLayouts.indexOf(d->languageLayout);
     QString nextLayout;
 
-    if (indx != -1) {
+    if (indx != -1)
+    {
         int nextIndx = (indx + 1) % d->availableLanguageLayouts.size();
         nextLayout = d->availableLanguageLayouts.at(nextIndx);
-    } else {
+    }
+    else
+    {
         nextLayout = d->availableLanguageLayouts.first();
     }
 
@@ -176,59 +225,62 @@ void DeclarativeInputEngine::cycleLanguageLayout()
         setLanguageLayout(nextLayout);
 }
 
-bool DeclarativeInputEngine::inputLayoutValid(const QString &layout) const {
-    for (int i = InputLayouts::En; i != InputLayouts::EndLayouts; i++) {
-        const auto validLayout = QMetaEnum::fromType<InputLayouts>().valueToKey(
-            static_cast<InputLayouts>(i));
-        if (validLayout == layout) {
+bool DeclarativeInputEngine::inputLayoutValid(const QString& layout) const
+{
+    QMetaEnum metaEnum = QMetaEnum::fromType<InputLayouts>();
+    for (int i = 0; i < metaEnum.keyCount(); ++i)
+    {
+        if (layout == QLatin1String(metaEnum.key(i)))
+        {
             return true;
         }
     }
 
-    qCritical() << "Keyboard layout" << layout
-                << "is not supported. Falling back to En!";
+    qCritical() << "Keyboard layout" << layout << "is not supported.";
     return false;
 }
 
-QString DeclarativeInputEngine::fileOfLayout(QString layout) {
-    if (!inputLayoutValid(layout)) {
-        return "";
+QString DeclarativeInputEngine::fileOfLayout(QString layout)
+{
+    if (!inputLayoutValid(layout))
+    {
+        return QString();
     }
     bool ok = false;
-    auto layoutVal = static_cast<InputLayouts>(
-        QMetaEnum::fromType<InputLayouts>().keyToValue(layout.toUtf8().data(),
-                                                       &ok));
-    if (!ok) {
-        return "";
+    auto layoutVal = static_cast<InputLayouts>(QMetaEnum::fromType<InputLayouts>().keyToValue(layout.toUtf8().data(), &ok));
+    if (!ok)
+    {
+        return QString();
     }
-    return d->layoutFiles.value(layoutVal, {}).layoutFile;
+    return d->layoutFiles.value(layoutVal).layoutFile;
 }
 
-QString DeclarativeInputEngine::descriptionOfLayout(QString layout) {
-    if (!inputLayoutValid(layout)) {
-        return "";
+QString DeclarativeInputEngine::descriptionOfLayout(QString layout)
+{
+    if (!inputLayoutValid(layout))
+    {
+        return QString();
     }
     bool ok = false;
-    auto layoutVal = static_cast<InputLayouts>(
-        QMetaEnum::fromType<InputLayouts>().keyToValue(layout.toUtf8().data(),
-                                                       &ok));
-    if (!ok) {
-        return "";
+    auto layoutVal = static_cast<InputLayouts>(QMetaEnum::fromType<InputLayouts>().keyToValue(layout.toUtf8().data(), &ok));
+    if (!ok)
+    {
+        return QString();
     }
-    return d->layoutFiles.value(layoutVal, {}).description;
+    return d->layoutFiles.value(layoutVal).description;
 }
 
 QString DeclarativeInputEngine::spaceIdentifierOfLayout(QString layout)
 {
-    if (!inputLayoutValid(layout)) {
-        return "";
+    if (!inputLayoutValid(layout))
+    {
+        return QString();
     }
     bool ok = false;
-    auto layoutVal = static_cast<InputLayouts>(
-        QMetaEnum::fromType<InputLayouts>().keyToValue(layout.toUtf8().data(),
-                                                       &ok));
-    if (!ok) {
-        return "";
+    auto layoutVal = static_cast<InputLayouts>(QMetaEnum::fromType<InputLayouts>().keyToValue(layout.toUtf8().data(), &ok));
+    if (!ok)
+    {
+        return QString();
     }
-    return d->layoutFiles.value(layoutVal, {}).spaceIdentifier;
+    return d->layoutFiles.value(layoutVal).spaceIdentifier;
 }

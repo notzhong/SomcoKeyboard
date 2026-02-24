@@ -1,8 +1,8 @@
 #pragma once
 
+#include "KeyboardTheme.h"
 #include <QObject>
 #include <QQmlListProperty>
-#include "KeyboardTheme.h"
 
 class ThemeManager : public QObject
 {
@@ -13,14 +13,14 @@ class ThemeManager : public QObject
     Q_PROPERTY(KeyboardTheme* currentTheme READ currentTheme NOTIFY currentThemeChanged)
 
 public:
-    explicit ThemeManager(QObject *parent = nullptr);
+    explicit ThemeManager(QObject* parent = nullptr);
     virtual ~ThemeManager();
 
     QQmlListProperty<KeyboardTheme> availableThemes();
-    KeyboardTheme *currentTheme() const;
+    KeyboardTheme* currentTheme() const;
 
-    Q_INVOKABLE void addTheme(KeyboardTheme *theme);
-    Q_INVOKABLE void setTheme(const QString &name);
+    Q_INVOKABLE void addTheme(KeyboardTheme* theme);
+    Q_INVOKABLE void setTheme(const QString& name);
     Q_INVOKABLE QStringList getAvailableThemeNames() const;
 
 signals:
@@ -32,5 +32,4 @@ private:
 
     QList<KeyboardTheme*> m_availableThemes;
     KeyboardTheme* m_currentTheme{nullptr};
-
 };

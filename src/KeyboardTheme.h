@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QObject>
 #include <QColor>
+#include <QObject>
 #include <QString>
 #include <QUrl>
 #include <QtQmlIntegration>
@@ -30,7 +30,7 @@ class KeyboardTheme : public QObject
     Q_PROPERTY(QString spaceIcon MEMBER m_spaceIcon NOTIFY spaceIconChanged FINAL)
 
 public:
-    explicit KeyboardTheme(QObject *parent = nullptr);
+    explicit KeyboardTheme(QObject* parent = nullptr);
 
     QString themeName() const;
     void setThemeName(const QString& name);
@@ -73,4 +73,3 @@ private:
     QString m_languageIcon;
     QString m_spaceIcon;
 };
-
