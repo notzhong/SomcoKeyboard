@@ -2,6 +2,7 @@ import QtQuick 2.0
 import SomcoKeyboard 1.0
 
 Key {
+    weight: 112
     btnKey: Qt.Key_Shift
     functionKey: true
     showPreview: false

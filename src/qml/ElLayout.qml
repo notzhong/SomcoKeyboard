@@ -1,77 +1,80 @@
 import QtQuick 2.0
-import QtQuick.Layouts 1.12
+import QtQuick.Layouts
 
 ColumnLayout {
+    id: root
     property var inputPanel
 
+    spacing: root.inputPanel.spacing
+
     RowLayout {
-        property real keyWeight: 160
+        spacing: root.inputPanel.spacing
 
         Key {
             text: "ς"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ε"
             alternativeKeys: "έ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ρ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "τ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ψ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "υ"
             alternativeKeys: "ύϋΰ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "θ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ι"
             alternativeKeys: "ίϊΐ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ο"
             alternativeKeys: "ό"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "π"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         BackspaceKey {
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
-
     }
 
     RowLayout {
-        property real keyWeight: 160
+        spacing: root.inputPanel.spacing
 
         Key {
-            weight: 56
+            enabled: false
+            weight: 19
             functionKey: true
             showPreview: false
             btnBackground: "transparent"
@@ -80,145 +83,128 @@ ColumnLayout {
         Key {
             text: "α"
             alternativeKeys: "ά"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "σ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "δ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "φ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "γ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "η"
             alternativeKeys: "ή"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ξ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "κ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "λ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         EnterKey {
-            weight: 283
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
-
     }
 
     RowLayout {
-        property real keyWeight: 156
+        spacing: root.inputPanel.spacing
 
-        ShiftKey {
-        }
+        ShiftKey {}
 
         Key {
             text: "ζ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "χ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ψ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ω"
             alternativeKeys: "ώ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "β"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ν"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "μ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Comma
             text: ","
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Period
             text: "."
             alternativeKeys: "!.;?"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
-        ShiftKey {
-            weight: 204
-        }
-
+        ShiftKey {}
     }
 
     RowLayout {
-        property real keyWeight: 154
-
-        SymbolKey {
-            weight: availableLanguageLayouts.length === 1 ? 217 : 108.5
-        }
+        spacing: root.inputPanel.spacing
 
         LanguageKey {
-            visible: availableLanguageLayouts.length > 1
-            weight: 108.5
+            inputPanelRef: root.inputPanel
         }
 
         SpaceKey {
-            weight: 1168
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
-        Key {
-            btnKey: Qt.Key_Apostrophe
-            text: "'"
-            inputPanelRef: inputPanel
+        SymbolKey {
+            inputPanelRef: root.inputPanel
         }
 
         HideKey {
-            weight: 205
         }
-
     }
-
 }

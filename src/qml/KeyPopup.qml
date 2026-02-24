@@ -14,23 +14,18 @@ Item {
         var KeyButtonGlobalTop = keybutton.mapToItem(inputPanel, 0, 0).y
         var PopupGlobalLeft = KeyButtonGlobalLeft - (width - keybutton.width) / 2
         var PopupGlobalTop = KeyButtonGlobalTop - height - keyboardRect.height / 40 * 1.5
-        var PopupLeft = root.parent.mapFromItem(inputPanel, PopupGlobalLeft,
-                                                PopupGlobalTop).x
-        y = root.parent.mapFromItem(inputPanel, PopupGlobalLeft,
-                                    PopupGlobalTop).y
+        var PopupLeft = root.parent.mapFromItem(inputPanel, PopupGlobalLeft, PopupGlobalTop).x
+        y = root.parent.mapFromItem(inputPanel, PopupGlobalLeft, PopupGlobalTop).y
         if (PopupGlobalLeft < 0)
             x = 0
         else if ((PopupGlobalLeft + width) > inputPanel.width)
             x = PopupLeft - (PopupGlobalLeft + width - inputPanel.width)
         else
             x = PopupLeft
-        txt.text = InputEngine.uppercase ? keybutton.text.toUpperCase(
-                                               ) : keybutton.text
 
+        txt.text = InputEngine.uppercase ? keybutton.text.toUpperCase() : keybutton.text
         txt.font.family = keybutton.font.family
-        root.visible = Qt.binding(function () {
-            return keybutton.pressed
-        })
+        root.visible = Qt.binding(function() { return keybutton.pressed })
     }
 
     width: 40

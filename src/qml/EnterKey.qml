@@ -8,6 +8,7 @@ Key {
     btnBackground: ThemeManager.currentTheme.btnEnterBackgroundColor
     text: "\n"
     btnDisplayedText: "Enter"
+    weight: 205
     btnIcon: ThemeManager.currentTheme.enterIcon
     enabled: InputContext.inputItem ? InputContext.inputItem.EnterKeyAction.enabled : true
     opacity: enabled ? 1 : 0.5

@@ -1,7 +1,7 @@
-import QtQuick 2.12
-import QtQuick.Controls.Basic 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Window 2.12
+import QtQuick
+import QtQuick.Controls.Basic
+import QtQuick.Layouts
+import QtQuick.Window
 
 import QtQuick.SomcoKeyboard 1.0
 

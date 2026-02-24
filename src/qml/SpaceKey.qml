@@ -8,4 +8,5 @@ Key {
     showPreview: false
     repeatable: true
     btnIcon: ThemeManager.currentTheme.spaceIcon
+    weight: 640
 }

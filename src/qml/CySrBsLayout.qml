@@ -1,80 +1,84 @@
 import QtQuick 2.0
-import QtQuick.Layouts 1.12
+import QtQuick.Layouts
 
 ColumnLayout {
+    id: root
+
     property var inputPanel
 
+    spacing: root.inputPanel.spacing
+
     RowLayout {
-        property real keyWeight: 160
+        spacing: root.inputPanel.spacing
 
         Key {
             text: "љ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "Њ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "е"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "р"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "т"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "з"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "у"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "и"
             alternativeKeys: "ίϊΐ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "о"
             alternativeKeys: "ό"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "п"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ш"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         BackspaceKey {
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
-
     }
 
     RowLayout {
-        property real keyWeight: 160
+        spacing: root.inputPanel.spacing
 
         Key {
-            weight: 56
+            enabled: false
+            weight: 19
             functionKey: true
             showPreview: false
             btnBackground: "transparent"
@@ -82,163 +86,140 @@ ColumnLayout {
 
         Key {
             text: "а"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "с"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "д"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ф"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "г"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "х"
             alternativeKeys: "ή"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ј"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "к"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "л"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ч"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ћ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         EnterKey {
-            weight: 283
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
-
     }
 
     RowLayout {
-        property real keyWeight: 156
+        spacing: root.inputPanel.spacing
 
-        ShiftKey {
-        }
+        ShiftKey {}
 
         Key {
             text: "џ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ц"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "в"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "б"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "н"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "м"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ђ"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             text: "ж"
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Comma
             text: ","
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
         Key {
             btnKey: Qt.Key_Period
             text: "."
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
-        Key {
-            btnKey: Qt.Key_Minus
-            text: "-"
-            inputPanelRef: inputPanel
-        }
-
-        ShiftKey {
-            weight: 204
-        }
-
+        ShiftKey {}
     }
 
     RowLayout {
-        property real keyWeight: 154
-
-        SymbolKey {
-            weight: availableLanguageLayouts.length === 1 ? 217 : 108.5
-        }
+        spacing: root.inputPanel.spacing
 
         LanguageKey {
-            visible: availableLanguageLayouts.length > 1
-            weight: 108.5
+            inputPanelRef: root.inputPanel
         }
 
         SpaceKey {
-            weight: 1168
-            inputPanelRef: inputPanel
+            inputPanelRef: root.inputPanel
         }
 
-        Key {
-            text: "'"
-            inputPanelRef: inputPanel
+        SymbolKey {
+            inputPanelRef: root.inputPanel
         }
 
-        HideKey {
-            weight: 205
-        }
-
+        HideKey {}
     }
-
 }

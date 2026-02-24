@@ -1,5 +1,6 @@
 import QtQuick 2.0
-import QtQuick.Layouts 1.12
+import QtQuick.Layouts
+import SomcoKeyboard 1.0
 
 Item {
     id: root
@@ -90,6 +91,7 @@ Item {
             spacing: root.inputPanel.spacing
 
             Key {
+                enabled: false
                 weight: 19
                 functionKey: true
                 showPreview: false
@@ -151,7 +153,6 @@ Item {
             }
 
             EnterKey {
-                weight: 205
                 inputPanelRef: root.inputPanel
             }
         }
@@ -159,7 +160,7 @@ Item {
         RowLayout {
             spacing: root.inputPanel.spacing
             Key {
-                weight: 105
+                weight: 112
                 btnDisplayedText: "1/2"
                 showPreview: false
                 functionKey: true
@@ -223,7 +224,7 @@ Item {
             }
 
             Key {
-                weight: 115
+                weight: 112
                 btnDisplayedText: "1/2"
                 showPreview: false
                 functionKey: true
@@ -233,6 +234,7 @@ Item {
 
         RowLayout {
             spacing: root.inputPanel.spacing
+
             Key {
                 weight: 112
                 functionKey: true
@@ -242,17 +244,13 @@ Item {
 
             SpaceKey {
                 inputPanelRef: root.inputPanel
-                weight: 640
             }
 
             SymbolKey {
                 inputPanelRef: root.inputPanel
-                weight: 112
             }
 
-            HideKey {
-                weight: 112
-            }
+            HideKey {}
         }
     }
 
@@ -335,6 +333,7 @@ Item {
         RowLayout {
             spacing: root.inputPanel.spacing
             Key {
+                enabled: false
                 weight: 19
                 functionKey: true
                 showPreview: false
@@ -396,7 +395,6 @@ Item {
             }
 
             EnterKey {
-                weight: 205
                 inputPanelRef: root.inputPanel
             }
         }
@@ -405,7 +403,7 @@ Item {
             spacing: root.inputPanel.spacing
 
             Key {
-                weight: 105
+                weight: 112
                 btnDisplayedText: "2/2"
                 showPreview: false
                 functionKey: true
@@ -467,7 +465,7 @@ Item {
             }
 
             Key {
-                weight: 115
+                weight: 112
                 btnDisplayedText: "2/2"
                 showPreview: false
                 functionKey: true
@@ -479,6 +477,7 @@ Item {
             spacing: root.inputPanel.spacing
 
             Key {
+                enabled: false
                 weight: 112
                 functionKey: true
                 showPreview: false
@@ -487,17 +486,13 @@ Item {
 
             SpaceKey {
                 inputPanelRef: root.inputPanel
-                weight: 640
             }
 
             SymbolKey {
                 inputPanelRef: root.inputPanel
-                weight: 112
             }
 
-            HideKey {
-                weight: 112
-            }
+            HideKey {}
         }
     }
 }

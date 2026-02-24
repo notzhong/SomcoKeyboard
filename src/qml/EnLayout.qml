@@ -1,6 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Layouts 1.12
-import SomcoKeyboard 1.0
+import QtQuick.Layouts
 
 ColumnLayout {
     id: root
@@ -88,6 +87,7 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         Key {
+            enabled: false
             weight: 19
             functionKey: true
             showPreview: false
@@ -154,7 +154,6 @@ ColumnLayout {
         }
 
         EnterKey {
-            weight: 205
             inputPanelRef: root.inputPanel
         }
     }
@@ -162,9 +161,7 @@ ColumnLayout {
     RowLayout {
         spacing: root.inputPanel.spacing
 
-        ShiftKey {
-            weight: 105
-        }
+        ShiftKey {}
 
         Key {
             btnKey: Qt.Key_Z
@@ -223,35 +220,24 @@ ColumnLayout {
             inputPanelRef: root.inputPanel
         }
 
-        Key {
-            weight: 112
-            functionKey: true
-            showPreview: false
-            btnBackground: "transparent"
-        }
+        ShiftKey {}
     }
 
     RowLayout {
         spacing: root.inputPanel.spacing
 
         LanguageKey {
-            visible: InputEngine.availableLanguageLayouts.length > 1
-            weight: 112
             inputPanelRef: root.inputPanel
         }
 
         SpaceKey {
-            weight: 640
             inputPanelRef: root.inputPanel
         }
 
         SymbolKey {
-            weight: 112
             inputPanelRef: root.inputPanel
         }
 
-        HideKey {
-            weight: 112
-        }
+        HideKey {}
     }
 }

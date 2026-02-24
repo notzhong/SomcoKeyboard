@@ -7,5 +7,6 @@ Key {
     functionKey: true
     showPreview: false
     btnBackground: ThemeManager.currentTheme.btnSpecialBackgroundColor
+    weight: 112
     onClicked: InputEngine.symbolMode = !InputEngine.symbolMode
 }

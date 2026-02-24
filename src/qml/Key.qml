@@ -1,6 +1,6 @@
 import QtQuick 2.0
-import QtQuick.Controls.Basic 2.0
-import QtQuick.Layouts 1.12
+import QtQuick.Controls.Basic
+import QtQuick.Layouts
 import SomcoKeyboard 1.0
 
 Button {
@@ -40,10 +40,9 @@ Button {
     }
     onReleased: {
         if (!functionKey)
-            InputEngine.virtualKeyClick(
-                        btnKey, InputEngine.uppercase ? key.text.toUpperCase(
-                                                            ) : key.text,
-                        InputEngine.uppercase ? Qt.ShiftModifier : 0)
+            InputEngine.virtualKeyClick(btnKey,
+                                        InputEngine.uppercase ? key.text.toUpperCase() : key.text,
+                                        InputEngine.uppercase ? Qt.ShiftModifier : Qt.NoModifier)
     }
 
     Timer {

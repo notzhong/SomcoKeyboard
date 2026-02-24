@@ -8,13 +8,12 @@ Item {
 
     readonly property bool active: Qt.inputMethod.visible
 
-    property var availableLanguageLayouts: ["En", "De", "Ua"]
+    property var availableLanguageLayouts: ["En", "Pl", "Ua"]
     property string languageLayout: "En"
     property int spacing: 16
     property int margins: 16
 
     property list<KeyboardTheme> themes: []
-
     property string themeName
 
     /*! \internal */
@@ -33,30 +32,6 @@ Item {
         alternativesKeyPopup.open(keyButton)
     }
 
-    function loadLettersLayout() {
-        var source = InputEngine.fileOfLayout(languageLayout)
-        if (source === "") {
-            InputEngine.languageLayout = "En"
-            return
-        }
-
-        var description = InputEngine.descriptionOfLayout(languageLayout)
-        var spaceIdentifier = InputEngine.spaceIdentifierOfLayout(
-                    languageLayout)
-        if (description !== "" && source !== "") {
-            layoutLoader.langDescription = description
-            layoutLoader.spaceIdentifier = spaceIdentifier
-            layoutLoader.setSource(source + ".qml", {
-                                       "inputPanel": root
-                                   })
-        } else {
-            layoutLoader.langDescription = "English"
-            layoutLoader.spaceIdentifier = "space"
-            layoutLoader.setSource("EnLayout.qml", {
-                                       "inputPanel": root
-                                   })
-        }
-    }
     objectName: "inputPanel"
     width: parent.width
     height: 340
@@ -65,7 +40,7 @@ Item {
         if (alternativesKeyPopup.visible && !active)
             alternativesKeyPopup.visible = false
     }
-    onLanguageLayoutChanged: loadLettersLayout()
+    onLanguageLayoutChanged: _.loadLettersLayout()
     onThemeNameChanged: ThemeManager.setTheme(themeName)
 
     Component.onCompleted: {
@@ -82,7 +57,7 @@ Item {
             root.themeName = defaultTheme.themeName
         }
         ThemeManager.setTheme(root.themeName)
-        loadLettersLayout()
+        _.loadLettersLayout()
     }
 
     KeyboardTheme {
@@ -183,7 +158,7 @@ Item {
                                            "inputPanel": root
                                        })
             else
-                loadLettersLayout()
+                _.loadLettersLayout()
         }
 
         function onInputModeChanged() {
@@ -196,7 +171,7 @@ Item {
 
         function onLanguageLayoutChanged() {
             root.languageLayout = InputEngine.languageLayout
-            loadLettersLayout()
+            _.loadLettersLayout()
         }
 
         target: InputEngine
@@ -206,5 +181,33 @@ Item {
         target: ThemeManager
         property: "availableThemes"
         value: root.themes
+    }
+
+    QtObject {
+        id: _
+
+        function loadLettersLayout() {
+            var source = InputEngine.fileOfLayout(languageLayout)
+            if (source === "") {
+                InputEngine.languageLayout = "En"
+                return
+            }
+
+            var description = InputEngine.descriptionOfLayout(languageLayout)
+            var spaceIdentifier = InputEngine.spaceIdentifierOfLayout(languageLayout)
+            if (description !== "" && source !== "") {
+                layoutLoader.langDescription = description
+                layoutLoader.spaceIdentifier = spaceIdentifier
+                layoutLoader.setSource(source + ".qml", {
+                                           "inputPanel": root
+                                       })
+            } else {
+                layoutLoader.langDescription = "English"
+                layoutLoader.spaceIdentifier = "space"
+                layoutLoader.setSource("EnLayout.qml", {
+                                           "inputPanel": root
+                                       })
+            }
+        }
     }
 }
