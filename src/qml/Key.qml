@@ -5,7 +5,7 @@ import SomcoKeyboard 1.0
 
 Button {
     id: key
-    objectName: inputPanelRef.objectName + "Key_" + (key.btnDisplayedText ? key.btnDisplayedText : key.text)
+    objectName: (inputPanelRef ? inputPanelRef.objectName : "") + (btnDisplayedText ? btnDisplayedText : text)
 
     property real weight: 70
     property string btnDisplayedText: key.text
