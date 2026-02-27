@@ -33,6 +33,7 @@ struct DeclarativeInputEnginePrivate
 
     bool isUppercase{false};
     bool symbolMode{false};
+    bool persistentUppercase{true};
     const QHash<DeclarativeInputEngine::InputLayouts, LayoutData> layoutFiles = {
         // Czech
         {DeclarativeInputEngine::Cs, {"CsLayout", "Čeština"}},
@@ -223,6 +224,17 @@ void DeclarativeInputEngine::cycleLanguageLayout()
 
     if (inputLayoutValid(nextLayout))
         setLanguageLayout(nextLayout);
+}
+
+bool DeclarativeInputEngine::isPersistentUppercase() const { return d->persistentUppercase; }
+
+void DeclarativeInputEngine::setPersistentUppercase(bool persistentUppercase)
+{
+    if (d->persistentUppercase != persistentUppercase)
+    {
+        d->persistentUppercase = persistentUppercase;
+        emit isPersistentUppercaseChanged();
+    }
 }
 
 bool DeclarativeInputEngine::inputLayoutValid(const QString& layout) const

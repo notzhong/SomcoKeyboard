@@ -17,6 +17,7 @@ Item {
     property string themeName
 
     /*! \internal */
+    property bool persistentShift: true
     readonly property bool __isRootItem: root.parent !== null && root.parent.parent === null
 
     function showKeyPopup(keyButton) {
@@ -50,6 +51,7 @@ Item {
 
         InputEngine.availableLanguageLayouts = availableLanguageLayouts
         InputEngine.languageLayout = languageLayout
+        InputEngine.persistentUppercase = persistentShift
 
         if (root.themes.length == 0) {
             ThemeManager.addTheme(defaultTheme)

@@ -48,6 +48,11 @@ class DeclarativeInputEngine : public QObject
 
     /** The currently selected language layout identifier. */
     Q_PROPERTY(QString languageLayout READ languageLayout WRITE setLanguageLayout NOTIFY languageLayoutChanged FINAL)
+
+    /** Whether the uppercase state persists after each key press (e.g., for caps lock behavior).
+    When true, the shift state remains uppercase until explicitly toggled off;
+    when false, uppercase is automatically cleared after a single character input. */
+    Q_PROPERTY(bool persistentUppercase READ isPersistentUppercase WRITE setPersistentUppercase NOTIFY isPersistentUppercaseChanged)
     // clang-format on
 
 public:
@@ -137,6 +142,20 @@ public:
      * Sets the uppercase (shift) state.
      */
     void setUppercase(bool uppercase);
+
+    /**
+     * Returns true if uppercase persistence is enabled.
+     * When persistent, the uppercase state remains active until manually turned off
+     * (similar to Caps Lock). When false, uppercase automatically resets after
+     * a single character input (standard shift behavior).
+     */
+    bool isPersistentUppercase() const;
+
+    /**
+     * Enables or disables uppercase persistence mode.
+     * \param persistentUppercase - true for Caps Lock-like behavior, false for single-character shift.
+     */
+    void setPersistentUppercase(bool persistentUppercase);
 
     /**
      * Returns true if symbol mode is active.
@@ -239,6 +258,9 @@ signals:
 
     /** Emitted when the current language layout changes. */
     void languageLayoutChanged();
+
+    /** Emitted when the current persistent mode changes. */
+    void isPersistentUppercaseChanged();
 
 private:
     DeclarativeInputEnginePrivate* d;
