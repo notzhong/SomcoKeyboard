@@ -53,6 +53,9 @@ class DeclarativeInputEngine : public QObject
     When true, the shift state remains uppercase until explicitly toggled off;
     when false, uppercase is automatically cleared after a single character input. */
     Q_PROPERTY(bool persistentUppercase READ isPersistentUppercase WRITE setPersistentUppercase NOTIFY isPersistentUppercaseChanged)
+
+    /** Whether the keyboard automatically capitalizes the first letter of a sentence. */
+    Q_PROPERTY(bool autoCapitalize READ isAutoCapitalize WRITE setAutoCapitalize NOTIFY isAutoCapitalizeChanged)
     // clang-format on
 
 public:
@@ -158,6 +161,17 @@ public:
     void setPersistentUppercase(bool persistentUppercase);
 
     /**
+     * Returns whether auto-capitalization is enabled.
+     */
+    bool isAutoCapitalize() const;
+
+    /**
+     * Sets whether auto-capitalization is enabled.
+     * \param autoCapitalize - true to enable, false to disable.
+     */
+    void setAutoCapitalize(bool autoCapitalize);
+
+    /**
      * Returns true if symbol mode is active.
      */
     bool isSymbolMode() const;
@@ -261,6 +275,9 @@ signals:
 
     /** Emitted when the current persistent mode changes. */
     void isPersistentUppercaseChanged();
+
+    /** Emitted when the auto-capitalization setting changes. */
+    void isAutoCapitalizeChanged();
 
 private:
     DeclarativeInputEnginePrivate* d;
