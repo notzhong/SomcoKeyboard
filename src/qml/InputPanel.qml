@@ -8,7 +8,7 @@ Item {
 
     readonly property bool active: Qt.inputMethod.visible
 
-    property var availableLanguageLayouts: ["En", "Pl", "Ua"]
+    property var availableLanguageLayouts: ["En", "Pl", "Uk"]
     property string languageLayout: "En"
     property int spacing: 16
     property int margins: 16
@@ -17,8 +17,7 @@ Item {
     property string themeName
 
     /*! \internal */
-    readonly property bool __isRootItem: root.parent !== null
-                                         && root.parent.parent === null
+    readonly property bool __isRootItem: root.parent !== null && root.parent.parent === null
 
     function showKeyPopup(keyButton) {
         keyPopup.popup(keyButton)
