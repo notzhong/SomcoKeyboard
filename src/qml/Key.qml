@@ -5,9 +5,11 @@ import SomcoKeyboard 1.0
 
 Button {
     id: key
+    objectName: (inputPanelRef ? inputPanelRef.objectName : "") + (btnDisplayedText ? btnDisplayedText : text)
 
     property real weight: 70
     property string btnDisplayedText: key.text
+
     property int btnKey: Qt.Key_unknown
     property color btnBackground: ThemeManager.currentTheme.btnBackgroundColor
     property string btnIcon: ""
@@ -39,10 +41,16 @@ Button {
         }
     }
     onReleased: {
-        if (!functionKey)
-            InputEngine.virtualKeyClick(btnKey,
-                                        InputEngine.uppercase ? key.text.toUpperCase() : key.text,
-                                        InputEngine.uppercase ? Qt.ShiftModifier : Qt.NoModifier)
+        if (!functionKey) {
+            InputEngine.virtualKeyClick(btnKey, InputEngine.uppercase ? btnText.toUpperCase() : btnText, InputEngine.uppercase ? Qt.ShiftModifier : 0)
+            var autoCapUp = false
+            if (InputEngine.autoCapitalize && !InputContext.isPasswordField()) {
+                var surrounding = InputContext.surroundingText()
+                autoCapUp = surrounding.length === 0 || /[.!?] $/.test(surrounding)
+            }
+            if (!InputEngine.persistentUppercase || autoCapUp)
+                InputEngine.uppercase = autoCapUp
+        }
     }
 
     Timer {

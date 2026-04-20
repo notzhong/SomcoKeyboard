@@ -86,6 +86,7 @@ ColumnLayout {
         spacing: root.inputPanel.spacing
 
         Key {
+            objectName: "" // invisible key to align the row
             enabled: false
             weight: 19
             functionKey: true
@@ -161,7 +162,10 @@ ColumnLayout {
     RowLayout {
         spacing: root.inputPanel.spacing
 
-        ShiftKey {}
+        ShiftKey {
+            objectName: root.inputPanel.objectName + "Key_Shift_Left"
+            inputPanelRef: root.inputPanel
+        }
 
         Key {
             btnKey: Qt.Key_W
@@ -212,7 +216,10 @@ ColumnLayout {
             inputPanelRef: root.inputPanel
         }
 
-        ShiftKey {}
+        ShiftKey {
+            objectName: root.inputPanel.objectName + "Key_Shift_Right"
+            inputPanelRef: root.inputPanel
+        }
     }
 
     RowLayout {
@@ -230,6 +237,8 @@ ColumnLayout {
             inputPanelRef: root.inputPanel
         }
 
-        HideKey {}
+        HideKey {
+            inputPanelRef: root.inputPanel
+        }
     }
 }

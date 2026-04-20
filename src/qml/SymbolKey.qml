@@ -2,6 +2,7 @@ import SomcoKeyboard 1.0
 import QtQuick 2.0
 
 Key {
+    objectName: inputPanelRef.objectName + "Key_Symbol"
     btnKey: Qt.Key_Context1
     btnDisplayedText: !InputEngine.symbolMode ? ".?$%^" : "abcd"
     functionKey: true

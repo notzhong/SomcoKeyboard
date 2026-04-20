@@ -87,6 +87,11 @@ void VirtualKeyboardInputContext::showInputPanel()
 
 void VirtualKeyboardInputContext::hideInputPanel()
 {
+    if (d->FocusItem && d->FocusItem->inputMethodQuery(Qt::ImEnabled).toBool())
+    {
+        // if the current focus item accepts input, clear its focus to ensure visual consistency
+        d->FocusItem->setFocus(false);
+    }
     d->Visible = false;
     QPlatformInputContext::hideInputPanel();
     emitInputPanelVisibleChanged();
@@ -171,7 +176,9 @@ void VirtualKeyboardInputContext::setFocusObject(QObject* object)
     {
         d->InputEngine->setInputMode(DeclarativeInputEngine::Letters);
         d->InputEngine->setSymbolMode(false);
-        d->InputEngine->setUppercase(false);
+        // Auto-capitalize on focus if enabled, field is not password, and field is empty
+        bool shouldUppercase = d->InputEngine->isAutoCapitalize() && !isPasswordField() && surroundingText().isEmpty();
+        d->InputEngine->setUppercase(shouldUppercase);
     }
 
     QQuickItem* i = d->FocusItem;
@@ -187,6 +194,21 @@ void VirtualKeyboardInputContext::setFocusObject(QObject* object)
     }
 
     ensureFocusedObjectVisible();
+}
+
+QString VirtualKeyboardInputContext::surroundingText() const
+{
+    if (!d->FocusItem)
+        return QString();
+    return d->FocusItem->inputMethodQuery(Qt::ImSurroundingText).toString();
+}
+
+bool VirtualKeyboardInputContext::isPasswordField() const
+{
+    if (!d->FocusItem)
+        return false;
+    Qt::InputMethodHints hints(d->FocusItem->inputMethodQuery(Qt::ImHints).toInt());
+    return (hints & Qt::ImhHiddenText) || (hints & Qt::ImhSensitiveData);
 }
 
 void VirtualKeyboardInputContext::ensureFocusedObjectVisible()
