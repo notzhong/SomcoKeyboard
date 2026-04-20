@@ -14,7 +14,7 @@ qt_add_qml_module(
   VERSION 1.0
   PLUGIN_TARGET ${PROJECT_NAME}
   RESOURCE_PREFIX "/"
-  OUTPUT_DIRECTORY "QtQuick/SomcoKeyboard"
+  OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/QtQuick/SomcoKeyboard"
   CLASS_NAME "VirtualKeyboardInputContextPlugin"
   SOURCES
     ${HEADERS}
@@ -47,7 +47,6 @@ if (NOT INSTALL_PLUGINSDIR)
       LIBRARY_OUTPUT_DIRECTORY "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforminputcontexts")
   endif()
 endif()
-
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
   Qt::Core
