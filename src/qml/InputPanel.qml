@@ -57,16 +57,17 @@ Item {
         InputEngine.autoCapitalize = autoCapitalize
 
         if (root.themes.length == 0) {
-            ThemeManager.addTheme(defaultTheme)
-            root.themeName = defaultTheme.themeName
+            ThemeManager.addTheme(lightTheme)
+            ThemeManager.addTheme(darkTheme)
+            root.themeName = lightTheme.themeName
         }
         ThemeManager.setTheme(root.themeName)
         _.loadLettersLayout()
     }
 
     KeyboardTheme {
-        id: defaultTheme
-        themeName: "default"
+        id: lightTheme
+        themeName: "light"
 
         overlayBackgroundColor: "#D4E3EE"
         backgroundColor: "#C2D4EA"
@@ -77,13 +78,35 @@ Item {
         btnTextFontFamily: "Inter"
         btnTextFontSize: 21
 
-        backspaceIcon: "qrc:/icons/SomcoKeyboard/keyboard_backspace.svg"
-        enterIcon: "qrc:/icons/SomcoKeyboard/keyboard_return.svg"
-        shiftOnIcon: "qrc:/icons/SomcoKeyboard/caps-lock-on.svg"
-        shiftOffIcon: "qrc:/icons/SomcoKeyboard/caps-lock-off.svg"
-        hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/keyboard_hide.svg"
-        languageIcon: "qrc:/icons/SomcoKeyboard/language.svg"
-        spaceIcon: "qrc:/icons/SomcoKeyboard/keyboard_space.svg"
+        backspaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_backspace.svg"
+        enterIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_return.svg"
+        shiftOnIcon: "qrc:/icons/SomcoKeyboard/light/caps-lock-on.svg"
+        shiftOffIcon: "qrc:/icons/SomcoKeyboard/light/caps-lock-off.svg"
+        hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_hide.svg"
+        languageIcon: "qrc:/icons/SomcoKeyboard/light/language.svg"
+        spaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_space.svg"
+    }
+
+    KeyboardTheme {
+        id: darkTheme
+        themeName: "dark"
+
+        overlayBackgroundColor: "#000000"
+        backgroundColor: "#000000"
+        btnBackgroundColor: "#2A3139"
+        btnSpecialBackgroundColor: "#4B545E"
+        btnEnterBackgroundColor: "#1DCA9B"
+        btnTextColor: "#FFFFFF"
+        btnTextFontFamily: "Inter"
+        btnTextFontSize: 21
+
+        backspaceIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_backspace.svg"
+        enterIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_return.svg"
+        shiftOnIcon: "qrc:/icons/SomcoKeyboard/dark/caps-lock-on.svg"
+        shiftOffIcon: "qrc:/icons/SomcoKeyboard/dark/caps-lock-off.svg"
+        hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_hide.svg"
+        languageIcon: "qrc:/icons/SomcoKeyboard/dark/language.svg"
+        spaceIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_space.svg"
     }
 
     KeyPopup {

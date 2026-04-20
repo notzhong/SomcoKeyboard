@@ -65,7 +65,7 @@ ApplicationWindow {
         Image {
             Layout.alignment: Qt.AlignHCenter
             fillMode: Image.PreserveAspectFit
-            source: inputPanel.themeName === darkTheme.themeName ? "qrc:/icons/SomcoKeyboardApp/dark/logo.svg" : "qrc:/icons/SomcoKeyboardApp/light/logo.svg"
+            source: inputPanel.themeName === "dark" ? "qrc:/icons/SomcoKeyboardApp/dark/logo.svg" : "qrc:/icons/SomcoKeyboardApp/light/logo.svg"
             Layout.preferredWidth: 575
             Layout.preferredHeight: 88
         }
@@ -86,7 +86,7 @@ ApplicationWindow {
                 implicitHeight: 40
                 checkable: true
 
-                checked: inputPanel.themeName === darkTheme.themeName
+                checked: inputPanel.themeName === "dark"
                 background: Rectangle {
                     anchors.fill: parent
                     radius: height / 2
@@ -125,9 +125,9 @@ ApplicationWindow {
 
                 onToggled: {
                     if (checked)
-                        inputPanel.themeName = darkTheme.themeName
+                        inputPanel.themeName = "dark"
                     else
-                        inputPanel.themeName = lightTheme.themeName
+                        inputPanel.themeName = "light"
                 }
             }
         }
@@ -179,53 +179,6 @@ ApplicationWindow {
         z: 99
         y: Qt.inputMethod.visible ? (window.height - inputPanel.height) : window.height
         width: parent.width
-
-        themes: [
-            KeyboardTheme {
-                id: lightTheme
-                themeName: "light"
-
-                overlayBackgroundColor: "#D4E3EE"
-                backgroundColor: "#C2D4EA"
-                btnBackgroundColor: "#DEECFB"
-                btnSpecialBackgroundColor: "#ADC3DB"
-                btnEnterBackgroundColor: "#1DCA9B"
-                btnTextColor: "#000000"
-                btnTextFontFamily: "Inter"
-                btnTextFontSize: 21
-
-                backspaceIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_backspace.svg"
-                enterIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_return.svg"
-                shiftOnIcon: "qrc:/icons/SomcoKeyboardApp/light/caps-lock-on.svg"
-                shiftOffIcon: "qrc:/icons/SomcoKeyboardApp/light/caps-lock-off.svg"
-                hideKeyboardIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_hide.svg"
-                languageIcon: "qrc:/icons/SomcoKeyboardApp/light/language.svg"
-                spaceIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_space.svg"
-            },
-
-            KeyboardTheme {
-                id: darkTheme
-                themeName: "dark"
-
-                overlayBackgroundColor: "#000000"
-                backgroundColor: "#000000"
-                btnBackgroundColor: "#2A3139"
-                btnSpecialBackgroundColor: "#4B545E"
-                btnEnterBackgroundColor: "#1DCA9B"
-                btnTextColor: "#FFFFFF"
-                btnTextFontFamily: "Inter"
-                btnTextFontSize: 21
-
-                backspaceIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_backspace.svg"
-                enterIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_return.svg"
-                shiftOnIcon: "qrc:/icons/SomcoKeyboardApp/dark/caps-lock-on.svg"
-                shiftOffIcon: "qrc:/icons/SomcoKeyboardApp/dark/caps-lock-off.svg"
-                hideKeyboardIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_hide.svg"
-                languageIcon: "qrc:/icons/SomcoKeyboardApp/dark/language.svg"
-                spaceIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_space.svg"
-            }
-        ]
-        themeName: darkTheme.themeName
 
         Behavior on y {
             NumberAnimation {
