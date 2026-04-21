@@ -42,7 +42,7 @@ Button {
     }
     onReleased: {
         if (!functionKey) {
-            InputEngine.virtualKeyClick(btnKey, InputEngine.uppercase ? btnText.toUpperCase() : btnText, InputEngine.uppercase ? Qt.ShiftModifier : 0)
+            InputEngine.virtualKeyClick(btnKey, InputEngine.uppercase ? text.toUpperCase() : text, InputEngine.uppercase ? Qt.ShiftModifier : 0)
             var autoCapUp = false
             if (InputEngine.autoCapitalize && !InputContext.isPasswordField()) {
                 var surrounding = InputContext.surroundingText()
@@ -78,16 +78,25 @@ Button {
             anchors.centerIn: parent
 
             Text {
+                id: textItem
                 text: key.btnDisplayedText
                 color: ThemeManager.currentTheme.btnTextColor
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                visible: key.btnDisplayedText !== ""
                 font {
                     family: ThemeManager.currentTheme.btnTextFontFamily
                     weight: Font.Normal
                     pixelSize: ThemeManager.currentTheme.btnTextFontSize
                     capitalization: InputEngine.uppercase ? Font.AllUppercase : Font.MixedCase
+                }
+                visible: {
+                    if (key.btnDisplayedText === "")
+                        return false
+                    var iconVisible = (key.btnIcon !== "")
+                    var iconWidth = iconVisible ? key.btnIconSize.width : 0
+                    var requiredWidth = textItem.paintedWidth + 16 + iconWidth
+
+                    return key.width > requiredWidth || !iconVisible
                 }
             }
 
