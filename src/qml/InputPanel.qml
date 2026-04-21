@@ -67,7 +67,7 @@ Item {
 
     KeyboardTheme {
         id: lightTheme
-        themeName: "light"
+        themeName: "defaultLight"
 
         overlayBackgroundColor: "#D4E3EE"
         backgroundColor: "#C2D4EA"
@@ -89,7 +89,7 @@ Item {
 
     KeyboardTheme {
         id: darkTheme
-        themeName: "dark"
+        themeName: "defaultDark"
 
         overlayBackgroundColor: "#000000"
         backgroundColor: "#000000"

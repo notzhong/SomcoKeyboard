@@ -1,152 +1,165 @@
-# SomcoKeyboard
+# 🎹 SomcoKeyboard
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Built with Qt](https://img.shields.io/badge/Built%20with-Qt-41CD52?logo=qt)](https://qt.io)
 
 ![SomcoKeyboard](./assets/SomcoKeyboard.png)
 
-SomcoKeyboard is a versatile, QML-based on-screen virtual keyboard designed specifically for embedded applications. It offers a seamless typing experience with customizable themes, multi-language support, and easy integration into Qt projects. Whether you're building touch-enabled interfaces for medical devices, industrial controls, or consumer electronics, SomcoKeyboard provides a reliable and user-friendly input solution that's lightweight and performant.
+**A versatile, QML-based virtual keyboard for embedded applications**
 
 ---
 
-[![Somco Software](./assets/somcosoftware-full-logo.svg)](https://somcosoftware.com)
+## Overview
 
-[![Built with Qt](./assets/buildWithQt.png)](https://qt.io)
+SomcoKeyboard is a lightweight, production-ready on-screen virtual keyboard designed for embedded systems. Whether you're building touch interfaces for medical devices, industrial systems, or consumer products, SomcoKeyboard delivers a smooth typing experience with built-in theming, multi-language support, and seamless Qt integration.
+
+✨ **Zero configuration needed** — just integrate and go. Comprehensive customization available for advanced use cases.
 
 ---
 
-## Features
-- **Customizable Themes**: Switch between light, dark, or your own custom themes dynamically for a tailored look and feel.
-- **Multi-Language Support**: Easily add layouts for different languages to support global users.
-- **Embedded-Friendly**: Optimized for resource-constrained environments with smooth animations and minimal overhead.
-- **Qt Integration**: Seamless plugin for Qt Quick applications, with simple setup via CMake.
-- **Open Source**: Licensed under MIT, perfect for submodules in your projects—fork, contribute, and customize!
+## ✨ Features
 
-## Installation
+| Feature | Details |
+|---------|---------|
+| 🎨 **Built-in Themes** | Ready-to-use light and dark themes — no setup required |
+| 🖌️ **Customizable Appearance** | Easily define and switch custom themes for your brand |
+| 🌍 **Multi-Language Support** | 17+ keyboard layouts included (Latin, Cyrillic, Greek) |
+| ⚡ **Embedded-Friendly** | Optimized for performance and minimal resource usage |
+| 🔗 **Qt Integration** | Simple, seamless integration into Qt Quick projects |
+| 📜 **Open Source** | MIT licensed — free to use, modify, and extend |
 
-To integrate SomcoKeyboard into your project as a submodule:
+---
 
-1. Add it as a Git submodule:
-   ```
+## 🚀 Quick Start
+
+### Installation
+
+1. **Add as a Git submodule:**
+   ```bash
    git submodule add git@gitlab.com:somcosoftware/somcokeyboard.git 3rdParty/SomcoKeyboard
    ```
 
-2. Include it in your root `CMakeLists.txt`:
+2. **Include in your CMake:**
    ```cmake
    add_subdirectory(3rdParty/SomcoKeyboard)
    ```
 
-3. Set the input method in your `main.cpp`:
+3. **Set the input method in `main.cpp`:**
    ```cpp
    int main(int argc, char** argv) {
        qputenv("QT_IM_MODULE", QByteArray("somcokeyboard"));
-       // ... rest of your main function
+       // ...
    }
    ```
 
-4. Import and use it in your `main.qml`:
+4. **Use in QML:**
    ```qml
    import QtQuick.SomcoKeyboard 1.0
 
    ApplicationWindow {
-       id: window
-
-       // ... your window properties
-
        InputPanel {
            id: inputPanel
-
            z: 99
-           y: Qt.inputMethod.visible ? (window.height - inputPanel.height) : window.height
+           y: Qt.inputMethod.visible ? (parent.height - height) : parent.height
            width: parent.width
-
-           Behavior on y {
-               NumberAnimation {
-                   duration: 300
-                   easing.type: Easing.InOutQuad
-               }
-           }
        }
    }
    ```
 
-## Multi-Theme Support
+---
 
-SomcoKeyboard supports dynamic theme switching, allowing you to adapt the keyboard's appearance to your app's style—perfect for day/night modes or branded interfaces.
+## 🎨 Themes
 
-### Light Theme
-![Light Theme](./assets/light_en_layout.png)
+### Built-in Themes
 
-### Dark Theme
-![Dark Theme](./assets/dark_en_layout.png)
+SomcoKeyboard comes with two pre-configured themes:
+- **`defaultLight`** — Light theme (default)
+- **`defaultDark`** — Dark theme
 
-For an example of implementing multiple themes, see `./example/main.qml`:
+No configuration needed — just use them!
+
+### Switch Themes
 
 ```qml
 InputPanel {
-    id: inputPanel
-
-    // ... other properties
-
-    themeName: darkTheme.themeName
-    themes: [
-        KeyboardTheme {
-            id: lightTheme
-            themeName: "light"
-
-            overlayBackgroundColor: "#D4E3EE"
-            backgroundColor: "#C2D4EA"
-            btnBackgroundColor: "#DEECFB"
-            btnSpecialBackgroundColor: "#ADC3DB"
-            btnEnterBackgroundColor: "#1DCA9B"
-            btnTextColor: "#000000"
-            btnTextFontFamily: "Inter"
-            btnTextFontSize: 21
-
-            backspaceIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_backspace.svg"
-            enterIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_return.svg"
-            shiftOnIcon: "qrc:/icons/SomcoKeyboardApp/light/caps-lock-on.svg"
-            shiftOffIcon: "qrc:/icons/SomcoKeyboardApp/light/caps-lock-off.svg"
-            hideKeyboardIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_hide.svg"
-            languageIcon: "qrc:/icons/SomcoKeyboardApp/light/language.svg"
-            spaceIcon: "qrc:/icons/SomcoKeyboardApp/light/keyboard_space.svg"
-        },
-
-        KeyboardTheme {
-            id: darkTheme
-            themeName: "dark"
-
-            overlayBackgroundColor: "#000000"
-            backgroundColor: "#000000"
-            btnBackgroundColor: "#2A3139"
-            btnSpecialBackgroundColor: "#4B545E"
-            btnEnterBackgroundColor: "#1DCA9B"
-            btnTextColor: "#FFFFFF"
-            btnTextFontFamily: "Inter"
-            btnTextFontSize: 21
-
-            backspaceIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_backspace.svg"
-            enterIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_return.svg"
-            shiftOnIcon: "qrc:/icons/SomcoKeyboardApp/dark/caps-lock-on.svg"
-            shiftOffIcon: "qrc:/icons/SomcoKeyboardApp/dark/caps-lock-off.svg"
-            hideKeyboardIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_hide.svg"
-            languageIcon: "qrc:/icons/SomcoKeyboardApp/dark/language.svg"
-            spaceIcon: "qrc:/icons/SomcoKeyboardApp/dark/keyboard_space.svg"
-        }
-    ]
-
-    // ... rest of InputPanel
+    themeName: "defaultDark"
 }
 ```
 
-## Contributing
-We welcome contributions to make SomcoKeyboard even better! Whether it's adding new layouts, fixing bugs, or improving documentation:
-- Fork the repository.
-- Create a feature branch (`git checkout -b feature/YourFeature`).
-- Commit your changes (`git commit -m 'Add some feature'`).
-- Push to the branch (`git push origin feature/YourFeature`).
-- Open a Pull Request.
+### Create Custom Themes
+
+Override built-in themes with your own:
+
+```qml
+InputPanel {
+    themeName: "myTheme"
+    themes: [
+        KeyboardTheme {
+            themeName: "myTheme"
+            backgroundColor: "#222"
+            btnBackgroundColor: "#333"
+            btnTextColor: "#FFF"
+            // ... other properties
+        }
+    ]
+}
+```
+
+> ⚠️ **Note:** When custom themes are provided, default themes are not added automatically.
+
+---
+
+## 🌍 Supported Languages
+
+### Latin-based (12 languages)
+Czech • Danish • German • English • Spanish • Finnish • French • Italian • Dutch • Polish • Portuguese • Swedish
+
+### Cyrillic-based (4 languages)
+Russian • Ukrainian • Serbian (Cyrillic) • Bosnian (Cyrillic)
+
+### Balkan Latin Variants (3 languages)
+Bosnian • Croatian • Serbian (Latin)
+
+### Other
+Greek
+
+**All layouts are extensible** — easily add or customize languages for your needs.
+
+---
+
+## ⚙️ Configuration
+
+Customize keyboard behavior with simple QML properties:
+
+```qml
+InputPanel {
+    availableLanguageLayouts: ["En", "De", "Uk"]
+    languageLayout: "En"
+    persistentShift: false
+    autoCapitalize: true
+}
+```
+
+---
+
+## 🤝 Contributing
+
+We love contributions! Here's how to get started:
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/YourFeature`
+3. **Commit** your changes: `git commit -m 'Add some feature'`
+4. **Push** to the branch: `git push origin feature/YourFeature`
+5. **Open** a Pull Request
 
 Please follow standard Qt coding conventions.
+
+### Ways to Contribute
+- 🐛 Fix bugs
+- 🌐 Add new keyboard layouts
+- 📚 Improve documentation
+- 🎨 Enhance UI/UX
+- 💡 Suggest features
 
 ## About Somco Software (previously Scythe Studio)
 [Somco Software (previously Scythe Studio)](https://somcosoftware.com/en/) is an embedded and cross-platform software development company with a strong focus on Qt and C++, delivering reliable, high-quality solutions for regulated industries, with particular expertise in medical devices. We are an ISO 9001 and ISO 13485 certified software house, specializing in GUI development, Linux-based systems, and advanced connectivity solutions. Somco Software is an official Qt Service Partner and a trusted partner of leading hardware manufacturers.

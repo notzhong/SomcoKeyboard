@@ -10,6 +10,7 @@ ApplicationWindow {
 
     visible: true
     width: 1088
+    minimumWidth: 550
     height: 900
     title: qsTr("Somco Keyboard Example")
 
@@ -65,7 +66,7 @@ ApplicationWindow {
         Image {
             Layout.alignment: Qt.AlignHCenter
             fillMode: Image.PreserveAspectFit
-            source: inputPanel.themeName === "dark" ? "qrc:/icons/SomcoKeyboardApp/dark/logo.svg" : "qrc:/icons/SomcoKeyboardApp/light/logo.svg"
+            source: inputPanel.themeName === "defaultDark" ? "qrc:/icons/SomcoKeyboardApp/dark/logo.svg" : "qrc:/icons/SomcoKeyboardApp/light/logo.svg"
             Layout.preferredWidth: 575
             Layout.preferredHeight: 88
         }
@@ -86,7 +87,7 @@ ApplicationWindow {
                 implicitHeight: 40
                 checkable: true
 
-                checked: inputPanel.themeName === "dark"
+                checked: inputPanel.themeName === "defaultDark"
                 background: Rectangle {
                     anchors.fill: parent
                     radius: height / 2
@@ -125,9 +126,9 @@ ApplicationWindow {
 
                 onToggled: {
                     if (checked)
-                        inputPanel.themeName = "dark"
+                        inputPanel.themeName = "defaultDark"
                     else
-                        inputPanel.themeName = "light"
+                        inputPanel.themeName = "defaultLight"
                 }
             }
         }
