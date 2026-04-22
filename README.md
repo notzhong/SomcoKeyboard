@@ -36,7 +36,7 @@ SomcoKeyboard is a lightweight, production-ready on-screen virtual keyboard desi
 
 1. **Add as a Git submodule:**
    ```bash
-   git submodule add git@gitlab.com:somcosoftware/somcokeyboard.git 3rdParty/SomcoKeyboard
+   git submodule add git@github.com:somcosoftware/somcokeyboard.git 3rdParty/SomcoKeyboard
    ```
 
 2. **Include in your CMake:**
@@ -62,6 +62,13 @@ SomcoKeyboard is a lightweight, production-ready on-screen virtual keyboard desi
            z: 99
            y: Qt.inputMethod.visible ? (parent.height - height) : parent.height
            width: parent.width
+
+            Behavior on y {
+                NumberAnimation {
+                    duration: 300
+                    easing.type: Easing.InOutQuad
+                }
+            }
        }
    }
    ```
@@ -74,7 +81,9 @@ SomcoKeyboard is a lightweight, production-ready on-screen virtual keyboard desi
 
 SomcoKeyboard comes with two pre-configured themes:
 - **`defaultLight`** — Light theme (default)
+![Default Light Theme](./assets/light_en_layout.png)
 - **`defaultDark`** — Dark theme
+![Default Dark Theme](./assets/dark_en_layout.png)
 
 No configuration needed — just use them!
 
@@ -111,17 +120,28 @@ InputPanel {
 
 ## 🌍 Supported Languages
 
-### Latin-based (12 languages)
-Czech • Danish • German • English • Spanish • Finnish • French • Italian • Dutch • Polish • Portuguese • Swedish
-
-### Cyrillic-based (4 languages)
-Russian • Ukrainian • Serbian (Cyrillic) • Bosnian (Cyrillic)
-
-### Balkan Latin Variants (3 languages)
-Bosnian • Croatian • Serbian (Latin)
-
-### Other
-Greek
+| Language Name | Language Code | Layout File |
+|---------------|---------------|--------------|
+| Bosnian (Cyrillic) | CyBs | [`CySrBsLayout.qml`](src/qml/CySrBsLayout.qml) |
+| Bosnian (Latin) | LtBs | [`LtSrHrBsLayout.qml`](src/qml/LtSrHrBsLayout.qml) |
+| Croatian | Hr | [`LtSrHrBsLayout.qml`](src/qml/LtSrHrBsLayout.qml) |
+| Czech | Cs | [`CsLayout.qml`](src/qml/CsLayout.qml) |
+| Danish | Da | [`DaLayout.qml`](src/qml/DaLayout.qml) |
+| Dutch | Nl | [`NlLayout.qml`](src/qml/NlLayout.qml) |
+| English | En | [`EnLayout.qml`](src/qml/EnLayout.qml) |
+| Finnish | Fi | [`FiLayout.qml`](src/qml/FiLayout.qml) |
+| French | Fr | [`FrLayout.qml`](src/qml/FrLayout.qml) |
+| German | De | [`DeLayout.qml`](src/qml/DeLayout.qml) |
+| Greek | El | [`ElLayout.qml`](src/qml/ElLayout.qml) |
+| Italian | It | [`ItLayout.qml`](src/qml/ItLayout.qml) |
+| Polish | Pl | [`PlLayout.qml`](src/qml/PlLayout.qml) |
+| Portuguese | Pt | [`PtLayout.qml`](src/qml/PtLayout.qml) |
+| Russian | Ru | [`RuLayout.qml`](src/qml/RuLayout.qml) |
+| Serbian (Cyrillic) | CySr | [`CySrBsLayout.qml`](src/qml/CySrBsLayout.qml) |
+| Serbian (Latin) | LtSr | [`LtSrHrBsLayout.qml`](src/qml/LtSrHrBsLayout.qml) |
+| Spanish | Es | [`EsLayout.qml`](src/qml/EsLayout.qml) |
+| Swedish | Sv | [`SvLayout.qml`](src/qml/SvLayout.qml) |
+| Ukrainian | Uk | [`UkLayout.qml`](src/qml/UkLayout.qml) |
 
 **All layouts are extensible** — easily add or customize languages for your needs.
 
