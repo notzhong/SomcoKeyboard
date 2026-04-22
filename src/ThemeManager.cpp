@@ -30,6 +30,7 @@ void ThemeManager::setCurrentTheme(KeyboardTheme* theme)
 {
     if (m_currentTheme != theme)
     {
+        qDebug() << "SomcoKeyboard: Current theme changed to:" << theme->themeName();
         m_currentTheme = theme;
         emit currentThemeChanged();
     }
@@ -41,7 +42,7 @@ void ThemeManager::addTheme(KeyboardTheme* theme)
     {
         m_availableThemes.append(theme);
         emit availableThemesChanged();
-        qDebug() << "Added new theme:" << theme->themeName();
+        qDebug() << "SomcoKeyboard: Added new theme:" << theme->themeName();
     }
 }
 
@@ -52,11 +53,10 @@ void ThemeManager::setTheme(const QString& name)
         if (theme->themeName() == name)
         {
             setCurrentTheme(theme);
-            qDebug() << "Keyboard theme changed to:" << name;
             return;
         }
     }
-    qWarning() << "Theme not found:" << name;
+    qWarning() << "SomcoKeyboard: Theme " << name << " not found!";
 }
 
 QStringList ThemeManager::getAvailableThemeNames() const

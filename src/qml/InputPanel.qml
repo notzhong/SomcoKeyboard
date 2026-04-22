@@ -59,6 +59,8 @@ Item {
         if (root.themes.length == 0) {
             ThemeManager.addTheme(lightTheme)
             ThemeManager.addTheme(darkTheme)
+        }
+        if (root.themeName === "") {
             root.themeName = lightTheme.themeName
         }
         ThemeManager.setTheme(root.themeName)

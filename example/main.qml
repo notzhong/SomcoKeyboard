@@ -187,5 +187,7 @@ ApplicationWindow {
                 easing.type: Easing.InOutQuad
             }
         }
+
+        themeName: "defaultDark"
     }
 }
