@@ -8,6 +8,18 @@ Key {
     functionKey: true
     showPreview: false
     btnBackground: ThemeManager.currentTheme.btnSpecialBackgroundColor
-    btnIcon: InputEngine.uppercase ? ThemeManager.currentTheme.shiftOnIcon : ThemeManager.currentTheme.shiftOffIcon
-    onClicked: InputEngine.uppercase = !InputEngine.uppercase
+    btnIcon: {
+        switch (InputEngine.shiftState) {
+        case InputEngine.ShiftOn:
+            return ThemeManager.currentTheme.shiftOnIcon
+        case InputEngine.CapsLock:
+            return ThemeManager.currentTheme.capsLockIcon
+        default:
+            return ThemeManager.currentTheme.shiftOffIcon
+        }
+    }
+    onClicked: {
+        var newState = (InputEngine.shiftState + 1) % 3
+        InputEngine.shiftState = newState
+    }
 }

@@ -164,13 +164,13 @@ void VirtualKeyboardInputContext::setFocusObject(QObject* object)
     {
         d->InputEngine->setInputMode(DeclarativeInputEngine::DigitsOnly);
         d->InputEngine->setSymbolMode(false);
-        d->InputEngine->setUppercase(false);
+        d->InputEngine->setShiftState(DeclarativeInputEngine::ShiftOff);
     }
     else if (InputMethodHints & NumericInputHints)
     {
         d->InputEngine->setInputMode(DeclarativeInputEngine::Letters);
         d->InputEngine->setSymbolMode(true);
-        d->InputEngine->setUppercase(false);
+        d->InputEngine->setShiftState(DeclarativeInputEngine::ShiftOff);
     }
     else
     {
@@ -178,7 +178,7 @@ void VirtualKeyboardInputContext::setFocusObject(QObject* object)
         d->InputEngine->setSymbolMode(false);
         // Auto-capitalize on focus if enabled, field is not password, and field is empty
         bool shouldUppercase = d->InputEngine->isAutoCapitalize() && !isPasswordField() && surroundingText().isEmpty();
-        d->InputEngine->setUppercase(shouldUppercase);
+        d->InputEngine->setShiftState(shouldUppercase ? DeclarativeInputEngine::ShiftOn : DeclarativeInputEngine::ShiftOff);
     }
 
     QQuickItem* i = d->FocusItem;

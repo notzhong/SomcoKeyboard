@@ -1,7 +1,8 @@
 <RCC>
     <qresource prefix="/icons/SomcoKeyboard">
-        <file>light/caps-lock-off.svg</file>
-        <file>light/caps-lock-on.svg</file>
+        <file>light/shift_off.svg</file>
+        <file>light/shift_on.svg</file>
+		<file>light/caps_lock.svg</file>
         <file>light/keyboard_backspace.svg</file>
         <file>light/keyboard_hide.svg</file>
         <file>light/keyboard_return.svg</file>
@@ -9,8 +10,9 @@
         <file>light/language.svg</file>
         <file>light/logo.svg</file>
 		
-        <file>dark/caps-lock-off.svg</file>
-        <file>dark/caps-lock-on.svg</file>
+        <file>dark/shift_off.svg</file>
+        <file>dark/shift_on.svg</file>
+		<file>dark/caps_lock.svg</file>
         <file>dark/keyboard_backspace.svg</file>
         <file>dark/keyboard_hide.svg</file>
         <file>dark/keyboard_return.svg</file>

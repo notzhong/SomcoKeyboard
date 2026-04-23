@@ -25,15 +25,14 @@ struct DeclarativeInputEnginePrivate
     DeclarativeInputEngine* _this;
     bool Animating;
     QTimer* AnimatingFinishedTimer{nullptr};
-    int InputMode;
+    DeclarativeInputEngine::InputMode InputMode;
     QRect KeyboardRectangle;
 
     QStringList availableLanguageLayouts;
     QString languageLayout;
 
-    bool isUppercase{false};
+    DeclarativeInputEngine::ShiftState shiftState{DeclarativeInputEngine::ShiftState::ShiftOff};
     bool symbolMode{false};
-    bool persistentUppercase{true};
     bool autoCapitalize{false};
 
     const QHash<DeclarativeInputEngine::InputLayouts, LayoutData> layoutFiles = {
@@ -151,25 +150,27 @@ void DeclarativeInputEngine::setAnimating(bool Animating)
 
 void DeclarativeInputEngine::animatingFinished() { setAnimating(false); }
 
-int DeclarativeInputEngine::inputMode() const { return d->InputMode; }
+DeclarativeInputEngine::InputMode DeclarativeInputEngine::inputMode() const { return d->InputMode; }
 
-void DeclarativeInputEngine::setInputMode(int Mode)
+void DeclarativeInputEngine::setInputMode(DeclarativeInputEngine::InputMode mode)
 {
-    if (Mode != d->InputMode)
+    if (mode != d->InputMode)
     {
-        d->InputMode = Mode;
+        d->InputMode = mode;
         emit inputModeChanged();
     }
 }
 
-bool DeclarativeInputEngine::isUppercase() const { return d->isUppercase; }
+bool DeclarativeInputEngine::isUppercase() const { return d->shiftState == ShiftState::ShiftOn || d->shiftState == ShiftState::CapsLock; }
 
-void DeclarativeInputEngine::setUppercase(bool uppercase)
+DeclarativeInputEngine::ShiftState DeclarativeInputEngine::shiftState() const { return d->shiftState; }
+
+void DeclarativeInputEngine::setShiftState(ShiftState state)
 {
-    if (d->isUppercase != uppercase)
+    if (state != d->shiftState)
     {
-        d->isUppercase = uppercase;
-        emit isUppercaseChanged();
+        d->shiftState = state;
+        emit shiftStateChanged();
     }
 }
 
@@ -226,17 +227,6 @@ void DeclarativeInputEngine::cycleLanguageLayout()
 
     if (inputLayoutValid(nextLayout))
         setLanguageLayout(nextLayout);
-}
-
-bool DeclarativeInputEngine::isPersistentUppercase() const { return d->persistentUppercase; }
-
-void DeclarativeInputEngine::setPersistentUppercase(bool persistentUppercase)
-{
-    if (d->persistentUppercase != persistentUppercase)
-    {
-        d->persistentUppercase = persistentUppercase;
-        emit isPersistentUppercaseChanged();
-    }
 }
 
 bool DeclarativeInputEngine::isAutoCapitalize() const { return d->autoCapitalize; }

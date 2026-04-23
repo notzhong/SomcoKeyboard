@@ -17,7 +17,6 @@ Item {
     property string themeName
 
     /*! \internal */
-    property bool persistentShift: true
     property bool autoCapitalize: false
 
     readonly property bool __isRootItem: root.parent !== null && root.parent.parent === null
@@ -53,7 +52,6 @@ Item {
 
         InputEngine.availableLanguageLayouts = availableLanguageLayouts
         InputEngine.languageLayout = languageLayout
-        InputEngine.persistentUppercase = persistentShift
         InputEngine.autoCapitalize = autoCapitalize
 
         if (root.themes.length == 0) {
@@ -82,8 +80,9 @@ Item {
 
         backspaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_backspace.svg"
         enterIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_return.svg"
-        shiftOnIcon: "qrc:/icons/SomcoKeyboard/light/caps-lock-on.svg"
-        shiftOffIcon: "qrc:/icons/SomcoKeyboard/light/caps-lock-off.svg"
+        shiftOnIcon: "qrc:/icons/SomcoKeyboard/light/shift_on.svg"
+        shiftOffIcon: "qrc:/icons/SomcoKeyboard/light/shift_off.svg"
+        capsLockIcon: "qrc:/icons/SomcoKeyboard/light/caps_lock.svg"
         hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_hide.svg"
         languageIcon: "qrc:/icons/SomcoKeyboard/light/language.svg"
         spaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_space.svg"
@@ -104,8 +103,9 @@ Item {
 
         backspaceIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_backspace.svg"
         enterIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_return.svg"
-        shiftOnIcon: "qrc:/icons/SomcoKeyboard/dark/caps-lock-on.svg"
-        shiftOffIcon: "qrc:/icons/SomcoKeyboard/dark/caps-lock-off.svg"
+        shiftOnIcon: "qrc:/icons/SomcoKeyboard/dark/shift_on.svg"
+        shiftOffIcon: "qrc:/icons/SomcoKeyboard/dark/shift_off.svg"
+        capsLockIcon: "qrc:/icons/SomcoKeyboard/dark/caps_lock.svg"
         hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_hide.svg"
         languageIcon: "qrc:/icons/SomcoKeyboard/dark/language.svg"
         spaceIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_space.svg"

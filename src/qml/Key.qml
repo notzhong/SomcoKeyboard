@@ -48,8 +48,8 @@ Button {
                 var surrounding = InputContext.surroundingText()
                 autoCapUp = surrounding.length === 0 || /[.!?] $/.test(surrounding)
             }
-            if (!InputEngine.persistentUppercase || autoCapUp)
-                InputEngine.uppercase = autoCapUp
+            if (InputEngine.shiftState != InputEngine.CapsLock)
+                InputEngine.shiftState = autoCapUp ? InputEngine.ShiftOn : InputEngine.ShiftOff
         }
     }
 
