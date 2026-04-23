@@ -30,6 +30,8 @@ endif()
 qt_standard_project_setup()
 
 option(BUILD_SOMCO_KEYBOARD_EXAMPLE "Build Somco Keyboard example" ON)
+option(INSTALL_AS_QT_PLUGIN "Install as Qt platform plugin addon to Qt installation" OFF)
+set(INSTALL_PLUGINSDIR "" CACHE PATH "Custom installation directory for plugins (optional)")
 
 if(BUILD_SOMCO_KEYBOARD_EXAMPLE)
   add_subdirectory(example)
