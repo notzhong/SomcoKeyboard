@@ -38,22 +38,19 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 )
 
 if(INSTALL_PLUGINSDIR)
-  message(STATUS "Installing to custom directory: ${INSTALL_PLUGINSDIR}/platforminputcontexts")
+  message(STATUS "${PROJECT_NAME} will be installed to custom directory: ${INSTALL_PLUGINSDIR}/platforminputcontexts")
   set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${INSTALL_PLUGINSDIR}/platforminputcontexts"
-    RUNTIME_OUTPUT_DIRECTORY "${INSTALL_PLUGINSDIR}/platforminputcontexts"
   )
 elseif(INSTALL_AS_QT_PLUGIN)
-  message(STATUS "Installing as Qt plugin addon: ${Qt6_DIR}/../../../plugins/platforminputcontexts")
+  message(STATUS "${PROJECT_NAME} will be installed as Qt plugin addon: ${Qt6_DIR}/../../../plugins/platforminputcontexts")
   set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${Qt6_DIR}/../../../plugins/platforminputcontexts"
-    RUNTIME_OUTPUT_DIRECTORY "${Qt6_DIR}/../../../plugins/platforminputcontexts"
   )
 else()
-  message(STATUS "Installing next to executable: ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/platforminputcontexts")
+  message(STATUS "${PROJECT_NAME} will be installed next to executable: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/platforminputcontexts")
   set_target_properties(${PROJECT_NAME} PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/platforminputcontexts"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/platforminputcontexts"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/platforminputcontexts"
   )
 endif()
 
