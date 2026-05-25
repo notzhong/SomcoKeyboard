@@ -181,6 +181,7 @@ ColumnLayout {
 
         ShiftKey {
             objectName: root.inputPanel.objectName + "Key_Shift_Left"
+            weight: 208
             inputPanelRef: root.inputPanel
         }
 
@@ -241,6 +242,7 @@ ColumnLayout {
 
         ShiftKey {
             objectName: root.inputPanel.objectName + "Key_Shift_Right"
+            weight: 208
             inputPanelRef: root.inputPanel
         }
     }
