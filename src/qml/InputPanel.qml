@@ -50,18 +50,21 @@ Item {
         if (availableLanguageLayouts.length == 0)
             availableLanguageLayouts = ["En"]
 
+        if (root.themes.length == 0) {
+            ThemeManager.addTheme(lightTheme)
+            ThemeManager.addTheme(darkTheme)
+        } else {
+            for (var i = 0; i < root.themes.length; ++i)
+                ThemeManager.addTheme(root.themes[i])
+        }
+        if (root.themeName === "")
+            root.themeName = root.themes.length > 0 ? root.themes[0].themeName : lightTheme.themeName
+        ThemeManager.setTheme(root.themeName)
+
         InputEngine.availableLanguageLayouts = availableLanguageLayouts
         InputEngine.languageLayout = languageLayout
         InputEngine.autoCapitalize = autoCapitalize
 
-        if (root.themes.length == 0) {
-            ThemeManager.addTheme(lightTheme)
-            ThemeManager.addTheme(darkTheme)
-        }
-        if (root.themeName === "") {
-            root.themeName = lightTheme.themeName
-        }
-        ThemeManager.setTheme(root.themeName)
         _.loadLettersLayout()
     }
 

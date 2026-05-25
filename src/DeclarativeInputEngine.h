@@ -81,6 +81,7 @@ public:
         Pt,   ///< Portuguese
         Ru,   ///< Russian
         Sv,   ///< Swedish
+        Tr,   ///< Turkish
         Uk,   ///< Ukrainian
     };
     Q_ENUM(InputLayouts)

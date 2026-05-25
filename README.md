@@ -141,6 +141,7 @@ InputPanel {
 | Serbian (Latin) | LtSr | [`LtSrHrBsLayout.qml`](src/qml/LtSrHrBsLayout.qml) |
 | Spanish | Es | [`EsLayout.qml`](src/qml/EsLayout.qml) |
 | Swedish | Sv | [`SvLayout.qml`](src/qml/SvLayout.qml) |
+| Turkish | Tr | [`TrLayout.qml`](src/qml/TrLayout.qml) |
 | Ukrainian | Uk | [`UkLayout.qml`](src/qml/UkLayout.qml) |
 
 **All layouts are extensible** — easily add or customize languages for your needs.
