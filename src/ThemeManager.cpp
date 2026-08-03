@@ -4,7 +4,7 @@
 
 ThemeManager::ThemeManager(QObject* parent) : QObject(parent) {}
 
-ThemeManager::~ThemeManager() { m_availableThemes.clear(); }
+ThemeManager::~ThemeManager() {}
 
 QQmlListProperty<KeyboardTheme> ThemeManager::availableThemes()
 {
