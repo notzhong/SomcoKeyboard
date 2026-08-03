@@ -87,6 +87,9 @@ struct DeclarativeInputEnginePrivate
         // Swedish
         {DeclarativeInputEngine::Sv, {"SvLayout", "Svenska"}},
 
+        // Turkish
+        {DeclarativeInputEngine::Tr, {"TrLayout", "Türkçe", "Boşluk"}},
+
         // Ukrainian
         {DeclarativeInputEngine::Uk, {"UkLayout", "Українська", "Пробіл"}},
     };
