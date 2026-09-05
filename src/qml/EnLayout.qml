@@ -233,10 +233,6 @@ ColumnLayout {
     RowLayout {
         spacing: root.inputPanel.spacing
 
-        LanguageKey {
-            inputPanelRef: root.inputPanel
-        }
-
         SpaceKey {
             inputPanelRef: root.inputPanel
         }

@@ -8,8 +8,6 @@ Item {
 
     readonly property bool active: Qt.inputMethod.visible
 
-    property var availableLanguageLayouts: ["En", "Pl", "Uk"]
-    property string languageLayout: "En"
     property int spacing: 16
     property int margins: 16
 
@@ -41,14 +39,10 @@ Item {
         if (alternativesKeyPopup.visible && !active)
             alternativesKeyPopup.visible = false
     }
-    onLanguageLayoutChanged: _.loadLettersLayout()
     onThemeNameChanged: ThemeManager.setTheme(themeName)
 
     Component.onCompleted: {
         InputContext.registerInputPanel(root)
-
-        if (availableLanguageLayouts.length == 0)
-            availableLanguageLayouts = ["En"]
 
         if (root.themes.length == 0) {
             ThemeManager.addTheme(lightTheme)
@@ -61,8 +55,6 @@ Item {
             root.themeName = root.themes.length > 0 ? root.themes[0].themeName : lightTheme.themeName
         ThemeManager.setTheme(root.themeName)
 
-        InputEngine.availableLanguageLayouts = availableLanguageLayouts
-        InputEngine.languageLayout = languageLayout
         InputEngine.autoCapitalize = autoCapitalize
 
         _.loadLettersLayout()
@@ -87,7 +79,6 @@ Item {
         shiftOffIcon: "qrc:/icons/SomcoKeyboard/light/shift_off.svg"
         capsLockIcon: "qrc:/icons/SomcoKeyboard/light/caps_lock.svg"
         hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_hide.svg"
-        languageIcon: "qrc:/icons/SomcoKeyboard/light/language.svg"
         spaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_space.svg"
     }
 
@@ -110,7 +101,6 @@ Item {
         shiftOffIcon: "qrc:/icons/SomcoKeyboard/dark/shift_off.svg"
         capsLockIcon: "qrc:/icons/SomcoKeyboard/dark/caps_lock.svg"
         hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_hide.svg"
-        languageIcon: "qrc:/icons/SomcoKeyboard/dark/language.svg"
         spaceIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_space.svg"
     }
 
@@ -163,11 +153,6 @@ Item {
             Loader {
                 id: layoutLoader
 
-                // lang description only needed for layouts that share a file
-                property string langDescription
-                // space identifier for the correct translation of the word "space"
-                property string spaceIdentifier
-
                 anchors {
                     fill: parent
                     margins: root.margins
@@ -201,11 +186,6 @@ Item {
             refreshLayouts()
         }
 
-        function onLanguageLayoutChanged() {
-            root.languageLayout = InputEngine.languageLayout
-            _.loadLettersLayout()
-        }
-
         target: InputEngine
     }
 
@@ -219,27 +199,9 @@ Item {
         id: _
 
         function loadLettersLayout() {
-            var source = InputEngine.fileOfLayout(languageLayout)
-            if (source === "") {
-                InputEngine.languageLayout = "En"
-                return
-            }
-
-            var description = InputEngine.descriptionOfLayout(languageLayout)
-            var spaceIdentifier = InputEngine.spaceIdentifierOfLayout(languageLayout)
-            if (description !== "" && source !== "") {
-                layoutLoader.langDescription = description
-                layoutLoader.spaceIdentifier = spaceIdentifier
-                layoutLoader.setSource(source + ".qml", {
-                                           "inputPanel": root
-                                       })
-            } else {
-                layoutLoader.langDescription = "English"
-                layoutLoader.spaceIdentifier = "space"
-                layoutLoader.setSource("EnLayout.qml", {
-                                           "inputPanel": root
-                                       })
-            }
+            layoutLoader.setSource("EnLayout.qml", {
+                                       "inputPanel": root
+                                   })
         }
     }
 }

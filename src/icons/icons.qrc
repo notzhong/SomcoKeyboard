@@ -7,7 +7,6 @@
         <file>light/keyboard_hide.svg</file>
         <file>light/keyboard_return.svg</file>
         <file>light/keyboard_space.svg</file>
-        <file>light/language.svg</file>
         <file>light/logo.svg</file>
 		
         <file>dark/shift_off.svg</file>
@@ -17,7 +16,6 @@
         <file>dark/keyboard_hide.svg</file>
         <file>dark/keyboard_return.svg</file>
         <file>dark/keyboard_space.svg</file>
-        <file>dark/language.svg</file>
         <file>dark/logo.svg</file>
     </qresource>
 </RCC>

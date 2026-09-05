@@ -13,7 +13,7 @@
 
 ## Overview
 
-SomcoKeyboard is a lightweight, production-ready on-screen virtual keyboard designed for embedded systems. Whether you're building touch interfaces for medical devices, industrial systems, or consumer products, SomcoKeyboard delivers a smooth typing experience with built-in theming, multi-language support, and seamless Qt integration.
+SomcoKeyboard is a lightweight, production-ready on-screen virtual keyboard designed for embedded systems. Whether you're building touch interfaces for medical devices, industrial systems, or consumer products, SomcoKeyboard delivers a smooth typing experience with built-in theming, a dedicated English layout, and seamless Qt integration.
 
 ✨ **Zero configuration needed** — just integrate and go. Comprehensive customization available for advanced use cases.
 
@@ -25,7 +25,7 @@ SomcoKeyboard is a lightweight, production-ready on-screen virtual keyboard desi
 |---------|---------|
 | 🎨 **Built-in Themes** | Ready-to-use light and dark themes — no setup required |
 | 🖌️ **Customizable Appearance** | Easily define and switch custom themes for your brand |
-| 🌍 **Multi-Language Support** | 17+ keyboard layouts included (Latin, Cyrillic, Greek) |
+| 🇬🇧 **English Layout** | Dedicated English QWERTY layout with long-press accented characters |
 | ⚡ **Embedded-Friendly** | Optimized for performance and minimal resource usage |
 | 🔗 **Qt Integration** | Simple, seamless integration into Qt Quick projects |
 | 📜 **Open Source** | MIT licensed — free to use, modify, and extend |
@@ -120,33 +120,9 @@ InputPanel {
 
 ---
 
-## 🌍 Supported Languages
+## ⌨️ Keyboard Layout
 
-| Language Name | Language Code | Layout File |
-|---------------|---------------|--------------|
-| Bosnian (Cyrillic) | CyBs | [`CySrBsLayout.qml`](src/qml/CySrBsLayout.qml) |
-| Bosnian (Latin) | LtBs | [`LtSrHrBsLayout.qml`](src/qml/LtSrHrBsLayout.qml) |
-| Croatian | Hr | [`LtSrHrBsLayout.qml`](src/qml/LtSrHrBsLayout.qml) |
-| Czech | Cs | [`CsLayout.qml`](src/qml/CsLayout.qml) |
-| Danish | Da | [`DaLayout.qml`](src/qml/DaLayout.qml) |
-| Dutch | Nl | [`NlLayout.qml`](src/qml/NlLayout.qml) |
-| English | En | [`EnLayout.qml`](src/qml/EnLayout.qml) |
-| Finnish | Fi | [`FiLayout.qml`](src/qml/FiLayout.qml) |
-| French | Fr | [`FrLayout.qml`](src/qml/FrLayout.qml) |
-| German | De | [`DeLayout.qml`](src/qml/DeLayout.qml) |
-| Greek | El | [`ElLayout.qml`](src/qml/ElLayout.qml) |
-| Italian | It | [`ItLayout.qml`](src/qml/ItLayout.qml) |
-| Polish | Pl | [`PlLayout.qml`](src/qml/PlLayout.qml) |
-| Portuguese | Pt | [`PtLayout.qml`](src/qml/PtLayout.qml) |
-| Russian | Ru | [`RuLayout.qml`](src/qml/RuLayout.qml) |
-| Serbian (Cyrillic) | CySr | [`CySrBsLayout.qml`](src/qml/CySrBsLayout.qml) |
-| Serbian (Latin) | LtSr | [`LtSrHrBsLayout.qml`](src/qml/LtSrHrBsLayout.qml) |
-| Spanish | Es | [`EsLayout.qml`](src/qml/EsLayout.qml) |
-| Swedish | Sv | [`SvLayout.qml`](src/qml/SvLayout.qml) |
-| Turkish | Tr | [`TrLayout.qml`](src/qml/TrLayout.qml) |
-| Ukrainian | Uk | [`UkLayout.qml`](src/qml/UkLayout.qml) |
-
-**All layouts are extensible** — easily add or customize languages for your needs.
+This branch ships a **dedicated English (QWERTY) layout** only — [`EnLayout.qml`](src/qml/EnLayout.qml). There is no language-switch key and no multi-language registry, which keeps the plugin small and focused. Long-pressing a letter key still offers accented alternatives (e.g., `e` → `êëèé`).
 
 ---
 
@@ -156,9 +132,9 @@ Customize keyboard behavior with simple QML properties:
 
 ```qml
 InputPanel {
-    availableLanguageLayouts: ["En", "De", "Uk"]
-    languageLayout: "En"
-    persistentShift: false
+    themeName: "defaultLight"
+    spacing: 16
+    margins: 16
     autoCapitalize: true
 }
 ```
@@ -179,7 +155,7 @@ Please follow standard Qt coding conventions.
 
 ### Ways to Contribute
 - 🐛 Fix bugs
-- 🌐 Add new keyboard layouts
+- 🌐 Extend the keyboard layout
 - 📚 Improve documentation
 - 🎨 Enhance UI/UX
 - 💡 Suggest features

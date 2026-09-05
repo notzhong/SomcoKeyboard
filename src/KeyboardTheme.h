@@ -29,7 +29,6 @@ class KeyboardTheme : public QObject
     Q_PROPERTY(QString shiftOffIcon MEMBER m_shiftOffIcon NOTIFY shiftOffIconChanged FINAL)
     Q_PROPERTY(QString capsLockIcon MEMBER m_capsLockIcon NOTIFY capsLockIconChanged FINAL)
     Q_PROPERTY(QString hideKeyboardIcon MEMBER m_hideKeyboardIcon NOTIFY hideKeyboardIconChanged FINAL)
-    Q_PROPERTY(QString languageIcon MEMBER m_languageIcon NOTIFY languageIconChanged FINAL)
     Q_PROPERTY(QString spaceIcon MEMBER m_spaceIcon NOTIFY spaceIconChanged FINAL)
 
 public:
@@ -55,7 +54,6 @@ signals:
     void shiftOffIconChanged();
     void capsLockIconChanged();
     void hideKeyboardIconChanged();
-    void languageIconChanged();
     void spaceIconChanged();
 
 private:
@@ -75,6 +73,5 @@ private:
     QString m_shiftOffIcon;
     QString m_capsLockIcon;
     QString m_hideKeyboardIcon;
-    QString m_languageIcon;
     QString m_spaceIcon;
 };

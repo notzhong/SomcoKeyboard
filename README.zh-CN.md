@@ -16,7 +16,7 @@
 SomcoKeyboard 是一个轻量、可商用的 QML 虚拟键盘，以 **Qt QPA 平台输入上下文插件**（platforminputcontexts plugin）的形式工作：应用只需设置 `QT_IM_MODULE=somcokeyboard`，任何获得焦点的输入框都会自动弹出该键盘，无需逐个输入框绑定。适用于医疗设备、工业 HMI 等嵌入式 Linux 场景。
 
 - 🎨 内置亮 / 暗两套主题，支持完全自定义
-- 🌍 20+ 语言布局（拉丁 / 西里尔 / 希腊字母），可扩展
+- 🇬🇧 专门的英文 QWERTY 布局（本分支不包含其它语言）
 - ⚡ 面向嵌入式优化，资源占用小
 - 🔗 Qt 5.15 与 Qt 6（同一套源码，CMake 自动探测）
 
@@ -34,7 +34,7 @@ SomcoKeyboard/
 └── src/
     ├── VirtualKeyboardInputContextPlugin.*   # QPA 插件入口（system=="somcokeyboard" 时启用）
     ├── VirtualKeyboardInputContext.*         # 输入上下文：把按键事件送进焦点控件
-    ├── DeclarativeInputEngine.*              # InputEngine 单例：大小写/符号状态、语言布局注册表
+    ├── DeclarativeInputEngine.*              # InputEngine 单例：大小写/符号状态等输入逻辑
     ├── KeyboardTheme.h / .cpp                # 主题数据对象：颜色/字体/图标属性定义（权威清单）
     ├── ThemeManager.h / .cpp                 # ThemeManager 单例：管理可用主题与当前主题
     ├── EnterKeyAction*                       # Enter 键行为附加属性
@@ -45,11 +45,10 @@ SomcoKeyboard/
         ├── InputPanel.qml         # 键盘根面板：默认主题、高度/边距/间距、布局加载逻辑
         ├── Key.qml                # ★ 所有按键的基类：样式、按压效果、长按、按下预览
         ├── ShiftKey.qml  EnterKey.qml  SpaceKey.qml  BackspaceKey.qml
-        ├── SymbolKey.qml  HideKey.qml  LanguageKey.qml      # 功能键（均继承 Key）
+        ├── SymbolKey.qml  HideKey.qml                       # 功能键（均继承 Key）
         ├── KeyPopup.qml           # 按键按下时的气泡预览
         ├── AlternativeKeysPopup.qml   # 长按弹出的备选字符弹窗
-        ├── EnLayout.qml  DeLayout.qml  FrLayout.qml …     # 各语言字母布局
-        ├── QwertyLayout.qml       # 通用 QWERTY 模板（注册表未直接引用，可作新布局起点）
+        ├── EnLayout.qml           # 英文 QWERTY 字母布局（本分支唯一布局）
         └── SymbolLayout.qml  DigitsLayout.qml             # 符号键盘 / 数字键盘
 ```
 
@@ -62,16 +61,14 @@ SomcoKeyboard/
 | 想改的效果 | 去哪里改 |
 |---|---|
 | 颜色、字体、图标（换肤） | `src/qml/InputPanel.qml` 里的 `lightTheme` / `darkTheme`；或在应用侧传入自定义 `themes` |
-| 某语言键盘的按键排布、增删按键 | `src/qml/对应语言 Layout.qml`（英文是 `EnLayout.qml`） |
+| 按键排布、增删按键 | `src/qml/EnLayout.qml` |
 | 所有按键的通用样式与交互（圆角、按压变暗、长按、预览） | `src/qml/Key.qml` |
-| 某个功能键（Shift / 回车 / 空格 / 退格 / 符号 / 收起 / 语言） | `src/qml/` 下同名文件：`ShiftKey.qml`、`EnterKey.qml`、`SpaceKey.qml`、`BackspaceKey.qml`、`SymbolKey.qml`、`HideKey.qml`、`LanguageKey.qml` |
+| 某个功能键（Shift / 回车 / 空格 / 退格 / 符号 / 收起） | `src/qml/` 下同名文件：`ShiftKey.qml`、`EnterKey.qml`、`SpaceKey.qml`、`BackspaceKey.qml`、`SymbolKey.qml`、`HideKey.qml` |
 | 键盘整体：高度、边距、间距、底色 | `src/qml/InputPanel.qml` |
 | 按下时的气泡预览 | `src/qml/KeyPopup.qml` |
 | 长按备选字符弹窗 | `src/qml/AlternativeKeysPopup.qml` |
 | 符号键盘 / 数字键盘 | `src/qml/SymbolLayout.qml` / `src/qml/DigitsLayout.qml` |
 | 按键图标 | `src/icons/light/*.svg`、`src/icons/dark/*.svg` + `src/icons/icons.qrc` |
-| 新增一种语言 | 见下文「新增语言布局」（QML + C++ 注册表两处） |
-| 按键如何写入文本框（输入行为） | C++ 层：`src/DeclarativeInputEngine.cpp` 的 `virtualKeyClick()`、`src/VirtualKeyboardInputContext.cpp` |
 | 主题可调属性有哪些 | `src/KeyboardTheme.h` 的 `Q_PROPERTY` 清单 |
 
 ### 1. 改颜色 / 字体 / 图标（主题）
@@ -90,7 +87,7 @@ KeyboardTheme {
     btnTextFontFamily: "Inter"
     btnTextFontSize: 21
     backspaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_backspace.svg"
-    // 另有 enterIcon / shiftOn/OffIcon / capsLockIcon / hideKeyboardIcon / languageIcon / spaceIcon
+    // 另有 enterIcon / shiftOn/OffIcon / capsLockIcon / hideKeyboardIcon / spaceIcon
 }
 ```
 
@@ -100,7 +97,7 @@ KeyboardTheme {
 
 ### 2. 改按键布局（增、删、改按键）
 
-每种语言一个独立 QML 文件，如英文 `src/qml/EnLayout.qml`。布局就是普通的 `ColumnLayout` + 每行一个 `RowLayout`：
+字母布局在 `src/qml/EnLayout.qml`。布局就是普通的 `ColumnLayout` + 每行一个 `RowLayout`：
 
 ```qml
 Key {
@@ -146,28 +143,13 @@ QML 是数据驱动的，改布局不需要动任何 C++ 代码。
 | `height: 340` | 键盘总高度 |
 | `spacing` / `margins`（默认 16） | 键间距 / 键盘内边距，应用侧也可直接对 `InputPanel` 赋值覆盖 |
 | `keyboardRect` 及其内层 `Rectangle` | 键盘背景色与圆角（颜色来自主题） |
-| `loadLettersLayout()` | 语言布局的 `Loader` 加载逻辑（含回退到 `EnLayout`） |
+| `loadLettersLayout()` | 字母/符号/数字布局的 `Loader` 加载逻辑 |
 
-### 5. 新增语言布局（以匈牙利语 Hu 为例）
-
-需要 QML 和 C++ 注册表两处配合，共 4 步：
-
-1. 新建 `src/qml/HuLayout.qml`（复制 `EnLayout.qml` 或 `QwertyLayout.qml` 后修改按键）；
-2. 在 `src/DeclarativeInputEngine.h` 的 `enum InputLayouts` 中加入 `Hu`；
-3. 在 `src/DeclarativeInputEngine.cpp` 的 `layoutFiles` 哈希表中登记：
-   ```cpp
-   {DeclarativeInputEngine::Hu, {"HuLayout", "Magyar", "Szóköz"}},
-   ```
-   三个字段分别是：布局 QML 文件名（不带 `.qml`）、语言显示名、空格键文案；
-4. 使用时启用：`InputPanel { availableLanguageLayouts: ["En", "Hu"] }`。
-
-> 加载机制：`InputPanel.qml` 的 `loadLettersLayout()` 调用 `InputEngine.fileOfLayout("Hu")` 得到 `"HuLayout"`，再用 `Loader` 加载 `HuLayout.qml`。多种语言可共用同一布局文件（如 `LtSrHrBsLayout.qml` 同时服务拉丁波斯尼亚语 / 克罗地亚语 / 拉丁塞尔维亚语）。`langDescription` / `spaceIdentifier` 会随布局传给 `Loader`，属预留接口。
-
-### 6. 改图标
+### 5. 改图标
 
 图标编译期打包进插件：源文件在 `src/icons/light/` 与 `src/icons/dark/`，由 `src/icons/icons.qrc` 以 `/icons/SomcoKeyboard` 前缀打包。新增 / 替换 SVG 后需同步更新 `icons.qrc`，主题中通过 `qrc:/icons/SomcoKeyboard/light/xxx.svg` 引用。
 
-### 7. 改输入行为（进阶，C++ 层）
+### 6. 改输入行为（进阶，C++ 层）
 
 - 按键 → 文本：`src/DeclarativeInputEngine.cpp` 的 `virtualKeyClick()`
 - 与焦点控件的桥接（预编辑文本、 surrounding text 等）：`src/VirtualKeyboardInputContext.cpp`
@@ -230,8 +212,6 @@ qmake somcokeyboard.pro && make
 
 | 属性 | 默认值 | 说明 |
 |---|---|---|
-| `availableLanguageLayouts` | `["En", "Pl", "Uk"]` | 可用语言列表（语言键仅在多于 1 种时可用） |
-| `languageLayout` | `"En"` | 当前语言 |
 | `themes` | 空 | 自定义主题列表；提供后内置主题不再自动加入 |
 | `themeName` | 首个可用主题 | 当前主题名 |
 | `spacing` / `margins` | 16 / 16 | 键间距 / 内边距 |
@@ -266,41 +246,17 @@ InputPanel {
 
 ---
 
-## 🌍 支持的语言
+## ⌨️ 键盘布局
 
-| 语言 | 代码 | 布局文件 |
-|---|---|---|
-| 波斯尼亚语（西里尔） | CyBs | `CySrBsLayout.qml` |
-| 波斯尼亚语（拉丁） | LtBs | `LtSrHrBsLayout.qml` |
-| 克罗地亚语 | Hr | `LtSrHrBsLayout.qml` |
-| 捷克语 | Cs | `CsLayout.qml` |
-| 丹麦语 | Da | `DaLayout.qml` |
-| 荷兰语 | Nl | `NlLayout.qml` |
-| 英语 | En | `EnLayout.qml` |
-| 芬兰语 | Fi | `FiLayout.qml` |
-| 法语 | Fr | `FrLayout.qml` |
-| 德语 | De | `DeLayout.qml` |
-| 希腊语 | El | `ElLayout.qml` |
-| 意大利语 | It | `ItLayout.qml` |
-| 波兰语 | Pl | `PlLayout.qml` |
-| 葡萄牙语 | Pt | `PtLayout.qml` |
-| 俄语 | Ru | `RuLayout.qml` |
-| 塞尔维亚语（西里尔） | CySr | `CySrBsLayout.qml` |
-| 塞尔维亚语（拉丁） | LtSr | `LtSrHrBsLayout.qml` |
-| 西班牙语 | Es | `EsLayout.qml` |
-| 瑞典语 | Sv | `SvLayout.qml` |
-| 土耳其语 | Tr | `TrLayout.qml` |
-| 乌克兰语 | Uk | `UkLayout.qml` |
+本分支只保留**英文 QWERTY 布局**（`src/qml/EnLayout.qml`）：没有语言切换键、没有多语言注册表，插件更精简。长按字母键仍可输入带变音符的字符（如 `e` → `êëèé`）。
 
 ---
 
 ## ❓ 常见问题
 
 - **改了 QML 没生效？** 所有 QML 以 qrc 资源形式编译进插件二进制，修改后必须重新编译插件，并确认应用加载的是新编译的 `libsomcokeyboard*.so`（检查插件搜索路径、清理旧文件）。
-- **语言切换键不见了？** `LanguageKey` 只在 `availableLanguageLayouts.length > 1` 时可用。
 - **提供自定义主题后内置主题没了？** 设计如此：传入 `themes` 后默认主题不会自动加入，需要的话把内置主题定义一并放进列表。
 - **`src/qml/qmldir` 需要维护吗？** 不需要。CMake 构建下该文件不参与打包（Qt 6 由 `qt_add_qml_module` 生成，Qt 5 由 CMake 生成）。
-- **新增布局时报 "Missing layout" 或 "not supported"？** `InputLayouts` 枚举与 `layoutFiles` 注册表必须成对添加，见上文第 5 节。
 
 ---
 
