@@ -79,6 +79,7 @@ Item {
         shiftOffIcon: "qrc:/icons/SomcoKeyboard/light/shift_off.svg"
         capsLockIcon: "qrc:/icons/SomcoKeyboard/light/caps_lock.svg"
         hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_hide.svg"
+        languageIcon: "qrc:/icons/SomcoKeyboard/light/language.svg"
         spaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_space.svg"
     }
 
@@ -101,6 +102,7 @@ Item {
         shiftOffIcon: "qrc:/icons/SomcoKeyboard/dark/shift_off.svg"
         capsLockIcon: "qrc:/icons/SomcoKeyboard/dark/caps_lock.svg"
         hideKeyboardIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_hide.svg"
+        languageIcon: "qrc:/icons/SomcoKeyboard/dark/language.svg"
         spaceIcon: "qrc:/icons/SomcoKeyboard/dark/keyboard_space.svg"
     }
 

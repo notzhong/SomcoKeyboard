@@ -122,7 +122,7 @@ InputPanel {
 
 ## ⌨️ Keyboard Layout
 
-This branch ships a **dedicated English (QWERTY) layout** only — [`EnLayout.qml`](src/qml/EnLayout.qml). There is no language-switch key and no multi-language registry, which keeps the plugin small and focused. Long-pressing a letter key still offers accented alternatives (e.g., `e` → `êëèé`).
+This branch ships a **dedicated English (QWERTY) layout** only — [`EnLayout.qml`](src/qml/EnLayout.qml). There is no multi-language registry and no switching logic; the globe key at the bottom left is a **decorative placeholder** ([`LanguageKey.qml`](src/qml/LanguageKey.qml)) you can wire up to your own behavior. Long-pressing a letter key still offers accented alternatives (e.g., `e` → `êëèé`).
 
 ---
 

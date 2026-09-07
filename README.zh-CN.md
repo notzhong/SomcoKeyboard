@@ -45,7 +45,7 @@ SomcoKeyboard/
         ├── InputPanel.qml         # 键盘根面板：默认主题、高度/边距/间距、布局加载逻辑
         ├── Key.qml                # ★ 所有按键的基类：样式、按压效果、长按、按下预览
         ├── ShiftKey.qml  EnterKey.qml  SpaceKey.qml  BackspaceKey.qml
-        ├── SymbolKey.qml  HideKey.qml                       # 功能键（均继承 Key）
+        ├── SymbolKey.qml  HideKey.qml  LanguageKey.qml      # 功能键（均继承 Key；语言键为占位，无切换功能）
         ├── KeyPopup.qml           # 按键按下时的气泡预览
         ├── AlternativeKeysPopup.qml   # 长按弹出的备选字符弹窗
         ├── EnLayout.qml           # 英文 QWERTY 字母布局（本分支唯一布局）
@@ -63,7 +63,7 @@ SomcoKeyboard/
 | 颜色、字体、图标（换肤） | `src/qml/InputPanel.qml` 里的 `lightTheme` / `darkTheme`；或在应用侧传入自定义 `themes` |
 | 按键排布、增删按键 | `src/qml/EnLayout.qml` |
 | 所有按键的通用样式与交互（圆角、按压变暗、长按、预览） | `src/qml/Key.qml` |
-| 某个功能键（Shift / 回车 / 空格 / 退格 / 符号 / 收起） | `src/qml/` 下同名文件：`ShiftKey.qml`、`EnterKey.qml`、`SpaceKey.qml`、`BackspaceKey.qml`、`SymbolKey.qml`、`HideKey.qml` |
+| 某个功能键（Shift / 回车 / 空格 / 退格 / 符号 / 收起 / 语言占位键） | `src/qml/` 下同名文件：`ShiftKey.qml`、`EnterKey.qml`、`SpaceKey.qml`、`BackspaceKey.qml`、`SymbolKey.qml`、`HideKey.qml`、`LanguageKey.qml`（占位，无切换功能） |
 | 键盘整体：高度、边距、间距、底色 | `src/qml/InputPanel.qml` |
 | 按下时的气泡预览 | `src/qml/KeyPopup.qml` |
 | 长按备选字符弹窗 | `src/qml/AlternativeKeysPopup.qml` |
@@ -87,7 +87,7 @@ KeyboardTheme {
     btnTextFontFamily: "Inter"
     btnTextFontSize: 21
     backspaceIcon: "qrc:/icons/SomcoKeyboard/light/keyboard_backspace.svg"
-    // 另有 enterIcon / shiftOn/OffIcon / capsLockIcon / hideKeyboardIcon / spaceIcon
+    // 另有 enterIcon / shiftOn/OffIcon / capsLockIcon / hideKeyboardIcon / languageIcon / spaceIcon
 }
 ```
 
@@ -248,7 +248,7 @@ InputPanel {
 
 ## ⌨️ 键盘布局
 
-本分支只保留**英文 QWERTY 布局**（`src/qml/EnLayout.qml`）：没有语言切换键、没有多语言注册表，插件更精简。长按字母键仍可输入带变音符的字符（如 `e` → `êëèé`）。
+本分支只保留**英文 QWERTY 布局**（`src/qml/EnLayout.qml`）：没有多语言注册表、没有切换逻辑；左下角保留一个**占位的语言键**（`LanguageKey.qml`，地球图标，点击无动作），可自行接入自定义逻辑。长按字母键仍可输入带变音符的字符（如 `e` → `êëèé`）。
 
 ---
 
