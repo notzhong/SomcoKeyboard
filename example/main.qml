@@ -48,7 +48,7 @@ ApplicationWindow {
             }
         }
         Keys.onEscapePressed: {
-            Qt.inputMethod.hide()
+            InputContext.requestHide()
         }
     }
 
